@@ -25,3 +25,8 @@ Thumbs.db
 # logs
 *.log
 npm-debug.log*
+
+# agent / skill artifacts (not part of website)
+skills/
+download/
+worklog.md
