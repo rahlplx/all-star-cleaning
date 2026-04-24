@@ -56,30 +56,30 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
     <div class="lg:col-span-2">
       <!-- Service Features -->
       <h2 class="font-heading text-2xl font-bold text-navy">
-        {isFr ? `Nos services de ${service.frName.toLowerCase()} à ${location.frName}` : `Our ${service.name.toLowerCase()} services in ${location.name}`}
+        {isFr ? `Ce que notre ${service.frName.toLowerCase()} à ${location.frName} comprend` : `What our ${service.name.toLowerCase()} in ${location.name} includes`}
       </h2>
       <ul class="mt-4 space-y-3">
         {(isFr ? service.frFeatures : service.features).map((feature) => (
           <li class="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             <span class="text-foreground">{feature}</span>
           </li>
         ))}
       </ul>
 
       <!-- Area Context -->
-      <div class="mt-8 rounded-xl border border-border bg-off-white p-6">
+      <div class="mt-8 rounded-xl border border-border bg-card p-6">
         <h2 class="font-heading text-2xl font-bold text-navy">
           {isFr ? `Service à ${location.frName}` : `Serving ${location.name}`}
         </h2>
-        <p class="mt-2 text-muted">
+        <p class="mt-2 measure text-muted-foreground">
           {isFr
             ? `Nous sommes fiers de desservir ${location.frName} et les quartiers environnants de la région d'Ottawa. Notre équipe locale connaît bien les besoins uniques des propriétés dans cette zone ${location.area} d'Ottawa.`
             : `We proudly serve ${location.name} and surrounding neighbourhoods in the Ottawa region. Our local team understands the unique needs of properties in this ${location.area} Ottawa zone.`}
         </p>
         {location.neighbours.length > 0 && (
           <div class="mt-4">
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted">{isFr ? 'Quartiers avoisinants' : 'Nearby Areas'}</h3>
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{isFr ? 'Quartiers avoisinants' : 'Nearby Areas'}</h3>
             <div class="mt-2 flex flex-wrap gap-2">
               {location.neighbours.map((neighbour) => {
                 const loc = locations.find((l) => l.slug === neighbour);
@@ -98,12 +98,54 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
           {isFr ? `Autres services à ${location.frName}` : `Other services in ${location.name}`}
         </h2>
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
-          {services.filter((s) => s.slug !== service.slug).map((otherService) => (
-            <a href={`/${locale}/area/${location.slug}/${otherService.slug}`} class="group rounded-lg border border-border bg-card p-4 transition-all hover:border-teal/30 hover:shadow-md">
-              <h3 class="font-medium text-navy group-hover:text-teal">{isFr ? otherService.frName : otherService.name}</h3>
-              <p class="mt-1 text-sm text-muted line-clamp-2">{isFr ? otherService.frDescription : otherService.description}</p>
+          {services.filter((s) => s.slug !== service.slug).map((otherService, i) => (
+            <a href={`/${locale}/area/${location.slug}/${otherService.slug}`} class={`group rounded-lg border border-border bg-card p-4 transition-all hover:border-teal-text/30 hover:shadow-md hover-lift ${i === 0 ? 'sm:col-span-2 border-teal-text/20 bg-teal/5' : ''}`}>
+              <h3 class="font-medium text-navy group-hover:text-teal-text">{isFr ? otherService.frName : otherService.name}</h3>
+              <p class="mt-1 text-sm text-muted-foreground line-clamp-2">{isFr ? otherService.frDescription : otherService.description}</p>
             </a>
           ))}
+        </div>
+      </div>
+
+      <!-- FAQ Section — E-E-A-T signal for SEO -->
+      <div class="mt-10 rounded-xl border border-border bg-card p-6">
+        <h2 class="font-heading text-2xl font-bold text-navy">
+          {isFr ? `Questions fréquentes — ${service.frName} à ${location.frName}` : `Frequently asked questions — ${service.name} in ${location.name}`}
+        </h2>
+        <div class="mt-4 space-y-4">
+          <details class="group rounded-lg border border-border bg-off-white">
+            <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
+              {isFr ? `Combien coûte le ${service.frName.toLowerCase()} à ${location.frName} ?` : `How much does ${service.name.toLowerCase()} cost in ${location.name}?`}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="px-4 pb-3 text-sm text-muted-foreground">
+              {isFr
+                ? `Le coût du ${service.frName.toLowerCase()} à ${location.frName} dépend de la taille de votre propriété et de l'ampleur du travail. Contactez-nous pour un devis gratuit et transparent — sans obligation.`
+                : `The cost of ${service.name.toLowerCase()} in ${location.name} depends on your property size and the scope of work. Contact us for a free, transparent quote — no obligation.`}
+            </div>
+          </details>
+          <details class="group rounded-lg border border-border bg-off-white">
+            <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
+              {isFr ? `Quel est le délai d'intervention à ${location.frName} ?` : `What is the response time in ${location.name}?`}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="px-4 pb-3 text-sm text-muted-foreground">
+              {isFr
+                ? `Nous offrons généralement un service sous 24 à 48 heures à ${location.frName} et les environs. En cas d'urgence, contactez-nous directement par téléphone.`
+                : `We typically provide service within 24-48 hours in ${location.name} and surrounding areas. For urgent requests, call us directly.`}
+            </div>
+          </details>
+          <details class="group rounded-lg border border-border bg-off-white">
+            <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
+              {isFr ? `Êtes-vous assurés pour travailler à ${location.frName} ?` : `Are you insured to work in ${location.name}?`}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="px-4 pb-3 text-sm text-muted-foreground">
+              {isFr
+                ? `Oui, toute notre équipe est pleinement assurée et cautionnée. Nous respectons toutes les réglementations locales d'Ottawa pour votre tranquillité d'esprit.`
+                : `Yes, our team is fully insured and bonded. We comply with all local Ottawa regulations for your peace of mind.`}
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -113,11 +155,11 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       <div class="sticky top-24 rounded-xl border border-border bg-card p-6 shadow-md">
         <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
         <p class="mt-2 text-sm text-muted">{isFr ? service.frCta : service.cta}</p>
-        <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full bg-teal-dark px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-navy hover:shadow-lg">
+        <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full bg-teal-text px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">
           {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
         </a>
-        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted">
-          <a href="tel:+16133143300" class="font-medium text-teal-dark hover:text-navy">(613) 314-3300</a>
+        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground">
+          <a href="tel:+16133143300" class="font-medium text-teal-text hover:text-teal-dark touch-target">(613) 314-3300</a>
         </div>
       </div>
     </div>

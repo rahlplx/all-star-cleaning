@@ -1,5 +1,6 @@
 ---
 // Dynamic locale homepage — Astro v6
+// Redesigned with Impeccable skills: colorize, layout variety, delight animations, adapt, harden
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { services } from '@/data/services';
 import { useTranslations } from '@/i18n/translations';
@@ -17,6 +18,14 @@ const usps = [
   { icon: 'sparkles', title: t.usps.equipment.title, description: t.usps.equipment.description },
   { icon: 'check-circle', title: t.usps.guarantee.title, description: t.usps.guarantee.description },
 ];
+
+const serviceImages: Record<string, string> = {
+  'window-cleaning': 'https://images.unsplash.com/photo-1527515637462-cee1395c2ae4?auto=format&fit=crop&w=800&q=80',
+  'gutter-cleaning': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80',
+  'pressure-washing': 'https://images.unsplash.com/photo-1632759145351-1d5925e5e9e8?auto=format&fit=crop&w=800&q=80',
+  'siding-cleaning': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80',
+  'snow-removal': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80',
+};
 ---
 
 <BaseLayout
@@ -25,20 +34,34 @@ const usps = [
   locale={locale}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/` }]}
 >
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden navy-gradient py-20 text-white md:py-28 lg:py-36">
-    <div class="relative z-10 mx-auto max-w-7xl px-4 text-center">
-      <h1 class="font-heading font-bold tracking-tight text-[clamp(2.25rem,5vw,4.5rem)]">
-        {isFr ? <>Nettoyage Extérieur<br /><span class="text-teal-light">de Confiance à Ottawa</span></> : <>Ottawa's Trusted<br /><span class="text-teal-light">Exterior Cleaning</span></>}
+  <!-- ============================================================ -->
+  <!-- HERO SECTION — Background image + navy overlay, asymmetric alignment -->
+  <!-- ============================================================ -->
+  <section class="relative overflow-hidden py-20 text-white md:py-28 lg:py-36">
+    <!-- Background image with overlay -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1600&q=80"
+        alt=""
+        role="presentation"
+        class="h-full w-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-navy/85"></div>
+    </div>
+    <!-- Content -->
+    <div class="relative z-10 mx-auto max-w-7xl px-4 text-center md:text-left">
+      <h1 class="slide-up font-heading font-bold tracking-tight text-[clamp(2.25rem,5vw,4.5rem)]">
+        {isFr ? <>Nettoyage Extérieur<br /><span class="text-gold">de Confiance à Ottawa</span></> : <>Ottawa's Trusted<br /><span class="text-gold">Exterior Cleaning</span></>}
       </h1>
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
+      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl md:mx-0">
         {isFr ? "Nettoyage professionnel de vitres, gouttières, lavage sous pression, revêtement et déneigement dans la région d'Ottawa." : 'Professional window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal across the Ottawa region.'}
       </p>
-      <div class="mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
-        <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">
+      <div class="fade-in delay-4 mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-start">
+        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-teal-text px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-teal-dark hover:shadow-xl">
           {t.cta.freeQuote}
         </a>
-        <a href={`tel:${t.contact.phoneLink}`} class="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 text-lg font-semibold text-white transition-all hover:border-white/60 hover:bg-white/10">
+        <a href={`tel:${t.contact.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 text-lg font-semibold text-white transition-all hover:border-white/60 hover:bg-white/10">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           {t.contact.phone}
         </a>
@@ -46,63 +69,192 @@ const usps = [
     </div>
   </section>
 
-  <!-- USP Section -->
-  <section class="py-16 md:py-20 bg-off-white">
+  <!-- ============================================================ -->
+  <!-- USP SECTION — Asymmetric split layout, left-aligned text -->
+  <!-- ============================================================ -->
+  <section class="py-16 md:py-20 lg:py-24 bg-card">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="grid gap-8 md:grid-cols-3">
-        {usps.map((usp, i) => (
-          <div class:list={['rounded-xl p-6 shadow-sm border text-center md:text-left', i === 0 ? 'bg-teal/5 border-teal/20' : 'bg-white border-border']}>
-            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-teal/10 text-teal md:mx-0">
-              {usp.icon === 'shield' && (
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              )}
-              {usp.icon === 'sparkles' && (
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              )}
-              {usp.icon === 'check-circle' && (
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-              )}
+      <!-- Decorative teal accent line -->
+      <div class="mb-10 h-px w-full bg-teal/20 md:mb-12"></div>
+
+      <div class="section-asymmetric items-start">
+        <!-- Left column: large text block (60%) -->
+        <div class="text-center md:text-left">
+          <h2 class="heading-section slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">
+            {isFr ? 'Pourquoi Choisir All Star?' : 'Why Choose All Star?'}
+          </h2>
+          <p class="fade-in delay-2 mt-4 measure text-lg text-muted">
+            {isFr
+              ? "Des décennies d'expertise locale, un équipement de qualité professionnelle et une garantie de satisfaction sans tracas — c'est ce qui nous distingue à Ottawa."
+              : 'Decades of local expertise, professional-grade equipment, and a hassle-free satisfaction guarantee — that\'s what sets us apart in Ottawa.'}
+          </p>
+          <a href={`/${locale}/contact`} class="fade-in delay-3 mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-text transition-colors hover:text-teal-dark md:mt-8">
+            {isFr ? 'Obtenez votre devis gratuit' : 'Get your free quote'}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+        </div>
+
+        <!-- Right column: 2 stacked feature items (40%) -->
+        <div class="flex flex-col gap-6">
+          {usps.map((usp, i) => (
+            <div class:list={['fade-in rounded-xl border p-5', i === 0 ? 'border-teal/20 bg-teal/5' : 'border-border bg-off-white']}>
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-teal/10 text-teal-text">
+                {usp.icon === 'shield' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                )}
+                {usp.icon === 'sparkles' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                )}
+                {usp.icon === 'check-circle' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                )}
+              </div>
+              <h3 class="font-heading text-base font-semibold text-navy">{usp.title}</h3>
+              <p class="mt-1.5 measure text-sm leading-relaxed text-muted">{usp.description}</p>
             </div>
-            <h3 class="font-heading text-lg font-semibold text-navy">{usp.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-muted">{usp.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section class="py-16 md:py-20">
+  <!-- ============================================================ -->
+  <!-- SERVICES SECTION — Varied grid with featured first card -->
+  <!-- ============================================================ -->
+  <section class="py-16 md:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4">
       <div class="text-center">
-        <h2 class="font-heading text-3xl font-bold text-navy sm:text-4xl">{isFr ? 'Nos Services' : 'Our Services'}</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-muted">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
+        <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">{isFr ? 'Nos Services' : 'Our Services'}</h2>
+        <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <a href={`/${locale}/services/${service.slug}`} class="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal/30 hover:shadow-md hover:-translate-y-0.5">
-            <h3 class="font-heading text-xl font-semibold text-navy group-hover:text-teal">{isFr ? service.frName : service.name}</h3>
-            <p class="mt-2 text-sm text-muted line-clamp-3">{isFr ? service.frDescription : service.description}</p>
-            <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-dark">
-              {isFr ? 'En savoir plus' : 'Learn more'}
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </span>
-          </a>
-        ))}
+        {services.map((service, i) => {
+          const imgSrc = serviceImages[service.slug] || 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80';
+          const isFeatured = i === 0;
+          return (
+            <a
+              href={`/${locale}/services/${service.slug}`}
+              class:list={[
+                'hover-lift group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:border-teal/30 hover:shadow-md',
+                isFeatured && 'md:col-span-2 lg:col-span-2',
+              ]}
+            >
+              {isFeatured ? (
+                /* Featured card: horizontal layout (image left, text right) */
+                <div class="flex flex-col md:flex-row">
+                  <div class="h-48 w-full md:h-auto md:w-2/5 lg:w-1/3">
+                    <img
+                      src={imgSrc}
+                      alt={isFr ? service.frName : service.name}
+                      class="h-full w-full object-cover"
+                      loading={i < 2 ? 'eager' : 'lazy'}
+                    />
+                  </div>
+                  <div class="flex flex-1 flex-col justify-center p-6">
+                    <span class="mb-2 inline-block w-fit rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-text">
+                      {isFr ? 'Populaire' : 'Popular'}
+                    </span>
+                    <h3 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text lg:text-2xl">{isFr ? service.frName : service.name}</h3>
+                    <p class="mt-2 measure text-sm text-muted line-clamp-2">{isFr ? service.frDescription : service.description}</p>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+                      {isFr ? 'En savoir plus' : 'Learn more'}
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                /* Standard cards: vertical layout (image top, text below) */
+                <div class="flex flex-col">
+                  <div class="h-40 w-full">
+                    <img
+                      src={imgSrc}
+                      alt={isFr ? service.frName : service.name}
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="flex flex-1 flex-col p-6">
+                    <h3 class="font-heading text-lg font-semibold text-navy group-hover:text-teal-text">{isFr ? service.frName : service.name}</h3>
+                    <p class="mt-2 measure text-sm text-muted line-clamp-3">{isFr ? service.frDescription : service.description}</p>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+                      {isFr ? 'En savoir plus' : 'Learn more'}
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                    </span>
+                  </div>
+                </div>
+              )}
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="navy-gradient py-16 text-white md:py-20">
-    <div class="mx-auto max-w-4xl px-4 text-center">
-      <h2 class="font-heading text-3xl font-bold md:text-4xl">{isFr ? 'Prêt à Commencer?' : 'Ready to Get Started?'}</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-white/80">{isFr ? 'Contactez-nous dès aujourd\'hui pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!' : 'Contact us today for a free quote. We\'re open 7 days a week!'}</p>
-      <div class="mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
-        <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">
+  <!-- ============================================================ -->
+  <!-- TRUST / STATS SECTION — Narrative social proof (not hero-metric) -->
+  <!-- ============================================================ -->
+  <section class="bg-teal-text py-10 text-white md:py-12" aria-label={isFr ? 'Preuve de confiance' : 'Trust indicators'}>
+    <div class="mx-auto max-w-7xl px-4">
+      <p class="text-center text-sm font-semibold uppercase tracking-wider text-white/70">{isFr ? 'La confiance de nos clients' : 'Trusted by Ottawa homeowners'}</p>
+      <div class="mt-4 flex flex-col items-center gap-8 sm:flex-row sm:justify-center sm:gap-12 md:gap-16 lg:gap-20">
+        <!-- Trust signal 1: Rating — with context -->
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-dark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <span class="block text-lg font-bold">4.9/5</span>
+            <span class="text-sm text-white/75">{isFr ? 'Note moyenne' : 'Average rating'}</span>
+          </div>
+        </div>
+        <!-- Trust signal 2: Happy Homes -->
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <span class="block text-lg font-bold">500+</span>
+            <span class="text-sm text-white/75">{isFr ? 'Foyers satisfaits' : 'Happy homes'}</span>
+          </div>
+        </div>
+        <!-- Trust signal 3: Guarantee -->
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <span class="block text-lg font-bold">100%</span>
+            <span class="text-sm text-white/75">{isFr ? 'Garantie de satisfaction' : 'Satisfaction guarantee'}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CTA SECTION — Background image with overlay, gold CTA -->
+  <!-- ============================================================ -->
+  <section class="relative overflow-hidden py-20 text-white md:py-24 lg:py-28">
+    <!-- Background image with overlay -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1600&q=80"
+        alt=""
+        role="presentation"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-navy/90"></div>
+    </div>
+    <!-- Content -->
+    <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
+      <h2 class="heading-subsection slide-up font-heading text-3xl font-bold md:text-4xl">{isFr ? 'Prêt à Commencer?' : 'Ready to Get Started?'}</h2>
+      <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl text-white/80">{isFr ? "Contactez-nous dès aujourd'hui pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!" : 'Contact us today for a free quote. We\'re open 7 days a week!'}</p>
+      <div class="fade-in delay-4 mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
+        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-gold px-8 py-3.5 text-lg font-semibold text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl">
           {t.cta.freeQuote}
         </a>
-        <a href={`tel:${t.contact.phoneLink}`} class="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 text-lg font-semibold text-white transition-all hover:border-white/60 hover:bg-white/10">
+        <a href={`tel:${t.contact.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 text-lg font-semibold text-white transition-all hover:border-white/60 hover:bg-white/10">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           {t.contact.phone}
         </a>

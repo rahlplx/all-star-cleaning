@@ -16,16 +16,68 @@ const altLocale = isFr ? 'en' : 'fr';
   locale={locale}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/about/` }]}
 >
-  <section class="py-16 sm:py-20">
-    <div class="mx-auto max-w-3xl px-4">
-      <h1 class="font-heading text-4xl font-bold text-navy sm:text-5xl">{isFr ? 'À Propos' : 'About All Star Cleaning'}</h1>
-      <div class="mt-8 space-y-6 text-muted leading-relaxed">
-        <p>{isFr ? "Forte de décennies d'expérience au service des foyers d'Ottawa, All Star Cleaning est votre partenaire de confiance pour tous vos besoins en nettoyage extérieur. Notre équipe locale maîtrise les défis uniques des hivers rigoureux d'Ottawa, des gouttières et des revêtements." : "With decades of experience serving Ottawa homes, All Star Cleaning is your trusted partner for all exterior cleaning needs. Our local team masters the unique challenges of Ottawa's harsh winters, gutters, and siding."}</p>
-        <p>{isFr ? "Nous utilisons des équipements spécialisés — aspirateurs, caméras de gouttière et laveuses sous pression sécuritaires — pour garantir un nettoyage approfondi sans dommage à votre propriété, sans produits chimiques agressifs et sans risques." : "We use specialized equipment — vacuums, gutter cameras, and safe pressure washers — to ensure thorough cleans without home damage, harsh chemicals, or risks."}</p>
-        <p>{isFr ? "Notre garantie de satisfaction sans tracas : satisfaction à 100% promise avec des horaires flexibles et des produits écologiques. Vous obtenez des résultats impeccables, sans désordre, et une confiance durable." : "Our hassle-free satisfaction guarantee: 100% satisfaction promised with flexible scheduling and eco-friendly products. You get spotless results, no mess, and lasting trust."}</p>
-      </div>
-      <div class="mt-8">
-        <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">{t.cta.freeQuote}</a>
+  <section class="py-16 sm:py-20 lg:py-24">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="section-asymmetric items-start">
+        <!-- Left column (7fr): Main content -->
+        <div>
+          <h1 class="slide-up heading-section font-heading font-bold text-navy">{isFr ? 'À Propos' : 'About All Star Cleaning'}</h1>
+
+          <!-- Trust signal with subtle gold accent -->
+          <p class="fade-in delay-1 mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gold-dark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            {isFr ? 'Au service d\'Ottawa depuis 2005' : 'Serving Ottawa since 2005'}
+          </p>
+
+          <div class="measure mt-8 space-y-6 text-muted-foreground leading-relaxed">
+            <p class="fade-in delay-1">{isFr ? "Forte de décennies d'expérience au service des foyers d'Ottawa, All Star Cleaning est votre partenaire de confiance pour tous vos besoins en nettoyage extérieur. Notre équipe locale maîtrise les défis uniques des hivers rigoureux d'Ottawa, des gouttières et des revêtements." : "With decades of experience serving Ottawa homes, All Star Cleaning is your trusted partner for all exterior cleaning needs. Our local team masters the unique challenges of Ottawa's harsh winters, gutters, and siding."}</p>
+
+            <!-- Pull-quote for the satisfaction guarantee -->
+            <blockquote class="my-8 rounded-lg border border-teal-text/20 bg-teal/5 px-6 py-4">
+              <p class="font-heading text-xl text-navy italic">{isFr ? 'Satisfaction à 100% promise avec des horaires flexibles et des produits écologiques' : '100% satisfaction promised with flexible scheduling and eco-friendly products'}</p>
+              <cite class="mt-2 block text-sm text-muted-foreground not-italic">{isFr ? '— Notre Garantie sans Tracas' : '— Our Hassle-Free Guarantee'}</cite>
+            </blockquote>
+
+            <p class="fade-in delay-1">{isFr ? "Nous utilisons des équipements spécialisés — aspirateurs, caméras de gouttière et laveuses sous pression sécuritaires — pour garantir un nettoyage approfondi sans dommage à votre propriété, sans produits chimiques agressifs et sans risques." : "We use specialized equipment — vacuums, gutter cameras, and safe pressure washers — to ensure thorough cleans without home damage, harsh chemicals, or risks."}</p>
+            <p class="fade-in delay-1">{isFr ? "Vous obtenez des résultats impeccables, sans désordre, et une confiance durable." : "You get spotless results, no mess, and lasting trust."}</p>
+          </div>
+
+          <div class="mt-12">
+            <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-text px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-teal-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text touch-target">{t.cta.freeQuote}</a>
+          </div>
+        </div>
+
+        <!-- Right column (5fr): Visual accent card -->
+        <div class="space-y-6">
+          <div class="fade-in delay-2 rounded-xl bg-teal-text p-6 text-white shadow-lg">
+            <h2 class="font-heading text-2xl font-bold">{isFr ? 'Nos Valeurs' : 'Our Values'}</h2>
+            <ul class="mt-4 space-y-3">
+              <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{isFr ? 'Entreprise Locale et Indépendante' : 'Locally Owned & Operated'}</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{isFr ? 'Produits Écologiques' : 'Eco-Friendly Products'}</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{isFr ? 'Assurés et Cautionnés' : 'Insured & Bonded'}</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fade-in delay-3 rounded-xl border border-border bg-card p-6">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl font-bold text-navy">20+</span>
+              <span class="text-sm text-muted-foreground">{isFr ? "Années au Service d'Ottawa" : 'Years Serving Ottawa'}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

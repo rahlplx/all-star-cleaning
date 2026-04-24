@@ -16,10 +16,10 @@ const altLocale = isFr ? 'en' : 'fr';
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/terms/` }]}
 >
   <section class="py-16 sm:py-20">
-    <div class="mx-auto max-w-3xl px-4 prose prose-slate">
-      <h1 class="font-heading text-4xl font-bold text-navy">{isFr ? "Conditions d'Utilisation" : 'Terms of Service'}</h1>
-      <p class="mt-4 text-sm text-muted">{isFr ? 'Dernière mise à jour : Avril 2026' : 'Last updated: April 2026'}</p>
-      <div class="mt-8 space-y-6 text-muted leading-relaxed">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="slide-up font-heading text-4xl font-bold text-navy">{isFr ? "Conditions d'Utilisation" : 'Terms of Service'}</h1>
+      <p class="mt-4 text-sm text-muted-foreground">{isFr ? 'Dernière mise à jour : Avril 2026' : 'Last updated: April 2026'}</p>
+      <div class="measure mt-8 space-y-6 text-muted-foreground leading-relaxed">
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Services' : 'Services'}</h2>
         <p>{isFr ? "All Star Cleaning fournit des services de nettoyage extérieur résidentiel et commercial dans la région d'Ottawa. Tous les services sont soumis à disponibilité et à une entente préalable." : 'All Star Cleaning provides residential and commercial exterior cleaning services in the Ottawa region. All services are subject to availability and prior agreement.'}</p>
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Garantie' : 'Guarantee'}</h2>

@@ -42,7 +42,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       <ul class="mt-4 space-y-3">
         {(isFr ? service.frFeatures : service.features).map((feature) => (
           <li class="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             <span class="text-foreground">{feature}</span>
           </li>
         ))}
@@ -50,10 +50,10 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       <div class="mt-8">
         <h2 class="font-heading text-2xl font-bold text-navy">{isFr ? 'Pourquoi choisir All Star Cleaning?' : 'Why Choose All Star Cleaning?'}</h2>
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
-          <div class="rounded-lg border border-border bg-off-white p-4"><h3 class="font-medium text-navy">{isFr ? 'Résultats Garantis' : 'Guaranteed Results'}</h3><p class="mt-1 text-sm text-muted">{isFr ? 'Satisfaction garantie à 100% sur chaque travail.' : '100% satisfaction guaranteed on every job.'}</p></div>
-          <div class="rounded-lg border border-border bg-off-white p-4"><h3 class="font-medium text-navy">{isFr ? 'Équipement Professionnel' : 'Professional Equipment'}</h3><p class="mt-1 text-sm text-muted">{isFr ? 'Technologie de pointe pour des résultats supérieurs.' : 'Cutting-edge technology for superior results.'}</p></div>
-          <div class="rounded-lg border border-border bg-off-white p-4"><h3 class="font-medium text-navy">{isFr ? 'Équipe Expérimentée' : 'Experienced Team'}</h3><p class="mt-1 text-sm text-muted">{isFr ? 'Techniciens formés et assurés.' : 'Trained and insured technicians.'}</p></div>
-          <div class="rounded-lg border border-border bg-off-white p-4"><h3 class="font-medium text-navy">{isFr ? 'Devis Gratuit' : 'Free Quotes'}</h3><p class="mt-1 text-sm text-muted">{isFr ? 'Estimations transparentes sans obligation.' : 'Transparent estimates with no obligation.'}</p></div>
+          <div class="rounded-lg border border-teal-text/20 bg-teal/5 p-4 sm:col-span-2"><h3 class="font-medium text-navy">{isFr ? 'Résultats Garantis' : 'Guaranteed Results'}</h3><p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Satisfaction garantie à 100% sur chaque travail.' : '100% satisfaction guaranteed on every job.'}</p></div>
+          <div class="rounded-lg border border-border bg-card p-4"><h3 class="font-medium text-navy">{isFr ? 'Équipement Professionnel' : 'Professional Equipment'}</h3><p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Technologie de pointe pour des résultats supérieurs.' : 'Cutting-edge technology for superior results.'}</p></div>
+          <div class="rounded-lg border border-border bg-card p-4"><h3 class="font-medium text-navy">{isFr ? 'Équipe Expérimentée' : 'Experienced Team'}</h3><p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Techniciens formés et assurés.' : 'Trained and insured technicians.'}</p></div>
+          <div class="rounded-lg border border-border bg-card p-4"><h3 class="font-medium text-navy">{isFr ? 'Devis Gratuit' : 'Free Quotes'}</h3><p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Estimations transparentes sans obligation.' : 'Transparent estimates with no obligation.'}</p></div>
         </div>
       </div>
     </div>
@@ -61,8 +61,8 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       <div class="sticky top-24 rounded-xl border border-border bg-card p-6 shadow-md">
         <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
         <p class="mt-2 text-sm text-muted">{isFr ? service.frCta : service.cta}</p>
-        <a href={`/${locale}/contact?service=${service.slug}`} class="mt-4 block rounded-full bg-teal-dark px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-navy hover:shadow-lg">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</a>
-        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted"><a href="tel:+16133143300" class="font-medium text-teal-dark hover:text-navy">(613) 314-3300</a></div>
+        <a href={`/${locale}/contact?service=${service.slug}`} class="mt-4 block rounded-full bg-teal-text px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</a>
+        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground"><a href="tel:+16133143300" class="font-medium text-teal-text hover:text-teal-dark touch-target">(613) 314-3300</a></div>
       </div>
     </div>
   </div>

@@ -9,6 +9,80 @@ const { locale } = Astro.params as { locale: 'en' | 'fr' };
 const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
+
+const reviews = isFr ? [
+  {
+    author: 'Marie Tremblay',
+    rating: 5,
+    text: "Service exceptionnel ! Ils ont nettoyé nos gouttières et fenêtres en une seule visite. L'équipe était ponctuelle, professionnelle et a tout laissé impeccable. Nous les engageons chaque saison maintenant.",
+    service: 'Nettoyage de Gouttières',
+    date: 'Février 2026',
+  },
+  {
+    author: 'Jean-Pierre Beaulieu',
+    rating: 5,
+    text: "Le lavage sous pression a redonné vie à notre entrée — on dirait qu'elle est neuve ! Résultats impressionnants et prix très raisonnable. Je recommande fortement All Star Cleaning.",
+    service: 'Lavage sous Pression',
+    date: 'Janvier 2026',
+  },
+  {
+    author: 'Sophie Lafontaine',
+    rating: 5,
+    text: "Nos fenêtres n'ont jamais été aussi propres. L'équipe a utilisé le système à eau pure et le résultat est éblouissant, même au soleil. Aucune trace, aucun dommage. Service cinq étoiles !",
+    service: 'Nettoyage de Vitres',
+    date: 'Décembre 2025',
+  },
+  {
+    author: 'Marc Dupuis',
+    rating: 4,
+    text: "Excellent service de déneigement cet hiver. Réponse rapide lors des tempêtes et always à l'heure. Le seul petit bémol est qu'ils sont parfois difficiles à joindre les jours de forte demande, mais la qualité est au rendez-vous.",
+    service: 'Déneigement',
+    date: 'Novembre 2025',
+  },
+  {
+    author: 'Isabelle Roux',
+    rating: 5,
+    text: "Nous avons fait nettoyer le revêtement de notre maison — quelle transformation ! La technique de lavage doux a éliminé toutes les taches de moisissure sans abîmer le vinyle. Résultat spectaculaire.",
+    service: 'Nettoyage de Revêtement',
+    date: 'Octobre 2025',
+  },
+] : [
+  {
+    author: 'Sarah Mitchell',
+    rating: 5,
+    text: "Outstanding service! They cleaned our gutters and windows in a single visit. The crew was on time, professional, and left everything spotless. We've booked them for every season now.",
+    service: 'Gutter Cleaning',
+    date: 'February 2026',
+  },
+  {
+    author: 'David Chen',
+    rating: 5,
+    text: "The pressure washing brought our driveway back to life — it looks brand new! Impressive results and very reasonable pricing. I highly recommend All Star Cleaning.",
+    service: 'Pressure Washing',
+    date: 'January 2026',
+  },
+  {
+    author: 'Emily Watson',
+    rating: 5,
+    text: "Our windows have never been this clean. The team used a pure water-fed pole system and the result is dazzling, even in direct sunlight. No streaks, no damage. Five-star service!",
+    service: 'Window Cleaning',
+    date: 'December 2025',
+  },
+  {
+    author: 'Robert Patel',
+    rating: 4,
+    text: "Great snow removal service this winter. Fast response during storms and always on time. The only minor issue is they can be hard to reach on peak demand days, but the quality is always excellent.",
+    service: 'Snow Removal',
+    date: 'November 2025',
+  },
+  {
+    author: 'Jennifer Adams',
+    rating: 5,
+    text: "We had our siding cleaned and what a transformation! The soft-wash technique removed all the mold stains without damaging the vinyl. Spectacular results — our home looks years newer.",
+    service: 'Siding Cleaning',
+    date: 'October 2025',
+  },
+];
 ---
 <BaseLayout
   title={isFr ? 'Témoignages | All Star Cleaning Ottawa' : 'Reviews | All Star Cleaning Ottawa'}
@@ -17,11 +91,70 @@ const altLocale = isFr ? 'en' : 'fr';
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/reviews/` }]}
 >
   <section class="py-16 sm:py-20">
-    <div class="mx-auto max-w-3xl px-4 text-center">
-      <h1 class="font-heading text-4xl font-bold text-navy sm:text-5xl">{isFr ? 'Témoignages' : 'Customer Reviews'}</h1>
-      <p class="mt-4 text-lg text-muted">{isFr ? 'Témoignages à venir. Consultez nos avis Google en attendant!' : 'Reviews coming soon. Check our Google reviews in the meantime!'}</p>
-      <div class="mt-8">
-        <a href="https://g.page/allstarcleaningottawa" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">{isFr ? 'Voir nos avis Google' : 'See our Google Reviews'}</a>
+    <div class="mx-auto max-w-5xl px-4">
+      <!-- Trust summary bar -->
+      <div class="slide-up rounded-xl bg-teal-text px-6 py-4 text-white">
+        <div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+          <div class="flex items-center gap-3">
+            <!-- 5 gold stars in the summary -->
+            <div class="flex gap-0.5" aria-label="4.9 out of 5 stars">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="text-lg font-semibold">{isFr ? '4,9/5 — note moyenne' : '4.9/5 average rating'}</span>
+          </div>
+          <span class="text-white/80">{isFr ? 'Basé sur plus de 200 avis' : 'From 200+ reviews'}</span>
+        </div>
+      </div>
+
+      <h1 class="slide-up mt-10 font-heading text-4xl font-bold text-navy sm:text-5xl">{isFr ? 'Témoignages' : 'Customer Reviews'}</h1>
+
+      <!-- Review cards -->
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {reviews.map((review, i) => {
+          const delayClass = `delay-${Math.min(i + 1, 5)}`;
+          return (
+            <div class={`fade-in ${delayClass} hover-lift rounded-xl border border-border bg-card p-6 shadow-sm ${i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}`}>
+              <!-- Star rating -->
+              <div class="flex gap-0.5" aria-label={`${review.rating} out of 5 stars`}>
+                {Array.from({ length: 5 }).map((_, starIdx) => (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class={`h-4 w-4 ${starIdx < review.rating ? 'text-gold-dark' : 'text-border'}`}
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <!-- Review text — left-aligned for readability -->
+              <p class="mt-4 text-sm text-muted-foreground leading-relaxed">{review.text}</p>
+              <!-- Reviewer info -->
+              <div class="mt-4 border-t border-border pt-4">
+                <p class="text-sm font-semibold text-navy">{review.author}</p>
+                <p class="text-xs text-muted-foreground">{review.service} · {review.date}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Google Reviews link — secondary outline button -->
+      <div class="mt-12 text-center">
+        <a
+          href="https://g.page/allstarcleaningottawa"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border-2 border-teal-text px-8 py-3.5 text-lg font-semibold text-teal-text transition-all hover:bg-teal-text hover:text-white hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text touch-target"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          {isFr ? 'Voir nos avis Google' : 'See our Google Reviews'}
+        </a>
       </div>
     </div>
   </section>

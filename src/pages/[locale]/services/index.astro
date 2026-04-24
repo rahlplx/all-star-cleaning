@@ -25,16 +25,31 @@ const breadcrumbs: BreadcrumbItem[] = [
   heroSubtitle={isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/` }]}
 >
-  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-    {services.map((service) => (
-      <a href={`/${locale}/services/${service.slug}`} class="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal/30 hover:shadow-md hover:-translate-y-0.5">
-        <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal">{isFr ? service.frName : service.name}</h2>
-        <p class="mt-2 text-sm text-muted line-clamp-3">{isFr ? service.frDescription : service.description}</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-dark">
-          {isFr ? 'En savoir plus' : 'Learn more'}
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </span>
-      </a>
-    ))}
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {services.map((service, i) => {
+      const delayClass = `delay-${Math.min(i + 1, 5)}`;
+      const features = isFr ? service.frFeatures : service.features;
+      return (
+        <a href={`/${locale}/services/${service.slug}`} class={`fade-in ${delayClass} hover-lift group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal-text/30 hover:shadow-md ${i === 0 ? 'sm:col-span-2' : ''}`}>
+          <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
+          <p class="mt-2 text-sm text-muted-foreground line-clamp-3">{isFr ? service.frDescription : service.description}</p>
+          <!-- Feature list — differentiates from homepage cards -->
+          {features.length > 0 && (
+            <ul class="mt-4 space-y-1.5" aria-label={isFr ? `Caractéristiques de ${service.frName}` : `${service.name} features`}>
+              {features.slice(0, 3).map((feature) => (
+                <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+            {isFr ? 'En savoir plus' : 'Learn more'}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </span>
+        </a>
+      );
+    })}
   </div>
 </PageLayout>

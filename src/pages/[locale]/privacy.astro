@@ -16,10 +16,10 @@ const altLocale = isFr ? 'en' : 'fr';
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/privacy/` }]}
 >
   <section class="py-16 sm:py-20">
-    <div class="mx-auto max-w-3xl px-4 prose prose-slate">
-      <h1 class="font-heading text-4xl font-bold text-navy">{isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}</h1>
-      <p class="mt-4 text-sm text-muted">{isFr ? 'Dernière mise à jour : Avril 2026' : 'Last updated: April 2026'}</p>
-      <div class="mt-8 space-y-6 text-muted leading-relaxed">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="slide-up font-heading text-4xl font-bold text-navy">{isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}</h1>
+      <p class="mt-4 text-sm text-muted-foreground">{isFr ? 'Dernière mise à jour : Avril 2026' : 'Last updated: April 2026'}</p>
+      <div class="measure mt-8 space-y-6 text-muted-foreground leading-relaxed">
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Collecte de renseignements' : 'Information Collection'}</h2>
         <p>{isFr ? "Nous recueillons des renseignements personnels uniquement lorsque vous remplissez notre formulaire de contact, notamment votre nom, adresse courriel, numéro de téléphone et adresse. Nous ne recueillons pas de renseignements de manière automatique." : 'We collect personal information only when you fill out our contact form, including your name, email address, phone number, and address. We do not collect information automatically.'}</p>
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Utilisation des renseignements' : 'Use of Information'}</h2>
