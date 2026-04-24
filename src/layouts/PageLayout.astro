@@ -1,0 +1,40 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { BreadcrumbItem } from '@/types';
+interface Props {
+  title: string; description: string; locale: 'en' | 'fr';
+  breadcrumbs?: BreadcrumbItem[]; heroTitle?: string; heroSubtitle?: string;
+  canonicalUrl?: string; ogImage?: string;
+  alternateUrls?: { locale: string; url: string }[]; noindex?: boolean;
+}
+const { title, description, locale, breadcrumbs = [], heroTitle, heroSubtitle, canonicalUrl, ogImage, alternateUrls, noindex } = Astro.props;
+---
+<BaseLayout title={title} description={description} locale={locale} canonicalUrl={canonicalUrl} ogImage={ogImage} alternateUrls={alternateUrls} noindex={noindex}>
+  {breadcrumbs.length > 0 && (
+    <nav aria-label="Breadcrumb" class="border-b border-border bg-white">
+      <div class="mx-auto max-w-7xl px-4 py-3">
+        <ol class="flex items-center gap-2 text-sm text-muted">
+          {breadcrumbs.map((crumb, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>}
+              {i < breadcrumbs.length - 1 ? (
+                <a href={crumb.href} class="transition-colors hover:text-teal">{locale === 'fr' ? crumb.frLabel : crumb.label}</a>
+              ) : (
+                <span class="font-medium text-navy">{locale === 'fr' ? crumb.frLabel : crumb.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+  )}
+  {heroTitle && (
+    <section class="relative overflow-hidden navy-gradient py-16 text-white sm:py-20">
+      <div class="relative z-10 mx-auto max-w-7xl px-4">
+        <h1 class="font-heading text-4xl font-bold sm:text-5xl lg:text-6xl">{heroTitle}</h1>
+        {heroSubtitle && <p class="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">{heroSubtitle}</p>}
+      </div>
+    </section>
+  )}
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:py-12"><slot /></div>
+</BaseLayout>

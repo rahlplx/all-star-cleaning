@@ -1,0 +1,83 @@
+/* All Star Cleaning — Tailwind CSS v4 — Astro v6 */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0f1b2d;
+  --color-navy-light: #1a2d47;
+  --color-navy-dark: #0a1118;
+  --color-teal: #0d9488;
+  --color-teal-light: #14b8a6;
+  --color-teal-dark: #0f766e;
+  --color-gold: #f59e0b;
+  --color-gold-light: #fbbf24;
+  --color-gold-dark: #d97706;
+  --color-green: #22c55e;
+  --color-green-light: #4ade80;
+  --color-green-dark: #16a34a;
+  --color-off-white: #f8f9fa;
+  --color-off-white-dark: #e9ecef;
+  --color-background: var(--color-off-white);
+  --color-foreground: var(--color-navy);
+  --color-primary: var(--color-teal);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--color-navy);
+  --color-secondary-foreground: #ffffff;
+  --color-accent: var(--color-gold);
+  --color-accent-foreground: var(--color-navy);
+  --color-muted: #64748b;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-ring: var(--color-teal);
+  --color-destructive: #ef4444;
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-navy);
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: var(--font-body); color: var(--color-foreground); background-color: var(--color-background); line-height: 1.6; min-height: 100vh; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.2; font-weight: 400; }
+  a { color: var(--color-primary); text-decoration: none; transition: color var(--transition-fast); }
+  a:hover { color: var(--color-teal-light); }
+  img { max-width: 100%; height: auto; display: block; }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .heading-gradient { background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .navy-gradient { background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-light) 100%); }
+  .cta-gradient { background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-dark) 100%); }
+}

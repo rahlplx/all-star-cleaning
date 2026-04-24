@@ -1,0 +1,125 @@
+---
+// Location + Service combo page — Astro v6
+// Generates 5 services × 44 locations × 2 langs = 440 pages
+import PageLayout from '@/layouts/PageLayout.astro';
+import ServiceBadge from '@/components/ServiceBadge.astro';
+import { services } from '@/data/services';
+import { locations } from '@/data/locations';
+import { getLocationServiceSchema, getBreadcrumbSchema } from '@/seo';
+import type { BreadcrumbItem } from '@/types';
+
+export function getStaticPaths() {
+  return ['en', 'fr'].flatMap((locale) =>
+    locations.flatMap((location) =>
+      services.map((service) => ({
+        params: { locale, locationSlug: location.slug, serviceSlug: service.slug },
+        props: { service, location, locale: locale as 'en' | 'fr' },
+      }))
+    )
+  );
+}
+
+const { service, location, locale } = Astro.props;
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+  { label: 'Services', frLabel: 'Services', href: `/${locale}/services` },
+  { label: service.name, frLabel: service.frName, href: `/${locale}/services/${service.slug}` },
+  { label: location.name, frLabel: location.frName, href: `/${locale}/area/${location.slug}/${service.slug}` },
+];
+
+const locServiceSchema = getLocationServiceSchema(service, location, locale, `https://allstarcleaning.ca/${locale}/area/${location.slug}/${service.slug}`);
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+
+const heroTitle = isFr
+  ? `${service.frName} à ${location.frName}`
+  : `${service.name} in ${location.name}`;
+const heroSubtitle = isFr
+  ? `${service.frDescription} Desservant ${location.frName} et les environs d'Ottawa.`
+  : `${service.description} Serving ${location.name} and surrounding Ottawa areas.`;
+const altSlug = isFr ? service.frSlug : service.slug;
+---
+
+<PageLayout
+  title={isFr ? `${service.frName} ${location.frName} Ottawa | All Star Cleaning` : `${service.name} ${location.name} Ottawa | All Star Cleaning`}
+  description={isFr ? `${service.frName} professionnel à ${location.frName}, Ottawa. Devis gratuit — résidentiel et commercial.` : `Professional ${service.name.toLowerCase()} in ${location.name}, Ottawa. Free quote — residential & commercial.`}
+  locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={heroTitle}
+  heroSubtitle={heroSubtitle}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/area/${location.slug}/${altSlug}` }]}
+  schema={[locServiceSchema, breadcrumbSchema]}
+>
+  <div class="grid gap-8 lg:grid-cols-3">
+    <div class="lg:col-span-2">
+      <!-- Service Features -->
+      <h2 class="font-heading text-2xl font-bold text-navy">
+        {isFr ? `Nos services de ${service.frName.toLowerCase()} à ${location.frName}` : `Our ${service.name.toLowerCase()} services in ${location.name}`}
+      </h2>
+      <ul class="mt-4 space-y-3">
+        {(isFr ? service.frFeatures : service.features).map((feature) => (
+          <li class="flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span class="text-foreground">{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Area Context -->
+      <div class="mt-8 rounded-xl border border-border bg-off-white p-6">
+        <h2 class="font-heading text-2xl font-bold text-navy">
+          {isFr ? `Service à ${location.frName}` : `Serving ${location.name}`}
+        </h2>
+        <p class="mt-2 text-muted">
+          {isFr
+            ? `Nous sommes fiers de desservir ${location.frName} et les quartiers environnants de la région d'Ottawa. Notre équipe locale connaît bien les besoins uniques des propriétés dans cette zone ${location.area} d'Ottawa.`
+            : `We proudly serve ${location.name} and surrounding neighbourhoods in the Ottawa region. Our local team understands the unique needs of properties in this ${location.area} Ottawa zone.`}
+        </p>
+        {location.neighbours.length > 0 && (
+          <div class="mt-4">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted">{isFr ? 'Quartiers avoisinants' : 'Nearby Areas'}</h3>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {location.neighbours.map((neighbour) => {
+                const loc = locations.find((l) => l.slug === neighbour);
+                return loc ? (
+                  <ServiceBadge label={isFr ? loc.frName : loc.name} href={`/${locale}/area/${loc.slug}/${service.slug}`} variant="teal" />
+                ) : null;
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <!-- Other Services in this Area -->
+      <div class="mt-8">
+        <h2 class="font-heading text-2xl font-bold text-navy">
+          {isFr ? `Autres services à ${location.frName}` : `Other services in ${location.name}`}
+        </h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          {services.filter((s) => s.slug !== service.slug).map((otherService) => (
+            <a href={`/${locale}/area/${location.slug}/${otherService.slug}`} class="group rounded-lg border border-border bg-card p-4 transition-all hover:border-teal/30 hover:shadow-md">
+              <h3 class="font-medium text-navy group-hover:text-teal">{isFr ? otherService.frName : otherService.name}</h3>
+              <p class="mt-1 text-sm text-muted line-clamp-2">{isFr ? otherService.frDescription : otherService.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar CTA -->
+    <div class="lg:col-span-1">
+      <div class="sticky top-24 rounded-xl border border-border bg-card p-6 shadow-md">
+        <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
+        <p class="mt-2 text-sm text-muted">{isFr ? service.frCta : service.cta}</p>
+        <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full bg-teal px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg">
+          {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
+        </a>
+        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted">
+          <a href="tel:+16135550199" class="font-medium text-teal hover:text-teal-dark">(613) 555-0199</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>

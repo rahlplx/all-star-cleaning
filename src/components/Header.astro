@@ -1,0 +1,70 @@
+---
+import { useTranslations } from '@/i18n/translations';
+import { services } from '@/data/services';
+interface Props { locale: 'en' | 'fr'; }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const currentPath = Astro.url.pathname;
+const navLinks = [
+  { label: t.nav.home, href: `/${locale}` },
+  { label: t.nav.services, href: `/${locale}/services`, children: services.map((s) => ({ label: locale === 'fr' ? s.frName : s.name, href: `/${locale}/services/${s.slug}` })) },
+  { label: t.nav.about, href: `/${locale}/about` },
+  { label: t.nav.reviews, href: `/${locale}/reviews` },
+  { label: t.nav.contact, href: `/${locale}/contact` },
+];
+---
+<header class="sticky top-0 z-sticky border-b border-border bg-white/95 backdrop-blur-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+    <a href={`/${locale}`} class="flex items-center gap-2 text-navy no-underline">
+      <span class="font-heading text-2xl font-bold tracking-tight">All<span class="text-teal">Star</span></span>
+      <span class="hidden text-xs font-medium uppercase tracking-widest text-muted sm:block">Cleaning</span>
+    </a>
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+      {navLinks.map((link) => (
+        <div class="group relative">
+          <a href={link.href} class:list={['inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors', currentPath === link.href ? 'bg-teal/10 text-teal' : 'text-navy hover:bg-off-white hover:text-teal']}>
+            {link.label}
+            {link.children && <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>}
+          </a>
+          {link.children && (
+            <div class="invisible absolute left-0 top-full z-dropdown mt-1 min-w-[200px] rounded-lg border border-border bg-white py-2 shadow-lg opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+              {link.children.map((child) => <a href={child.href} class="block px-4 py-2 text-sm text-navy transition-colors hover:bg-off-white hover:text-teal">{child.label}</a>)}
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href={`/${locale}/contact`} class="hidden rounded-full bg-teal px-5 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg sm:inline-flex">{t.nav.getQuote}</a>
+      <button id="mobile-menu-toggle" class="inline-flex items-center justify-center rounded-md p-2 text-navy transition-colors hover:bg-off-white lg:hidden" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden border-t border-border bg-white lg:hidden">
+    <nav class="mx-auto max-w-7xl px-4 py-4" aria-label="Mobile navigation">
+      {navLinks.map((link) => (
+        <div>
+          <a href={link.href} class:list={['block rounded-md px-3 py-2.5 text-sm font-medium transition-colors', currentPath === link.href ? 'bg-teal/10 text-teal' : 'text-navy hover:bg-off-white']}>{link.label}</a>
+          {link.children && <div class="ml-4 border-l border-border pl-3">{link.children.map((child) => <a href={child.href} class="block px-3 py-2 text-sm text-muted transition-colors hover:text-teal">{child.label}</a>)}</div>}
+        </div>
+      ))}
+      <div class="mt-4 border-t border-border pt-4">
+        <a href={`/${locale}/contact`} class="block rounded-full bg-teal px-5 py-2.5 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark">{t.nav.getQuote}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-open-icon');
+  const closeIcon = document.getElementById('menu-close-icon');
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    openIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', menu?.classList.contains('hidden') ? 'false' : 'true');
+  });
+</script>

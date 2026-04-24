@@ -1,0 +1,14 @@
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
+}
+
+export function formatPhone(phone: string): string {
+  return phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+}
+
+export function hreflangUrl(path: string, locale: 'en' | 'fr'): string {
+  return `/${locale}${path}`;
+}

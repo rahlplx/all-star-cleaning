@@ -1,0 +1,6 @@
+# All Star Cleaning — Cloudflare Pages Redirects — Astro v6
+# Redirect root to /en (default locale)
+/  /en  302
+
+# Redirect bare service/area paths to English
+/services/*  /en/services/:splat  302

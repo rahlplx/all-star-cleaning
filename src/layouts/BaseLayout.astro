@@ -1,0 +1,36 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import TopBar from '@/components/TopBar.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import StickyBottomCTA from '@/components/StickyBottomCTA.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import { getLocalBusinessSchema } from '@/seo';
+import '@/styles/global.css';
+
+interface Props {
+  title: string; description: string; locale: 'en' | 'fr';
+  canonicalUrl?: string; ogImage?: string;
+  alternateUrls?: { locale: string; url: string }[]; noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+const { title, description, locale, canonicalUrl, ogImage, alternateUrls, noindex, schema } = Astro.props;
+const siteUrl = 'https://allstarcleaning.ca';
+const pageUrl = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
+const localBusinessSchema = getLocalBusinessSchema({ locale, url: pageUrl });
+const allSchemas = schema ? [localBusinessSchema, ...(Array.isArray(schema) ? schema : [schema])] : [localBusinessSchema];
+---
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} locale={locale} alternateUrls={alternateUrls} noindex={noindex} />
+    <JsonLd data={allSchemas} />
+  </head>
+  <body class="flex min-h-screen flex-col bg-background text-foreground antialiased">
+    <TopBar locale={locale} />
+    <Header locale={locale} />
+    <main class="flex-1"><slot /></main>
+    <Footer locale={locale} />
+    <StickyBottomCTA locale={locale} />
+  </body>
+</html>

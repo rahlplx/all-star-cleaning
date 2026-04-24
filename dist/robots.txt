@@ -1,0 +1,11 @@
+# All Star Cleaning — robots.txt — Astro v6
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://allstarcleaning.ca/sitemap-index.xml
+
+# Block admin and API routes
+User-agent: *
+Disallow: /admin
+Disallow: /api/
