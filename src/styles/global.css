@@ -1,5 +1,4 @@
 /* All Star Cleaning — Tailwind CSS v4 — Astro v6 */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -73,6 +72,15 @@
   a:hover { color: var(--color-teal-light); }
   img { max-width: 100%; height: auto; display: block; }
   :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+  /* Respect reduced motion preferences — WCAG 2.3.3 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -80,4 +88,6 @@
   .heading-gradient { background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .navy-gradient { background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-light) 100%); }
   .cta-gradient { background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-dark) 100%); }
+  /* Minimum touch target size — WCAG 2.5.8 */
+  .touch-target { min-height: 44px; min-width: 44px; }
 }

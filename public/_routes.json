@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/_astro/*",
+    "/fonts/*",
+    "/*.jpg",
+    "/*.png",
+    "/*.svg",
+    "/*.ico",
+    "/*.webp",
+    "/robots.txt",
+    "/sitemap-index.xml",
+    "/sitemap-0.xml",
+    "/_headers",
+    "/_redirects",
+    "/favicon.svg",
+    "/og-default.jpg"
+  ]
+}

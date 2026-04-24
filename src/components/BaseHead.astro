@@ -8,7 +8,7 @@ interface Props {
   alternateUrls?: { locale: string; url: string }[];
   noindex?: boolean;
 }
-const { title, description, canonicalUrl = Astro.url.href, ogImage = '/og-default.jpg', locale = 'en', alternateUrls = [], noindex = false } = Astro.props;
+const { title, description, canonicalUrl = Astro.url.href, ogImage = 'https://allstarcleaning.ca/og-default.jpg', locale = 'en', alternateUrls = [], noindex = false } = Astro.props;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,3 +35,6 @@ const { title, description, canonicalUrl = Astro.url.href, ogImage = '/og-defaul
 <meta property="twitter:image" content={ogImage} />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" /></noscript>

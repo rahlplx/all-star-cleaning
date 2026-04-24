@@ -30,7 +30,7 @@ export const services: Service[] = [
   {
     slug: 'pressure-washing', name: 'Pressure Washing', frSlug: 'lavage-sous-pression', frName: 'Lavage sous Pression',
     description: 'Transform your property with professional pressure washing in Ottawa. Driveways, patios, siding, decks — we remove years of grime, algae, and stains to restore your surfaces to like-new condition.',
-    frDescription: "Transformez votre propriété avec un lavage sous pression professionnel à Ottawa. Allées, patios, revêtements, terrasses — nous éliminez des années de saleté et de taches pour redonner à vos surfaces un état comme neuf.",
+    frDescription: "Transformez votre propriété avec un lavage sous pression professionnel à Ottawa. Allées, patios, revêtements, terrasses — nous éliminons des années de saleté et de taches pour redonner à vos surfaces un état comme neuf.",
     icon: 'lucide:waves',
     features: ['Surface-appropriate PSI selection', 'Eco-friendly cleaning solutions', 'Driveways, patios, decks, siding', 'Mold & algae treatment', 'Same-day results visible'],
     frFeatures: ['Sélection de PSI adaptée à la surface', 'Solutions de nettoyage écologiques', 'Allées, patios, terrasses, revêtements', "Traitement de moisissure et d'algues", 'Résultats visibles le jour même'],

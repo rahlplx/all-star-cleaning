@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function BackgroundBeams({ className }: { className?: string }) {
   const [isMounted, setIsMounted] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   const paths = useRef(Array.from({ length: 24 }, () => {
     const sx = Math.random() * 100, sy = Math.random() * 100;
     const ex = Math.random() * 100, ey = Math.random() * 100;
@@ -12,6 +13,17 @@ export function BackgroundBeams({ className }: { className?: string }) {
   }));
   useEffect(() => { setIsMounted(true); }, []);
   if (!isMounted) return null;
+  if (shouldReduceMotion) {
+    return (
+      <div className={cn("pointer-events-none absolute inset-0 z-0 overflow-hidden", className)}>
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+          {paths.current.map((d, i) => (
+            <path key={i} d={d} stroke="rgba(13, 148, 136, 0.15)" strokeWidth="0.2" opacity="0.3" />
+          ))}
+        </svg>
+      </div>
+    );
+  }
   return (
     <div className={cn("pointer-events-none absolute inset-0 z-0 overflow-hidden", className)}>
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">

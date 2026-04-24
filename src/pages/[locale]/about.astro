@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { useTranslations } from '@/i18n/translations';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const t = useTranslations(locale);
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+---
+<BaseLayout
+  title={isFr ? 'À Propos | All Star Cleaning Ottawa' : 'About | All Star Cleaning Ottawa'}
+  description={isFr ? "Découvrez All Star Cleaning — des décennies d'expertise en nettoyage extérieur à Ottawa." : "Learn about All Star Cleaning — decades of exterior cleaning expertise in Ottawa."}
+  locale={locale}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/about/` }]}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="font-heading text-4xl font-bold text-navy sm:text-5xl">{isFr ? 'À Propos' : 'About All Star Cleaning'}</h1>
+      <div class="mt-8 space-y-6 text-muted leading-relaxed">
+        <p>{isFr ? "Forte de décennies d'expérience au service des foyers d'Ottawa, All Star Cleaning est votre partenaire de confiance pour tous vos besoins en nettoyage extérieur. Notre équipe locale maîtrise les défis uniques des hivers rigoureux d'Ottawa, des gouttières et des revêtements." : "With decades of experience serving Ottawa homes, All Star Cleaning is your trusted partner for all exterior cleaning needs. Our local team masters the unique challenges of Ottawa's harsh winters, gutters, and siding."}</p>
+        <p>{isFr ? "Nous utilisons des équipements spécialisés — aspirateurs, caméras de gouttière et laveuses sous pression sécuritaires — pour garantir un nettoyage approfondi sans dommage à votre propriété, sans produits chimiques agressifs et sans risques." : "We use specialized equipment — vacuums, gutter cameras, and safe pressure washers — to ensure thorough cleans without home damage, harsh chemicals, or risks."}</p>
+        <p>{isFr ? "Notre garantie de satisfaction sans tracas : satisfaction à 100% promise avec des horaires flexibles et des produits écologiques. Vous obtenez des résultats impeccables, sans désordre, et une confiance durable." : "Our hassle-free satisfaction guarantee: 100% satisfaction promised with flexible scheduling and eco-friendly products. You get spotless results, no mess, and lasting trust."}</p>
+      </div>
+      <div class="mt-8">
+        <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">{t.cta.freeQuote}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

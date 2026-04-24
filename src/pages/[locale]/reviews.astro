@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { useTranslations } from '@/i18n/translations';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const t = useTranslations(locale);
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+---
+<BaseLayout
+  title={isFr ? 'Témoignages | All Star Cleaning Ottawa' : 'Reviews | All Star Cleaning Ottawa'}
+  description={isFr ? "Lisez les témoignages de nos clients satisfaits à Ottawa. Note moyenne de 4.9/5." : 'Read reviews from our satisfied Ottawa customers. Average rating 4.9/5.'}
+  locale={locale}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/reviews/` }]}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 text-center">
+      <h1 class="font-heading text-4xl font-bold text-navy sm:text-5xl">{isFr ? 'Témoignages' : 'Customer Reviews'}</h1>
+      <p class="mt-4 text-lg text-muted">{isFr ? 'Témoignages à venir. Consultez nos avis Google en attendant!' : 'Reviews coming soon. Check our Google reviews in the meantime!'}</p>
+      <div class="mt-8">
+        <a href="https://g.page/allstarcleaningottawa" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">{isFr ? 'Voir nos avis Google' : 'See our Google Reviews'}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,6 +1,5 @@
-# All Star Cleaning — Cloudflare Pages Redirects — Astro v6
-# Redirect root to /en (default locale)
-/  /en  302
+# Redirect root to EN (permanent)
+/  /en  301
 
-# Redirect bare service/area paths to English
-/services/*  /en/services/:splat  302
+# Redirect www to apex
+https://www.allstarcleaning.ca/*  https://allstarcleaning.ca/:splat  301

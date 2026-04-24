@@ -36,6 +36,7 @@ export const locations: Location[] = [
   { slug: 'ottawa-south', name: 'Ottawa South', frName: 'Ottawa Sud', area: 'Central', postalCode: 'K1S', coordinates: { lat: 45.3833, lng: -75.6833 }, neighbours: ['glebe', 'ottawa-west', 'riverside-south'] },
   { slug: 'ottawa-west', name: 'Ottawa West', frName: 'Ottawa Ouest', area: 'Central', postalCode: 'K1Z', coordinates: { lat: 45.3833, lng: -75.7500 }, neighbours: ['westboro', 'nepean', 'ottawa-south'] },
   { slug: 'renfrew', name: 'Renfrew', frName: 'Renfrew', area: 'West', postalCode: 'K7V', coordinates: { lat: 45.4667, lng: -76.6833 }, neighbours: ['arnprior'] },
+  { slug: 'richmond', name: 'Richmond', frName: 'Richmond', area: 'South-West', postalCode: 'K0A', coordinates: { lat: 45.1833, lng: -75.8333 }, neighbours: ['kars', 'north-gower', 'stittsville'] },
   { slug: 'riverside-south', name: 'Riverside South', frName: 'Riverside Sud', area: 'South', postalCode: 'K1V', coordinates: { lat: 45.3167, lng: -75.6500 }, neighbours: ['barrhaven', 'manotick', 'greely', 'ottawa-south'] },
   { slug: 'rockliffe-park', name: 'Rockliffe Park', frName: 'Parc Rockcliffe', area: 'East-Central', postalCode: 'K1M', coordinates: { lat: 45.4500, lng: -75.6500 }, neighbours: ['vanier', 'ottawa-east', 'orleans'] },
   { slug: 'russell', name: 'Russell', frName: 'Russell', area: 'East', postalCode: 'K4R', coordinates: { lat: 45.2333, lng: -75.1667 }, neighbours: ['embrun', 'limoges', 'clarence-rockland'] },

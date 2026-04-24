@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { useTranslations } from '@/i18n/translations';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const t = useTranslations(locale);
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+---
+<BaseLayout
+  title={isFr ? 'Contactez-Nous | All Star Cleaning Ottawa' : 'Contact Us | All Star Cleaning Ottawa'}
+  description={isFr ? 'Contactez All Star Cleaning pour un devis gratuit. Appelez le (613) 314-3300 ou remplissez notre formulaire en ligne.' : 'Contact All Star Cleaning for a free quote. Call (613) 314-3300 or fill out our online form.'}
+  locale={locale}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/contact/` }]}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="font-heading text-4xl font-bold text-navy sm:text-5xl">{isFr ? 'Contactez-Nous' : 'Contact Us'}</h1>
+      <p class="mt-4 text-lg text-muted">{isFr ? "Obtenez un devis gratuit pour tous vos besoins en nettoyage extérieur." : 'Get a free quote for all your exterior cleaning needs.'}</p>
+      
+      <div class="mt-8 grid gap-8 sm:grid-cols-2">
+        <div class="space-y-6">
+          <div>
+            <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Appelez-Nous' : 'Call Us'}</h2>
+            <a href="tel:+16133143300" class="mt-2 inline-flex items-center gap-2 text-lg font-medium text-teal-dark hover:text-navy">(613) 314-3300</a>
+          </div>
+          <div>
+            <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Courriel' : 'Email'}</h2>
+            <a href="mailto:hello@allstarcleaning.ca" class="mt-2 inline-flex items-center gap-2 text-lg font-medium text-teal-dark hover:text-navy">hello@allstarcleaning.ca</a>
+          </div>
+          <div>
+            <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Adresse' : 'Address'}</h2>
+            <p class="mt-2 text-muted">{t.contact.address}</p>
+          </div>
+          <div>
+            <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Heures' : 'Hours'}</h2>
+            <p class="mt-2 text-muted">{t.contact.hours}</p>
+          </div>
+        </div>
+        <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
+          <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Demande de Devis' : 'Request a Quote'}</h2>
+          <p class="mt-2 text-sm text-muted">{isFr ? 'Formulaire de contact à venir. Appelez-nous en attendant!' : 'Contact form coming soon. Call us in the meantime!'}</p>
+          <a href="tel:+16133143300" class="mt-4 block rounded-full bg-teal-dark px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-navy hover:shadow-lg">{isFr ? 'Appelez Maintenant' : 'Call Now'}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

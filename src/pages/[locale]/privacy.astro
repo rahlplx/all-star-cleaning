@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+---
+<BaseLayout
+  title={isFr ? 'Politique de Confidentialité | All Star Cleaning' : 'Privacy Policy | All Star Cleaning'}
+  description={isFr ? 'Politique de confidentialité de All Star Cleaning Ottawa.' : 'Privacy policy for All Star Cleaning Ottawa.'}
+  locale={locale}
+  noindex={true}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/privacy/` }]}
+>
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 prose prose-slate">
+      <h1 class="font-heading text-4xl font-bold text-navy">{isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}</h1>
+      <p class="mt-4 text-sm text-muted">{isFr ? 'Dernière mise à jour : Avril 2026' : 'Last updated: April 2026'}</p>
+      <div class="mt-8 space-y-6 text-muted leading-relaxed">
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Collecte de renseignements' : 'Information Collection'}</h2>
+        <p>{isFr ? "Nous recueillons des renseignements personnels uniquement lorsque vous remplissez notre formulaire de contact, notamment votre nom, adresse courriel, numéro de téléphone et adresse. Nous ne recueillons pas de renseignements de manière automatique." : 'We collect personal information only when you fill out our contact form, including your name, email address, phone number, and address. We do not collect information automatically.'}</p>
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Utilisation des renseignements' : 'Use of Information'}</h2>
+        <p>{isFr ? 'Nous utilisons vos renseignements uniquement pour répondre à vos demandes de devis et fournir nos services. Nous ne vendons ni ne partageons vos renseignements avec des tiers à des fins marketing.' : 'We use your information only to respond to quote requests and provide our services. We do not sell or share your information with third parties for marketing purposes.'}</p>
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Services tiers' : 'Third-Party Services'}</h2>
+        <p>{isFr ? 'Nous utilisons Google Fonts pour les polices web et Web3Forms pour le traitement des formulaires. Ces services peuvent recueillir votre adresse IP conformément à leurs propres politiques de confidentialité.' : 'We use Google Fonts for web fonts and Web3Forms for form processing. These services may collect your IP address in accordance with their own privacy policies.'}</p>
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Contact' : 'Contact'}</h2>
+        <p>{isFr ? 'Pour toute question concernant cette politique, contactez-nous à hello@allstarcleaning.ca ou au (613) 314-3300.' : 'For questions about this policy, contact us at hello@allstarcleaning.ca or (613) 314-3300.'}</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

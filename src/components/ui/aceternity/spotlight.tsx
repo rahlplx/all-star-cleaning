@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface SpotlightProps extends HTMLMotionProps<"div"> {
@@ -14,8 +14,16 @@ export function Spotlight({
   duration = 10, className, ...props
 }: SpotlightProps) {
   const [isMounted, setIsMounted] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   useEffect(() => { setIsMounted(true); }, []);
   if (!isMounted) return null;
+  if (shouldReduceMotion) {
+    return (
+      <div className={cn("pointer-events-none absolute -inset-[10px] z-0 overflow-hidden", className)} {...props}>
+        <div className="absolute inset-0 h-full w-full" style={{ background: gradientFirst }} />
+      </div>
+    );
+  }
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className={cn("pointer-events-none absolute -inset-[10px] z-0 overflow-hidden", className)} {...props}>
       <motion.div animate={{ x: [0, -100, 0], y: [0, 50, 0] }} transition={{ duration, repeat: Infinity, ease: "linear" }} className="absolute inset-0 h-full w-full" style={{ background: gradientFirst }} />

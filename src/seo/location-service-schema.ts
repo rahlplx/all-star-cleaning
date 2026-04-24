@@ -17,7 +17,15 @@ export function getLocationServiceSchema(service: Service, location: Location, l
       '@type': 'HomeAndConstructionBusiness',
       name: 'All Star Cleaning',
       url: 'https://allstarcleaning.ca',
-      telephone: '+1-613-555-0199',
+      telephone: '+1-613-314-3300',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Unit 7 - 800 Hunt Club Road',
+        addressLocality: 'Ottawa',
+        addressRegion: 'ON',
+        postalCode: 'K1V 1C3',
+        addressCountry: 'CA',
+      },
     },
     areaServed: {
       '@type': 'Place',
