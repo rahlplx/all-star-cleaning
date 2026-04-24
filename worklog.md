@@ -67,3 +67,29 @@ Stage Summary:
 - Step 5 ✅ Complete — 442 programmatic pages
 - Build: 442 pages, 2.83s, 0 errors, 0 warnings
 - Next: Step 6 (CMS), Step 7 (Forms), Steps 8-10 (Perf/Deploy/QA)
+
+---
+Task ID: 4
+Agent: Main
+Task: Business Data Update — Real phone, email, address, hours, USPs, 44 locations
+
+Work Log:
+- Replaced locations.ts with user's exact 44 service areas (Arnprior, Ashton, Barrhaven, Bells Corners, Blackburn Hamlet, Bridlewood, Carleton Place, Carp, Clarence-Rockland, Constance Bay, Cumberland, Downtown Ottawa, Dunrobin, Embrun, Glebe, Gloucester, Greely, Kanata, Kars, Kemptville, Limoges, Manotick, Metcalfe, Mississippi Mills, Navan, Nepean, North Gower, Orleans, Osgoode, Ottawa, Ottawa Central, Ottawa East, Ottawa South, Ottawa West, Renfrew, Riverside South, Rockliffe Park, Russell, South March, Stittsville, Westboro, Winchester, Vanier, Vars)
+- Updated phone from 613-555-0199 to 613-314-3300 across all components and pages
+- Updated email from info@ to hello@allstarcleaning.ca
+- Updated address to Unit 7 - 800 Hunt Club Road, Ottawa, ON K1V 1C3
+- Updated hours from Mon-Fri 7-7/Sat 8-5/Sun Closed to Mon-Sun 9AM-7PM
+- Added 3 USPs to translations: Years of Local Expertise, Premium Damage-Free Equipment, Hassle-Free Satisfaction Guarantee
+- Added USP section to homepage with icons
+- Added bottom CTA section to homepage
+- Updated SEO LocalBusiness schema with real address, phone, hours, email, geo coords
+- Updated TopBar with hours, phone, email, language switch
+- Updated Footer with address, phone, email, new hours format
+- Updated StickyBottomCTA with real phone
+- Updated service pages and location-service pages with real phone
+
+Stage Summary:
+- 452 pages built, 0 errors
+- All business data now reflects real All Star Cleaning info
+- 3 USP cards on homepage
+- Ready for visual audit
