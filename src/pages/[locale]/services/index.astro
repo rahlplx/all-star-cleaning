@@ -1,0 +1,40 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { services } from '@/data/services';
+import type { BreadcrumbItem } from '@/types';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+  { label: 'Services', frLabel: 'Services', href: `/${locale}/services` },
+];
+---
+
+<PageLayout
+  title={isFr ? 'Nos Services de Nettoyage | All Star Cleaning Ottawa' : 'Our Cleaning Services | All Star Cleaning Ottawa'}
+  description={isFr ? 'Services de nettoyage extérieur professionnels à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression, revêtement et déneigement.' : 'Professional exterior cleaning services in Ottawa. Window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal.'}
+  locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={isFr ? 'Nos Services' : 'Our Services'}
+  heroSubtitle={isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/` }]}
+>
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {services.map((service) => (
+      <a href={`/${locale}/services/${service.slug}`} class="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal/30 hover:shadow-md hover:-translate-y-0.5">
+        <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal">{isFr ? service.frName : service.name}</h2>
+        <p class="mt-2 text-sm text-muted line-clamp-3">{isFr ? service.frDescription : service.description}</p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-dark">
+          {isFr ? 'En savoir plus' : 'Learn more'}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </span>
+      </a>
+    ))}
+  </div>
+</PageLayout>

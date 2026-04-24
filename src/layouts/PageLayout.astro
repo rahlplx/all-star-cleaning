@@ -30,9 +30,9 @@ const { title, description, locale, breadcrumbs = [], heroTitle, heroSubtitle, c
     </nav>
   )}
   {heroTitle && (
-    <section class="relative overflow-hidden navy-gradient py-16 text-white sm:py-20">
+    <section class="relative overflow-hidden navy-gradient py-16 text-white md:py-20 lg:py-24">
       <div class="relative z-10 mx-auto max-w-7xl px-4">
-        <h1 class="font-heading text-4xl font-bold sm:text-5xl lg:text-6xl">{heroTitle}</h1>
+        <h1 class="font-heading font-bold tracking-tight text-[clamp(2rem,4vw,3.75rem)]">{heroTitle}</h1>
         {heroSubtitle && <p class="mt-4 max-w-2xl text-lg text-white/80 sm:text-xl">{heroSubtitle}</p>}
       </div>
     </section>

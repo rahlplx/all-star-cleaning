@@ -19,10 +19,10 @@ const navLinks = [
       <span class="font-heading text-2xl font-bold tracking-tight">All<span class="text-teal">Star</span></span>
       <span class="hidden text-xs font-medium uppercase tracking-widest text-muted sm:block">Cleaning</span>
     </a>
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
       {navLinks.map((link) => (
         <div class="group relative">
-          <a href={link.href} class:list={['inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors', currentPath === link.href ? 'bg-teal/10 text-teal' : 'text-navy hover:bg-off-white hover:text-teal']} aria-haspopup={link.children ? 'true' : undefined} aria-expanded={link.children ? 'false' : undefined}>
+          <a href={link.href} class:list={['inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors', currentPath === link.href ? 'bg-teal/10 text-teal' : 'text-navy hover:bg-off-white hover:text-teal']} aria-haspopup={link.children ? 'true' : undefined} aria-expanded={link.children ? 'false' : undefined} aria-current={currentPath === link.href ? 'page' : undefined}>
             {link.label}
             {link.children && <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>}
           </a>
@@ -35,18 +35,18 @@ const navLinks = [
       ))}
     </nav>
     <div class="flex items-center gap-3">
-      <a href={`/${locale}/contact`} class="hidden rounded-full bg-teal-dark px-5 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy hover:shadow-lg sm:inline-flex">{t.nav.getQuote}</a>
-      <button id="mobile-menu-toggle" class="inline-flex items-center justify-center rounded-md p-2 text-navy transition-colors hover:bg-off-white lg:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <a href={`/${locale}/contact`} class="hidden rounded-full bg-teal-dark px-5 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy hover:shadow-lg md:inline-flex">{t.nav.getQuote}</a>
+      <button id="mobile-menu-toggle" class="inline-flex items-center justify-center rounded-md p-2 text-navy transition-colors hover:bg-off-white md:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden border-t border-border bg-white lg:hidden">
+  <div id="mobile-menu" class="hidden border-t border-border bg-white md:hidden">
     <nav class="mx-auto max-w-7xl px-4 py-4" aria-label="Mobile navigation">
       {navLinks.map((link) => (
         <div>
-          <a href={link.href} class:list={['block rounded-md px-3 py-2.5 text-sm font-medium transition-colors', currentPath === link.href ? 'bg-teal/10 text-teal' : 'text-navy hover:bg-off-white']}>{link.label}</a>
+          <a href={link.href} class:list={['block rounded-md px-3 py-2.5 text-sm font-medium transition-colors', currentPath === link.href ? 'bg-teal/10 text-teal' : 'text-navy hover:bg-off-white']} aria-current={currentPath === link.href ? 'page' : undefined}>{link.label}</a>
           {link.children && <div class="ml-4 border-l border-border pl-3">{link.children.map((child) => <a href={child.href} class="block px-3 py-2 text-sm text-muted transition-colors hover:text-teal">{child.label}</a>)}</div>}
         </div>
       ))}
@@ -61,25 +61,82 @@ const navLinks = [
   const menu = document.getElementById('mobile-menu');
   const openIcon = document.getElementById('menu-open-icon');
   const closeIcon = document.getElementById('menu-close-icon');
+
+  function openMenu() {
+    menu?.classList.remove('hidden');
+    openIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    const firstLink = menu?.querySelector('a, button');
+    firstLink?.focus();
+  }
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    openIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    toggle?.focus();
+  }
+
   toggle?.addEventListener('click', () => {
     const isHidden = menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden');
-    openIcon?.classList.toggle('hidden');
-    closeIcon?.classList.toggle('hidden');
-    toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-    if (isHidden) {
-      const firstLink = menu?.querySelector('a');
-      firstLink?.focus();
-    }
+    if (isHidden) openMenu(); else closeMenu();
   });
+
   // Close mobile menu on Escape
   menu?.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      menu.classList.add('hidden');
-      openIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.focus();
+    if (e.key === 'Escape') { closeMenu(); return; }
+
+    // Focus trap
+    if (e.key === 'Tab') {
+      const focusable = menu?.querySelectorAll<HTMLElement>('a[href], button, [tabindex]:not([tabindex="-1"])');
+      if (!focusable || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     }
+  });
+
+  // Close menu when clicking a link inside it
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on resize to desktop
+  const mql = window.matchMedia('(min-width: 768px)');
+  mql.addEventListener('change', (e) => { if (e.matches) closeMenu(); });
+</script>
+<script>
+  // Desktop dropdown aria-expanded toggle
+  document.querySelectorAll<HTMLElement>('.group > a[aria-haspopup="true"]').forEach(trigger => {
+    const parent = trigger.closest('.group');
+    const dropdown = parent?.querySelector(':scope > div[class*="invisible"]');
+
+    // Toggle on click for touch/desktop hybrid
+    trigger.addEventListener('click', (e) => {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+      // For desktop, let CSS group-hover handle visibility; just update ARIA
+    });
+
+    // Update aria-expanded when dropdown shows/hides via hover
+    parent?.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
+    parent?.addEventListener('mouseleave', () => trigger.setAttribute('aria-expanded', 'false'));
+    parent?.addEventListener('focusin', () => trigger.setAttribute('aria-expanded', 'true'));
+    parent?.addEventListener('focusout', () => {
+      // Small delay to check if focus moved to dropdown content
+      setTimeout(() => {
+        if (!parent?.contains(document.activeElement)) {
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }, 100);
+    });
   });
 </script>

@@ -26,15 +26,15 @@ const usps = [
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/` }]}
 >
   <!-- Hero Section -->
-  <section class="relative overflow-hidden navy-gradient py-20 text-white sm:py-28 lg:py-36">
+  <section class="relative overflow-hidden navy-gradient py-20 text-white md:py-28 lg:py-36">
     <div class="relative z-10 mx-auto max-w-7xl px-4 text-center">
-      <h1 class="font-heading text-4xl font-bold sm:text-5xl lg:text-6xl xl:text-7xl">
+      <h1 class="font-heading font-bold tracking-tight text-[clamp(2.25rem,5vw,4.5rem)]">
         {isFr ? <>Nettoyage Extérieur<br /><span class="text-teal-light">de Confiance à Ottawa</span></> : <>Ottawa's Trusted<br /><span class="text-teal-light">Exterior Cleaning</span></>}
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
         {isFr ? "Nettoyage professionnel de vitres, gouttières, lavage sous pression, revêtement et déneigement dans la région d'Ottawa." : 'Professional window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal across the Ottawa region.'}
       </p>
-      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <div class="mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
         <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">
           {t.cta.freeQuote}
         </a>
@@ -47,12 +47,12 @@ const usps = [
   </section>
 
   <!-- USP Section -->
-  <section class="py-16 sm:py-20 bg-off-white">
+  <section class="py-16 md:py-20 bg-off-white">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="grid gap-8 sm:grid-cols-3">
-        {usps.map((usp) => (
-          <div class="rounded-xl bg-white p-6 shadow-sm border border-border text-center sm:text-left">
-            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-teal/10 text-teal sm:mx-0">
+      <div class="grid gap-8 md:grid-cols-3">
+        {usps.map((usp, i) => (
+          <div class:list={['rounded-xl p-6 shadow-sm border text-center md:text-left', i === 0 ? 'bg-teal/5 border-teal/20' : 'bg-white border-border']}>
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-teal/10 text-teal md:mx-0">
               {usp.icon === 'shield' && (
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               )}
@@ -72,15 +72,15 @@ const usps = [
   </section>
 
   <!-- Services Section -->
-  <section class="py-16 sm:py-20">
+  <section class="py-16 md:py-20">
     <div class="mx-auto max-w-7xl px-4">
       <div class="text-center">
         <h2 class="font-heading text-3xl font-bold text-navy sm:text-4xl">{isFr ? 'Nos Services' : 'Our Services'}</h2>
         <p class="mx-auto mt-4 max-w-2xl text-muted">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
       </div>
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
-          <a href={`/${locale}/services/${service.slug}`} class="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal/30 hover:shadow-md">
+          <a href={`/${locale}/services/${service.slug}`} class="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal/30 hover:shadow-md hover:-translate-y-0.5">
             <h3 class="font-heading text-xl font-semibold text-navy group-hover:text-teal">{isFr ? service.frName : service.name}</h3>
             <p class="mt-2 text-sm text-muted line-clamp-3">{isFr ? service.frDescription : service.description}</p>
             <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-dark">
@@ -94,11 +94,11 @@ const usps = [
   </section>
 
   <!-- CTA Section -->
-  <section class="navy-gradient py-16 text-white sm:py-20">
+  <section class="navy-gradient py-16 text-white md:py-20">
     <div class="mx-auto max-w-4xl px-4 text-center">
-      <h2 class="font-heading text-3xl font-bold sm:text-4xl">{isFr ? 'Prêt à Commencer?' : 'Ready to Get Started?'}</h2>
+      <h2 class="font-heading text-3xl font-bold md:text-4xl">{isFr ? 'Prêt à Commencer?' : 'Ready to Get Started?'}</h2>
       <p class="mx-auto mt-4 max-w-2xl text-white/80">{isFr ? 'Contactez-nous dès aujourd\'hui pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!' : 'Contact us today for a free quote. We\'re open 7 days a week!'}</p>
-      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <div class="mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
         <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-dark px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-navy hover:shadow-xl">
           {t.cta.freeQuote}
         </a>
