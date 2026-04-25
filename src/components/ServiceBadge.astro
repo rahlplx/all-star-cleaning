@@ -1,10 +1,10 @@
 ---
 interface Props { label: string; href?: string; variant?: 'default' | 'teal' | 'gold' | 'navy'; }
 const { label, href, variant = 'default' } = Astro.props;
-const variants = { default: 'bg-off-white text-navy border-border', teal: 'bg-teal/10 text-teal-text border-teal/20', gold: 'bg-gold/10 text-gold-dark border-gold/20', navy: 'bg-navy/10 text-navy border-navy/20' };
+const variants = { default: 'bg-off-white text-navy border-border', teal: 'bg-teal/10 text-teal-text border-teal/20', gold: 'bg-gold/10 text-navy border-gold/20', navy: 'bg-navy/10 text-navy border-navy/20' };
 ---
 {href ? (
-  <a href={href} class:list={['touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors hover:opacity-80', variants[variant]]}>{label}</a>
+  <a href={href} class:list={['touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-medium transition-colors hover:opacity-80', variants[variant]]}>{label}</a>
 ) : (
-  <span class:list={['inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium', variants[variant]]}>{label}</span>
+  <span class:list={['inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-medium', variants[variant]]}>{label}</span>
 )}

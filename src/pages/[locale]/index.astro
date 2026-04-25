@@ -37,13 +37,15 @@ const serviceImages: Record<string, string> = {
   <!-- ============================================================ -->
   <!-- HERO SECTION — Background image + navy overlay, asymmetric alignment -->
   <!-- ============================================================ -->
-  <section class="relative overflow-hidden py-20 text-white md:py-28 lg:py-36">
+  <section aria-label={isFr ? 'Accueil' : 'Homepage hero'} class="relative overflow-hidden py-20 text-white md:py-28 lg:py-36">
     <!-- Background image with overlay -->
     <div class="absolute inset-0 z-0">
       <img
         src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1600&q=80"
         alt=""
         role="presentation"
+        width="1600"
+        height="900"
         class="h-full w-full object-cover"
         loading="eager"
       />
@@ -51,10 +53,10 @@ const serviceImages: Record<string, string> = {
     </div>
     <!-- Content -->
     <div class="relative z-10 mx-auto max-w-7xl px-4 text-center md:text-left">
-      <h1 class="slide-up font-heading font-bold tracking-tight text-[clamp(2.25rem,5vw,4.5rem)]">
+      <h1 class="slide-up font-heading font-bold tracking-tight text-[var(--text-display)]">
         {isFr ? <>Nettoyage Extérieur<br /><span class="text-gold">de Confiance à Ottawa</span></> : <>Ottawa's Trusted<br /><span class="text-gold">Exterior Cleaning</span></>}
       </h1>
-      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl md:mx-0">
+      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-lg text-white sm:text-xl md:mx-0">
         {isFr ? "Nettoyage professionnel de vitres, gouttières, lavage sous pression, revêtement et déneigement dans la région d'Ottawa." : 'Professional window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal across the Ottawa region.'}
       </p>
       <div class="fade-in delay-4 mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-start">
@@ -72,7 +74,7 @@ const serviceImages: Record<string, string> = {
   <!-- ============================================================ -->
   <!-- USP SECTION — Asymmetric split layout, left-aligned text -->
   <!-- ============================================================ -->
-  <section class="py-16 md:py-20 lg:py-24 bg-card">
+  <section aria-label={isFr ? 'Pourquoi nous choisir' : 'Why choose us'} class="py-16 md:py-20 lg:py-24 bg-card">
     <div class="mx-auto max-w-7xl px-4">
       <!-- Decorative teal accent line -->
       <div class="mb-10 h-px w-full bg-teal/20 md:mb-12"></div>
@@ -83,7 +85,7 @@ const serviceImages: Record<string, string> = {
           <h2 class="heading-section slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">
             {isFr ? 'Pourquoi Choisir All Star?' : 'Why Choose All Star?'}
           </h2>
-          <p class="fade-in delay-2 mt-4 measure text-lg text-muted">
+          <p class="fade-in delay-2 mt-4 measure text-lg text-muted-foreground">
             {isFr
               ? "Des décennies d'expertise locale, un équipement de qualité professionnelle et une garantie de satisfaction sans tracas — c'est ce qui nous distingue à Ottawa."
               : 'Decades of local expertise, professional-grade equipment, and a hassle-free satisfaction guarantee — that\'s what sets us apart in Ottawa.'}
@@ -110,7 +112,7 @@ const serviceImages: Record<string, string> = {
                 )}
               </div>
               <h3 class="font-heading text-base font-semibold text-navy">{usp.title}</h3>
-              <p class="mt-1.5 measure text-sm leading-relaxed text-muted">{usp.description}</p>
+              <p class="mt-1.5 measure text-sm leading-relaxed text-muted-foreground">{usp.description}</p>
             </div>
           ))}
         </div>
@@ -121,11 +123,11 @@ const serviceImages: Record<string, string> = {
   <!-- ============================================================ -->
   <!-- SERVICES SECTION — Varied grid with featured first card -->
   <!-- ============================================================ -->
-  <section class="py-16 md:py-20 lg:py-24">
+  <section aria-label={isFr ? 'Nos services' : 'Our services'} class="py-16 md:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4">
       <div class="text-center">
         <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">{isFr ? 'Nos Services' : 'Our Services'}</h2>
-        <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
+        <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, i) => {
@@ -146,6 +148,8 @@ const serviceImages: Record<string, string> = {
                     <img
                       src={imgSrc}
                       alt={isFr ? service.frName : service.name}
+                      width="800"
+                      height="400"
                       class="h-full w-full object-cover"
                       loading={i < 2 ? 'eager' : 'lazy'}
                     />
@@ -155,7 +159,7 @@ const serviceImages: Record<string, string> = {
                       {isFr ? 'Populaire' : 'Popular'}
                     </span>
                     <h3 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text lg:text-2xl">{isFr ? service.frName : service.name}</h3>
-                    <p class="mt-2 measure text-sm text-muted line-clamp-2">{isFr ? service.frDescription : service.description}</p>
+                    <p class="mt-2 measure text-sm text-muted-foreground line-clamp-2">{isFr ? service.frDescription : service.description}</p>
                     <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
                       {isFr ? 'En savoir plus' : 'Learn more'}
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
@@ -169,13 +173,15 @@ const serviceImages: Record<string, string> = {
                     <img
                       src={imgSrc}
                       alt={isFr ? service.frName : service.name}
+                      width="800"
+                      height="320"
                       class="h-full w-full object-cover"
                       loading="lazy"
                     />
                   </div>
                   <div class="flex flex-1 flex-col p-6">
                     <h3 class="font-heading text-lg font-semibold text-navy group-hover:text-teal-text">{isFr ? service.frName : service.name}</h3>
-                    <p class="mt-2 measure text-sm text-muted line-clamp-3">{isFr ? service.frDescription : service.description}</p>
+                    <p class="mt-2 measure text-sm text-muted-foreground line-clamp-3">{isFr ? service.frDescription : service.description}</p>
                     <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
                       {isFr ? 'En savoir plus' : 'Learn more'}
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
@@ -195,7 +201,7 @@ const serviceImages: Record<string, string> = {
   <!-- ============================================================ -->
   <section class="bg-teal-text py-10 text-white md:py-12" aria-label={isFr ? 'Preuve de confiance' : 'Trust indicators'}>
     <div class="mx-auto max-w-7xl px-4">
-      <p class="text-center text-sm font-semibold uppercase tracking-wider text-white/70">{isFr ? 'La confiance de nos clients' : 'Trusted by Ottawa homeowners'}</p>
+      <p class="text-center text-sm font-semibold uppercase tracking-wider text-white/90">{isFr ? 'La confiance de nos clients' : 'Trusted by Ottawa homeowners'}</p>
       <div class="mt-4 flex flex-col items-center gap-8 sm:flex-row sm:justify-center sm:gap-12 md:gap-16 lg:gap-20">
         <!-- Trust signal 1: Rating — with context -->
         <div class="flex items-center gap-3">
@@ -204,7 +210,7 @@ const serviceImages: Record<string, string> = {
           </div>
           <div>
             <span class="block text-lg font-bold">4.9/5</span>
-            <span class="text-sm text-white/75">{isFr ? 'Note moyenne' : 'Average rating'}</span>
+            <span class="text-sm text-white/90">{isFr ? 'Note moyenne' : 'Average rating'}</span>
           </div>
         </div>
         <!-- Trust signal 2: Happy Homes -->
@@ -214,7 +220,7 @@ const serviceImages: Record<string, string> = {
           </div>
           <div>
             <span class="block text-lg font-bold">500+</span>
-            <span class="text-sm text-white/75">{isFr ? 'Foyers satisfaits' : 'Happy homes'}</span>
+            <span class="text-sm text-white/90">{isFr ? 'Foyers satisfaits' : 'Happy homes'}</span>
           </div>
         </div>
         <!-- Trust signal 3: Guarantee -->
@@ -224,7 +230,7 @@ const serviceImages: Record<string, string> = {
           </div>
           <div>
             <span class="block text-lg font-bold">100%</span>
-            <span class="text-sm text-white/75">{isFr ? 'Garantie de satisfaction' : 'Satisfaction guarantee'}</span>
+            <span class="text-sm text-white/90">{isFr ? 'Garantie de satisfaction' : 'Satisfaction guarantee'}</span>
           </div>
         </div>
       </div>
@@ -234,13 +240,15 @@ const serviceImages: Record<string, string> = {
   <!-- ============================================================ -->
   <!-- CTA SECTION — Background image with overlay, gold CTA -->
   <!-- ============================================================ -->
-  <section class="relative overflow-hidden py-20 text-white md:py-24 lg:py-28">
+  <section aria-label={isFr ? 'Appel à l\'action' : 'Call to action'} class="relative overflow-hidden py-20 text-white md:py-24 lg:py-28">
     <!-- Background image with overlay -->
     <div class="absolute inset-0 z-0">
       <img
         src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1600&q=80"
         alt=""
         role="presentation"
+        width="1600"
+        height="900"
         class="h-full w-full object-cover"
         loading="lazy"
       />

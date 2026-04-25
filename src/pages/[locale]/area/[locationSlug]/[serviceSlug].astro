@@ -55,7 +55,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="lg:col-span-2">
       <!-- Service Features -->
-      <h2 class="font-heading text-2xl font-bold text-navy">
+      <h2 class="font-heading text-2xl font-bold text-navy measure">
         {isFr ? `Ce que notre ${service.frName.toLowerCase()} à ${location.frName} comprend` : `What our ${service.name.toLowerCase()} in ${location.name} includes`}
       </h2>
       <ul class="mt-4 space-y-3">
@@ -72,7 +72,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
         <h2 class="font-heading text-2xl font-bold text-navy">
           {isFr ? `Service à ${location.frName}` : `Serving ${location.name}`}
         </h2>
-        <p class="mt-2 measure text-muted-foreground">
+        <p class="mt-2 measure text-muted-foreground leading-relaxed">
           {isFr
             ? `Nous sommes fiers de desservir ${location.frName} et les quartiers environnants de la région d'Ottawa. Notre équipe locale connaît bien les besoins uniques des propriétés dans cette zone ${location.area} d'Ottawa.`
             : `We proudly serve ${location.name} and surrounding neighbourhoods in the Ottawa region. Our local team understands the unique needs of properties in this ${location.area} Ottawa zone.`}
@@ -152,9 +152,9 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 
     <!-- Sidebar CTA -->
     <div class="lg:col-span-1">
-      <div class="sticky top-24 rounded-xl border border-border bg-card p-6 shadow-md">
+      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-md">
         <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
-        <p class="mt-2 text-sm text-muted">{isFr ? service.frCta : service.cta}</p>
+        <p class="mt-2 text-sm text-muted-foreground">{isFr ? service.frCta : service.cta}</p>
         <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full bg-teal-text px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">
           {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
         </a>

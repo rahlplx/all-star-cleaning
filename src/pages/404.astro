@@ -40,9 +40,9 @@ const isFr = localeFromUrl === 'fr';
       {isFr ? "Retour à l'accueil" : 'Go Home'}
     </a>
     <div class="slide-up mt-8 flex flex-wrap items-center justify-center gap-3">
-      <a href={`/${localeFromUrl}/services`} class="rounded-full border border-border px-5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-teal-text hover:text-teal-text">{isFr ? 'Nos Services' : 'Our Services'}</a>
-      <a href={`/${localeFromUrl}/contact`} class="rounded-full border border-border px-5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-teal-text hover:text-teal-text">{isFr ? 'Contactez-nous' : 'Contact Us'}</a>
-      <a href={`/${localeFromUrl}/reviews`} class="rounded-full border border-border px-5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-teal-text hover:text-teal-text">{isFr ? 'Témoignages' : 'Reviews'}</a>
+      <a href={`/${localeFromUrl}/services`} class="rounded-full border border-border px-5 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-teal-text hover:text-teal-text touch-target">{isFr ? 'Nos Services' : 'Our Services'}</a>
+      <a href={`/${localeFromUrl}/contact`} class="rounded-full border border-border px-5 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-teal-text hover:text-teal-text touch-target">{isFr ? 'Contactez-nous' : 'Contact Us'}</a>
+      <a href={`/${localeFromUrl}/reviews`} class="rounded-full border border-border px-5 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-teal-text hover:text-teal-text touch-target">{isFr ? 'Témoignages' : 'Reviews'}</a>
     </div>
   </section>
 </BaseLayout>

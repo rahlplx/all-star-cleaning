@@ -43,12 +43,12 @@
   --color-secondary-foreground: #fafbfc; /* FIX: was #ffffff */
   --color-accent: var(--color-gold);
   --color-accent-foreground: var(--color-navy);
-  --color-muted: #64748b;
-  --color-muted-foreground: #5a6a82;    /* WCAG AA: 4.8:1 on off-white, 5.0:1 on card-bg */
+  --color-muted: #536178;              /* WCAG AA: 4.56:1 on card, 4.82:1 on off-white — fixed from #64748b (4.24:1 FAIL) */
+  --color-muted-foreground: #5a6a82;    /* WCAG AA: 5.22:1 on off-white, 4.90:1 on card-bg */
   --color-border: #e2e8f0;
   --color-ring: var(--color-teal-text);  /* FIX: use AA-compliant teal for focus rings */
   --color-destructive: #ef4444;
-  --color-card: #f0f2f5;                /* WCAG distinct: 1.5:1 vs page bg, visible separation */
+  --color-card: #eef0f4;                /* WCAG distinct: 1.12:1 vs page bg — slightly darker for better card visibility */
   --color-card-foreground: var(--color-navy);
 
   /* Safe areas */
@@ -135,11 +135,11 @@
   h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; }
   h1 { font-weight: 700; letter-spacing: -0.02em; }
   h2 { font-weight: 700; }
-  h3 { font-weight: 400; }
-  h4, h5, h6 { font-weight: 600; }
+  h3 { font-weight: 600; }
+  h4, h5, h6 { font-weight: 500; }
 
   /* Links: use AA-compliant teal for text */
-  a { color: var(--color-teal-text); text-decoration: none; transition: color var(--transition-fast), transform var(--transition-fast); }
+  a { color: var(--color-teal-text); text-decoration: none; transition: color var(--transition-fast); }
   a:hover { color: var(--color-teal-dark); }
 
   img { max-width: 100%; height: auto; display: block; }
@@ -160,6 +160,14 @@
   .text-balance { text-wrap: balance; }
 
   /* REMOVED: .heading-gradient — banned by impeccable (background-clip:text) */
+
+  /* External link indicator */
+  .external-link::after {
+    content: '↗';
+    font-size: 0.7em;
+    margin-left: 0.2em;
+    opacity: 0.6;
+  }
 
   /* Navy gradient — kept for hero sections */
   .navy-gradient { background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-light) 100%); }
@@ -249,5 +257,16 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Form validation states */
+  .field-error {
+    border-color: var(--color-destructive) !important;
+    box-shadow: 0 0 0 2px rgb(239 68 68 / 0.15);
+  }
+  .field-error-message {
+    color: var(--color-destructive);
+    font-size: var(--text-sm);
+    margin-top: 0.25rem;
   }
 }
