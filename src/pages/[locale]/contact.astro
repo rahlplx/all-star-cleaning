@@ -43,7 +43,7 @@ const altLocale = isFr ? 'en' : 'fr';
         </div>
 
         <!-- Contact Form -->
-        <div class="rounded-xl border border-border bg-card p-6 shadow-sm md:col-span-3 lg:col-span-3">
+        <div class="rounded-xl border border-border bg-card p-6 md:col-span-3 lg:col-span-3">
           <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Demande de Devis Gratuit' : 'Request a Free Quote'}</h2>
           <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.' : 'Fill out the form below and we\'ll get back to you quickly.'}</p>
 
@@ -80,7 +80,7 @@ const altLocale = isFr ? 'en' : 'fr';
               <label for="message" class="block text-sm font-medium text-navy">{isFr ? 'Message' : 'Message'}</label>
               <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-2.5 text-sm text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20 resize-y" placeholder={isFr ? 'Décrivez vos besoins en nettoyage...' : 'Describe your cleaning needs...'}></textarea>
             </div>
-            <button type="submit" class="w-full rounded-full bg-teal-text px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text active:scale-[0.98] touch-target sm:w-auto">
+            <button type="submit" class="w-full rounded-none uppercase tracking-wider bg-teal-text px-6 py-3 text-sm font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text active:scale-[0.98] touch-target sm:w-auto">
               {isFr ? 'Envoyer la Demande' : 'Send Request'}
             </button>
           </form>
@@ -94,6 +94,7 @@ const altLocale = isFr ? 'en' : 'fr';
     </div>
   </section>
 <script>
+  const isFr = document.documentElement.lang === 'fr';
   const form = document.getElementById('contact-form');
   const success = document.getElementById('form-success');
   if (form && success) {
@@ -114,7 +115,9 @@ const altLocale = isFr ? 'en' : 'fr';
           msg.className = 'field-error-message';
           msg.setAttribute('role', 'alert');
           msg.textContent = field.validity.valueMissing
-            ? (field.labels?.[0]?.textContent?.replace(' *', '') + ' is required')
+            ? (isFr
+              ? (field.labels?.[0]?.textContent?.replace(' *', '') + ' est requis')
+              : (field.labels?.[0]?.textContent?.replace(' *', '') + ' is required'))
             : field.validationMessage;
           field.closest('div')?.appendChild(msg);
         } else {

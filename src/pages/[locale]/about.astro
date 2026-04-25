@@ -12,7 +12,7 @@ const altLocale = isFr ? 'en' : 'fr';
 ---
 <BaseLayout
   title={isFr ? 'À Propos | All Star Cleaning Ottawa' : 'About | All Star Cleaning Ottawa'}
-  description={isFr ? "Découvrez All Star Cleaning — des décennies d'expertise en nettoyage extérieur à Ottawa." : "Learn about All Star Cleaning — decades of exterior cleaning expertise in Ottawa."}
+  description={isFr ? "Découvrez All Star Cleaning: des décennies d'expertise en nettoyage extérieur à Ottawa." : "Learn about All Star Cleaning: decades of exterior cleaning expertise in Ottawa."}
   locale={locale}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/about/` }]}
 >
@@ -35,21 +35,21 @@ const altLocale = isFr ? 'en' : 'fr';
             <!-- Pull-quote for the satisfaction guarantee -->
             <blockquote class="my-8 rounded-lg border border-teal-text/20 bg-teal/5 px-6 py-4">
               <p class="font-heading text-xl text-navy italic">{isFr ? 'Satisfaction à 100% promise avec des horaires flexibles et des produits écologiques' : '100% satisfaction promised with flexible scheduling and eco-friendly products'}</p>
-              <footer class="mt-2 text-sm text-muted-foreground not-italic">{isFr ? '— Notre Garantie sans Tracas' : '— Our Hassle-Free Guarantee'}</footer>
+              <footer class="mt-2 text-sm text-muted-foreground not-italic">{isFr ? 'Notre Garantie sans Tracas' : 'Our Hassle-Free Guarantee'}</footer>
             </blockquote>
 
-            <p class="fade-in delay-1">{isFr ? "Nous utilisons des équipements spécialisés — aspirateurs, caméras de gouttière et laveuses sous pression sécuritaires — pour garantir un nettoyage approfondi sans dommage à votre propriété, sans produits chimiques agressifs et sans risques." : "We use specialized equipment — vacuums, gutter cameras, and safe pressure washers — to ensure thorough cleans without home damage, harsh chemicals, or risks."}</p>
+            <p class="fade-in delay-1">{isFr ? "Nous utilisons des équipements spécialisés: aspirateurs, caméras de gouttière et laveuses sous pression sécuritaires, pour garantir un nettoyage approfondi sans dommage à votre propriété, sans produits chimiques agressifs et sans risques." : "We use specialized equipment: vacuums, gutter cameras, and safe pressure washers, to ensure thorough cleans without home damage, harsh chemicals, or risks."}</p>
             <p class="fade-in delay-1">{isFr ? "Vous obtenez des résultats impeccables, sans désordre, et une confiance durable." : "You get spotless results, no mess, and lasting trust."}</p>
           </div>
 
           <div class="mt-12">
-            <a href={`/${locale}/contact`} class="inline-flex items-center rounded-full bg-teal-text px-8 py-3.5 text-lg font-semibold text-white shadow-lg transition-all hover:bg-teal-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text touch-target">{t.cta.freeQuote}</a>
+            <a href={`/${locale}/contact`} class="inline-flex items-center rounded-none uppercase tracking-wider bg-teal-text px-8 py-3.5 text-lg font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text touch-target">{t.cta.freeQuote}</a>
           </div>
         </div>
 
         <!-- Right column (5fr): Visual accent card -->
         <div class="space-y-6">
-          <div class="fade-in delay-2 rounded-xl bg-teal-text p-6 text-white shadow-lg">
+          <div class="fade-in delay-2 rounded-xl bg-teal-text p-6 text-text-on-dark shadow-lg">
             <h2 class="font-heading text-2xl font-bold">{isFr ? 'Nos Valeurs' : 'Our Values'}</h2>
             <ul class="mt-4 space-y-3">
               <li class="flex items-start gap-3">

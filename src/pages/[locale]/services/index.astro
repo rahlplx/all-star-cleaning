@@ -30,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
       const delayClass = `delay-${Math.min(i + 1, 5)}`;
       const features = isFr ? service.frFeatures : service.features;
       return (
-        <a href={`/${locale}/services/${service.slug}`} class={`fade-in ${delayClass} hover-lift group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-teal-text/30 hover:shadow-md ${i === 0 ? 'sm:col-span-2' : ''}`}>
+        <a href={`/${locale}/services/${service.slug}`} class={`fade-in ${delayClass} hover-lift group rounded-xl border border-border bg-card p-6 transition-all hover:border-teal-text/30 hover:shadow-md ${i === 0 ? 'sm:col-span-2' : ''}`}>
           <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
           <p class="mt-2 text-sm text-muted-foreground line-clamp-3">{isFr ? service.frDescription : service.description}</p>
           <!-- Feature list — differentiates from homepage cards -->

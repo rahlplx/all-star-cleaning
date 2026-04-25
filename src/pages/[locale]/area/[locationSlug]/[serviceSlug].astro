@@ -44,7 +44,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 
 <PageLayout
   title={isFr ? `${service.frName} ${location.frName} Ottawa | All Star Cleaning` : `${service.name} ${location.name} Ottawa | All Star Cleaning`}
-  description={isFr ? `${service.frName} professionnel à ${location.frName}, Ottawa. Devis gratuit — résidentiel et commercial.` : `Professional ${service.name.toLowerCase()} in ${location.name}, Ottawa. Free quote — residential & commercial.`}
+  description={isFr ? `${service.frName} professionnel à ${location.frName}, Ottawa. Devis gratuit: résidentiel et commercial.` : `Professional ${service.name.toLowerCase()} in ${location.name}, Ottawa. Free quote: residential & commercial.`}
   locale={locale}
   breadcrumbs={breadcrumbs}
   heroTitle={heroTitle}
@@ -110,7 +110,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       <!-- FAQ Section — E-E-A-T signal for SEO -->
       <div class="mt-10 rounded-xl border border-border bg-card p-6">
         <h2 class="font-heading text-2xl font-bold text-navy">
-          {isFr ? `Questions fréquentes — ${service.frName} à ${location.frName}` : `Frequently asked questions — ${service.name} in ${location.name}`}
+          {isFr ? `Questions fréquentes: ${service.frName} à ${location.frName}` : `Frequently asked questions: ${service.name} in ${location.name}`}
         </h2>
         <div class="mt-4 space-y-4">
           <details class="group rounded-lg border border-border bg-off-white">
@@ -120,8 +120,8 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
             </summary>
             <div class="px-4 pb-3 text-sm text-muted-foreground">
               {isFr
-                ? `Le coût du ${service.frName.toLowerCase()} à ${location.frName} dépend de la taille de votre propriété et de l'ampleur du travail. Contactez-nous pour un devis gratuit et transparent — sans obligation.`
-                : `The cost of ${service.name.toLowerCase()} in ${location.name} depends on your property size and the scope of work. Contact us for a free, transparent quote — no obligation.`}
+                ? `Le coût du ${service.frName.toLowerCase()} à ${location.frName} dépend de la taille de votre propriété et de l'ampleur du travail. Contactez-nous pour un devis gratuit et transparent: sans obligation.`
+                : `The cost of ${service.name.toLowerCase()} in ${location.name} depends on your property size and the scope of work. Contact us for a free, transparent quote: no obligation.`}
             </div>
           </details>
           <details class="group rounded-lg border border-border bg-off-white">
@@ -152,10 +152,10 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 
     <!-- Sidebar CTA -->
     <div class="lg:col-span-1">
-      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-md">
+      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6">
         <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
         <p class="mt-2 text-sm text-muted-foreground">{isFr ? service.frCta : service.cta}</p>
-        <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full bg-teal-text px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">
+        <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-none uppercase tracking-wider bg-teal-text px-6 py-3 text-center text-sm font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">
           {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
         </a>
         <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground">

@@ -58,10 +58,10 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       </div>
     </div>
     <div class="lg:col-span-1">
-      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-md">
+      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6">
         <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
         <p class="mt-2 text-sm text-muted-foreground">{isFr ? service.frCta : service.cta}</p>
-        <a href={`/${locale}/contact?service=${service.slug}`} class="mt-4 block rounded-full bg-teal-text px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</a>
+        <a href={`/${locale}/contact?service=${service.slug}`} class="mt-4 block rounded-none uppercase tracking-wider bg-teal-text px-6 py-3 text-center text-sm font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</a>
         <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground"><a href="tel:+16133143300" class="font-medium text-teal-text hover:text-teal-dark touch-target">(613) 314-3300</a></div>
       </div>
     </div>
