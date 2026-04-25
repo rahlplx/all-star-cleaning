@@ -2,7 +2,7 @@
   "version": 1,
   "include": ["/*"],
   "exclude": [
-    "/_astro/*",
+    "/static/*",
     "/fonts/*",
     "/*.jpg",
     "/*.png",

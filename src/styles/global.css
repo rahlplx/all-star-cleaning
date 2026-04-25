@@ -1,6 +1,4 @@
-/* All Star Cleaning — Tailwind CSS v4 — Astro v6 */
-/* Enhanced with Impeccable skills framework: colorize, typeset, layout, adapt, polish, delight, harden */
-/* OKLCH-Only: All colors declared in OKLCH per impeccable DESIGN.json */
+/* All Star Cleaning — Custom Design System */
 @import "tailwindcss";
 
 @theme {

@@ -1,4 +1,4 @@
-// Tailwind v4 compat config for CLI tools (shadcn/Aceternity)
+// Design system compat config for CLI tools
 // Actual tokens in src/styles/global.css via @theme
 import type { Config } from 'tailwindcss';
 export default {
