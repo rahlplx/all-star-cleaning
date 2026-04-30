@@ -66,6 +66,8 @@ const breadcrumbs: BreadcrumbItem[] = [
               <label for="message" class="block text-sm font-medium text-navy">{isFr ? 'Message' : 'Message'}</label>
               <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-3 text-base text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20 resize-y" placeholder={isFr ? 'Décrivez vos besoins en nettoyage...' : 'Describe your cleaning needs...'}></textarea>
             </div>
+            <!-- Honeypot field for spam protection (Web3Forms) -->
+            <input type="text" name="botcheck" style="display:none" aria-hidden="true" tabindex="-1" autocomplete="off" />
             <button type="submit" class="w-full rounded-lg uppercase tracking-wider bg-gold px-6 py-4 text-lg font-bold text-navy transition-all hover:bg-gold-light hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-[0.98] touch-target">
               {isFr ? 'Obtenez Mon Devis Gratuit' : 'Get My Free Quote'}
             </button>
@@ -76,6 +78,11 @@ const breadcrumbs: BreadcrumbItem[] = [
             <p class="mt-2 font-semibold text-navy">{isFr ? 'Demande envoyée !' : 'Request sent!'}</p>
             <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Nous vous répondrons dans les plus brefs délais.' : "We'll get back to you shortly."}</p>
           </div>
+          <div id="form-error" role="alert" aria-live="assertive" class="hidden rounded-lg bg-red-50 border border-red-200 p-4 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p class="mt-2 font-semibold text-navy">{isFr ? 'Erreur lors de l\'envoi' : 'Submission failed'}</p>
+            <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Une erreur s\'est produite. Veuillez réessayer ou nous appeler au (613) 314-3300.' : 'Something went wrong. Please try again or call us at (613) 314-3300.'}</p>
+          </div>
         </div>
 
         <!-- Contact Info (appears second on mobile) -->
@@ -83,7 +90,7 @@ const breadcrumbs: BreadcrumbItem[] = [
           <!-- Trust Badge -->
           <div class="rounded-xl bg-teal-text p-5 text-text-on-dark">
             <div class="flex items-center gap-3">
-              <span class="text-gold-light text-lg">★★★★★</span>
+              <span class="text-gold-light text-lg" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
               <div>
                 <p class="text-sm font-bold">5/5 {isFr ? 'note parfaite' : 'perfect rating'}</p>
                 <p class="text-xs text-text-on-dark-muted">{isFr ? '16 avis Google vérifiés' : '16 verified Google reviews'}</p>
@@ -114,11 +121,36 @@ const breadcrumbs: BreadcrumbItem[] = [
   </section>
 <script>
   const isFr = document.documentElement.lang === 'fr';
-  const form = document.getElementById('contact-form');
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const success = document.getElementById('form-success');
-  if (form && success) {
-    form.addEventListener('submit', (e) => {
+  const errorAlert = document.getElementById('form-error');
+
+  if (form && success && errorAlert) {
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const btnOriginalText = submitBtn?.textContent?.trim() || '';
+
+    function setLoading(loading: boolean) {
+      if (!submitBtn) return;
+      submitBtn.disabled = loading;
+      if (loading) {
+        submitBtn.dataset.originalText = submitBtn.textContent?.trim() || '';
+        submitBtn.innerHTML = isFr
+          ? '<span class="inline-flex items-center gap-2"><svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Envoi en cours...</span>'
+          : '<span class="inline-flex items-center gap-2"><svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...</span>';
+      } else {
+        submitBtn.textContent = submitBtn.dataset.originalText || btnOriginalText;
+      }
+    }
+
+    function hideAlerts() {
+      success.classList.add('hidden');
+      errorAlert.classList.add('hidden');
+    }
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      hideAlerts();
+
       let isValid = true;
       const requiredFields = form.querySelectorAll('[required]');
       requiredFields.forEach((field) => {
@@ -147,11 +179,54 @@ const breadcrumbs: BreadcrumbItem[] = [
         firstError?.focus();
         return;
       }
-      form.classList.add('hidden');
-      success.classList.remove('hidden');
-      success.setAttribute('tabindex', '-1');
-      success.focus();
+
+      // Honeypot check — if botcheck is filled, silently "succeed" (it's a bot)
+      const botcheck = form.querySelector('input[name="botcheck"]') as HTMLInputElement | null;
+      if (botcheck && botcheck.value) {
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        success.setAttribute('tabindex', '-1');
+        success.focus();
+        return;
+      }
+
+      // Submit to Web3Forms
+      setLoading(true);
+      try {
+        const formData = new FormData(form);
+        formData.append('access_key', 'YOUR_ACCESS_KEY');
+        formData.append('subject', isFr
+          ? 'Nouvelle demande de devis — All Star Cleaning'
+          : 'New Quote Request — All Star Cleaning');
+        formData.append('from_name', formData.get('name') as string || 'Website Visitor');
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          form.classList.add('hidden');
+          success.classList.remove('hidden');
+          success.setAttribute('tabindex', '-1');
+          success.focus();
+        } else {
+          errorAlert.classList.remove('hidden');
+          errorAlert.setAttribute('tabindex', '-1');
+          errorAlert.focus();
+        }
+      } catch {
+        errorAlert.classList.remove('hidden');
+        errorAlert.setAttribute('tabindex', '-1');
+        errorAlert.focus();
+      } finally {
+        setLoading(false);
+      }
     });
+
     form.querySelectorAll('[required]').forEach((field) => {
       field.addEventListener('input', () => {
         field.classList.remove('field-error');
