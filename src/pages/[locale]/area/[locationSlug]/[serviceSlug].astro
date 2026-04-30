@@ -3,6 +3,7 @@
 // Generates 5 services × 44 locations × 2 langs = 440 pages
 import PageLayout from '@/layouts/PageLayout.astro';
 import ServiceBadge from '@/components/ServiceBadge.astro';
+import FAQAccordion from '@/components/FAQAccordion.astro';
 import { services } from '@/data/services';
 import { locations } from '@/data/locations';
 import { getLocationServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
@@ -42,6 +43,8 @@ const heroSubtitle = isFr
   ? `${service.frDescription} Desservant ${location.frName} et les environs d'Ottawa.`
   : `${service.description} Serving ${location.name} and surrounding Ottawa areas.`;
 const altSlug = service.slug;  // Both locales use EN slugs in URLs
+
+const mapQuery = encodeURIComponent(`${location.name}, Ottawa, ON, Canada`);
 ---
 
 <PageLayout
@@ -116,6 +119,20 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
         )}
       </div>
 
+      <!-- Map for location -->
+      <div class="mt-8 rounded-xl border border-border overflow-hidden">
+        <iframe
+          src={`https://www.google.com/maps?q=${location.coordinates.lat},${location.coordinates.lng}&z=13&output=embed`}
+          width="100%"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={isFr ? `Carte de ${location.frName}` : `Map of ${location.name}`}
+        ></iframe>
+      </div>
+
       <!-- Other Services in this Area -->
       <div class="mt-8">
         <h2 class="font-heading text-2xl font-bold text-navy">
@@ -131,47 +148,12 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
         </div>
       </div>
 
-      <!-- FAQ Section — E-E-A-T signal for SEO -->
-      <div class="mt-10 rounded-xl border border-border bg-card p-6">
-        <h2 class="font-heading text-2xl font-bold text-navy">
-          {isFr ? `Questions fréquentes: ${service.frName} à ${location.frName}` : `Frequently asked questions: ${service.name} in ${location.name}`}
-        </h2>
-        <div class="mt-4 space-y-4">
-          <details class="group rounded-lg border border-border bg-off-white">
-            <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
-              {isFr ? `Combien coûte le ${service.frName.toLowerCase()} à ${location.frName} ?` : `How much does ${service.name.toLowerCase()} cost in ${location.name}?`}
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-            </summary>
-            <div class="px-4 pb-3 text-sm text-muted-foreground">
-              {isFr
-                ? `Le coût du ${service.frName.toLowerCase()} à ${location.frName} dépend de la taille de votre propriété et de l'ampleur du travail. Contactez-nous pour un devis gratuit et transparent: sans obligation.`
-                : `The cost of ${service.name.toLowerCase()} in ${location.name} depends on your property size and the scope of work. Contact us for a free, transparent quote: no obligation.`}
-            </div>
-          </details>
-          <details class="group rounded-lg border border-border bg-off-white">
-            <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
-              {isFr ? `Quel est le délai d'intervention à ${location.frName} ?` : `What is the response time in ${location.name}?`}
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-            </summary>
-            <div class="px-4 pb-3 text-sm text-muted-foreground">
-              {isFr
-                ? `Nous offrons généralement un service sous 24 à 48 heures à ${location.frName} et les environs. En cas d'urgence, contactez-nous directement par téléphone.`
-                : `We typically provide service within 24-48 hours in ${location.name} and surrounding areas. For urgent requests, call us directly.`}
-            </div>
-          </details>
-          <details class="group rounded-lg border border-border bg-off-white">
-            <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
-              {isFr ? `Êtes-vous assurés pour travailler à ${location.frName} ?` : `Are you insured to work in ${location.name}?`}
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-            </summary>
-            <div class="px-4 pb-3 text-sm text-muted-foreground">
-              {isFr
-                ? `Oui, toute notre équipe est pleinement assurée et cautionnée. Nous respectons toutes les réglementations locales d'Ottawa pour votre tranquillité d'esprit.`
-                : `Yes, our team is fully insured and bonded. We comply with all local Ottawa regulations for your peace of mind.`}
-            </div>
-          </details>
-        </div>
-      </div>
+      <!-- FAQ Section — driven by service.faqs data -->
+      <FAQAccordion
+        faqs={service.faqs}
+        locale={locale}
+        title={isFr ? `Questions fréquentes: ${service.frName} à ${location.frName}` : `Frequently asked questions: ${service.name} in ${location.name}`}
+      />
     </div>
 
     <!-- Sidebar CTA -->

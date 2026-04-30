@@ -1,0 +1,28 @@
+---
+interface Props {
+  faqs: { question: string; frQuestion?: string; answer: string; frAnswer?: string }[];
+  locale: 'en' | 'fr';
+  title?: string;
+}
+const { faqs, locale, title } = Astro.props;
+const isFr = locale === 'fr';
+---
+
+{faqs.length > 0 && (
+  <div class="mt-10 rounded-xl border border-border bg-card p-6">
+    {title && <h2 class="font-heading text-2xl font-bold text-navy">{title}</h2>}
+    <div class="mt-4 space-y-4">
+      {faqs.map((faq) => (
+        <details class="group rounded-lg border border-border bg-off-white">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-navy transition-colors group-open:text-teal-text">
+            <span class="pr-4">{isFr && faq.frQuestion ? faq.frQuestion : faq.question}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-4 pb-3 text-sm text-muted-foreground leading-relaxed">
+            {isFr && faq.frAnswer ? faq.frAnswer : faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+)}

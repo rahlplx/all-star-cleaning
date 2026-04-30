@@ -63,6 +63,20 @@ const heroSubtitle = isFr
         </p>
       </div>
 
+      <!-- Map for location -->
+      <div class="mb-8 rounded-xl border border-border overflow-hidden">
+        <iframe
+          src={`https://www.google.com/maps?q=${location.coordinates.lat},${location.coordinates.lng}&z=13&output=embed`}
+          width="100%"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={isFr ? `Carte de ${location.frName}` : `Map of ${location.name}`}
+        ></iframe>
+      </div>
+
       <!-- All Services Grid -->
       <h2 class="font-heading text-2xl font-bold text-navy">
         {isFr ? 'Nos Services à' : 'Our Services in'} {isFr ? location.frName : location.name}
