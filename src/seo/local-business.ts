@@ -54,7 +54,8 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
     },
     sameAs: [
       'https://facebook.com/allstarcleaningottawa',
-      'https://instagram.com/allstarcleaningottawa',
+      'https://www.instagram.com/allstarcleaning.ca',
+      'https://www.tiktok.com/@allstarcleaning.ca',
       'https://g.page/allstarcleaningottawa',
     ],
     hasOfferCatalog: {

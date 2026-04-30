@@ -54,7 +54,7 @@ export interface SiteSettings {
   address: string;
   frAddress: string;
   googleMapsUrl: string;
-  socialLinks: { facebook: string; instagram: string; google: string };
+  socialLinks: { facebook: string; instagram: string; tiktok: string; google: string };
 }
 
 export interface NavItem {
