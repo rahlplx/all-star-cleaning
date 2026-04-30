@@ -1,6 +1,7 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 import { useTranslations } from '@/i18n/translations';
+import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
@@ -9,21 +10,88 @@ const { locale } = Astro.params as { locale: 'en' | 'fr' };
 const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+  { label: 'Contact', frLabel: 'Contact', href: `/${locale}/contact` },
+];
 ---
-<BaseLayout
+<PageLayout
   title={isFr ? 'Contactez-Nous | All Star Cleaning Ottawa' : 'Contact Us | All Star Cleaning Ottawa'}
   description={isFr ? 'Contactez All Star Cleaning pour un devis gratuit. Appelez le (613) 314-3300 ou remplissez notre formulaire en ligne.' : 'Contact All Star Cleaning for a free quote. Call (613) 314-3300 or fill out our online form.'}
   locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={isFr ? 'Contactez-Nous' : 'Contact Us'}
+  heroSubtitle={isFr ? "Obtenez un devis gratuit pour tous vos besoins en nettoyage extérieur" : 'Get a free quote for all your exterior cleaning needs'}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/contact/` }]}
 >
-  <section class="py-16 md:py-20">
+  <section class="py-8 sm:py-12">
     <div class="mx-auto max-w-5xl px-4">
-      <h1 class="slide-up font-heading text-4xl font-bold text-navy md:text-5xl">{isFr ? 'Contactez-Nous' : 'Contact Us'}</h1>
-      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">{isFr ? "Obtenez un devis gratuit pour tous vos besoins en nettoyage extérieur." : 'Get a free quote for all your exterior cleaning needs.'}</p>
+      <div class="grid gap-10 lg:grid-cols-5">
+        <!-- Contact Form (appears first on mobile for conversion) -->
+        <div class="rounded-xl border border-border bg-card p-6 order-first lg:order-none md:col-span-3 lg:col-span-3">
+          <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Demande de Devis Gratuit' : 'Request a Free Quote'}</h2>
+          <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.' : "Fill out the form below and we'll get back to you quickly."}</p>
 
-      <div class="mt-10 grid gap-10 lg:grid-cols-5">
-        <!-- Contact Info -->
+          <form id="contact-form" class="mt-6 space-y-4" novalidate>
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label for="name" class="block text-sm font-medium text-navy">{isFr ? 'Nom' : 'Name'} <span class="text-destructive" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-hint" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-3 text-base text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20" placeholder={isFr ? 'Votre nom' : 'Your name'} />
+                <p id="name-hint" class="sr-only">{isFr ? 'Le nom est requis' : 'Name is required'}</p>
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-navy">{isFr ? 'Téléphone' : 'Phone'} <span class="text-destructive" aria-hidden="true">*</span></label>
+                <input type="tel" id="phone" name="phone" required autocomplete="tel" aria-describedby="phone-hint" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-3 text-base text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20" placeholder={isFr ? '(613) 000-0000' : '(613) 000-0000'} />
+                <p id="phone-hint" class="sr-only">{isFr ? 'Le numéro de téléphone est requis' : 'Phone number is required'}</p>
+              </div>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-navy">{isFr ? 'Courriel' : 'Email'}</label>
+              <input type="email" id="email" name="email" autocomplete="email" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-3 text-base text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20" placeholder={isFr ? 'votre@courriel.ca' : 'your@email.ca'} />
+            </div>
+            <div>
+              <label for="service" class="block text-sm font-medium text-navy">{isFr ? 'Service souhaité' : 'Service Needed'}</label>
+              <select id="service" name="service" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-3 text-base text-navy transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20">
+                <option value="">{isFr ? 'Sélectionnez un service' : 'Select a service'}</option>
+                <option value="window-cleaning">{isFr ? 'Nettoyage de Vitres' : 'Window Cleaning'}</option>
+                <option value="gutter-cleaning">{isFr ? 'Nettoyage de Gouttières' : 'Gutter Cleaning'}</option>
+                <option value="pressure-washing">{isFr ? 'Lavage sous Pression' : 'Pressure Washing'}</option>
+                <option value="siding-cleaning">{isFr ? 'Nettoyage de Revêtement' : 'Siding Cleaning'}</option>
+                <option value="snow-removal">{isFr ? 'Dénéigement' : 'Snow Removal'}</option>
+                <option value="other">{isFr ? 'Autre' : 'Other'}</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-navy">{isFr ? 'Message' : 'Message'}</label>
+              <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-3 text-base text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20 resize-y" placeholder={isFr ? 'Décrivez vos besoins en nettoyage...' : 'Describe your cleaning needs...'}></textarea>
+            </div>
+            <button type="submit" class="w-full rounded-lg uppercase tracking-wider bg-gold px-6 py-4 text-lg font-bold text-navy transition-all hover:bg-gold-light hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-[0.98] touch-target">
+              {isFr ? 'Obtenez Mon Devis Gratuit' : 'Get My Free Quote'}
+            </button>
+            <p class="text-center text-xs text-muted-foreground">{isFr ? 'Aucun spam · Nous répondons sous 24 heures' : 'No spam · We respond within 24 hours'}</p>
+          </form>
+          <div id="form-success" role="alert" aria-live="polite" class="hidden rounded-lg bg-green/10 border border-green/20 p-4 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <p class="mt-2 font-semibold text-navy">{isFr ? 'Demande envoyée !' : 'Request sent!'}</p>
+            <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Nous vous répondrons dans les plus brefs délais.' : "We'll get back to you shortly."}</p>
+          </div>
+        </div>
+
+        <!-- Contact Info (appears second on mobile) -->
         <div class="space-y-6 md:col-span-2 lg:col-span-2">
+          <!-- Trust Badge -->
+          <div class="rounded-xl bg-teal-text p-5 text-text-on-dark">
+            <div class="flex items-center gap-3">
+              <span class="text-gold-light text-lg">★★★★★</span>
+              <div>
+                <p class="text-sm font-bold">5/5 {isFr ? 'note parfaite' : 'perfect rating'}</p>
+                <p class="text-xs text-text-on-dark-muted">{isFr ? '16 avis Google vérifiés' : '16 verified Google reviews'}</p>
+              </div>
+            </div>
+            <p class="mt-2 text-sm text-text-on-dark-muted">{isFr ? 'Satisfaction garantie à 100% · Assuré & Cautionné' : '100% satisfaction guaranteed · Insured & Bonded'}</p>
+          </div>
+
           <div>
             <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Appelez-Nous' : 'Call Us'}</h2>
             <a href="tel:+16133143300" class="mt-2 inline-flex items-center gap-2 text-lg font-medium text-teal-text hover:text-teal-dark touch-target transition-colors">(613) 314-3300</a>
@@ -41,55 +109,6 @@ const altLocale = isFr ? 'en' : 'fr';
             <p class="mt-2 text-muted-foreground">{t.contact.hours}</p>
           </div>
         </div>
-
-        <!-- Contact Form -->
-        <div class="rounded-xl border border-border bg-card p-6 md:col-span-3 lg:col-span-3">
-          <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Demande de Devis Gratuit' : 'Request a Free Quote'}</h2>
-          <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.' : 'Fill out the form below and we\'ll get back to you quickly.'}</p>
-
-          <form id="contact-form" class="mt-6 space-y-4" novalidate>
-            <div class="grid gap-4 md:grid-cols-2">
-              <div>
-                <label for="name" class="block text-sm font-medium text-navy">{isFr ? 'Nom' : 'Name'} <span class="text-destructive" aria-hidden="true">*</span></label>
-                <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-hint" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-2.5 text-sm text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20" placeholder={isFr ? 'Votre nom' : 'Your name'} />
-                <p id="name-hint" class="sr-only">{isFr ? 'Le nom est requis' : 'Name is required'}</p>
-              </div>
-              <div>
-                <label for="phone" class="block text-sm font-medium text-navy">{isFr ? 'Téléphone' : 'Phone'} <span class="text-destructive" aria-hidden="true">*</span></label>
-                <input type="tel" id="phone" name="phone" required autocomplete="tel" aria-describedby="phone-hint" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-2.5 text-sm text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20" placeholder={isFr ? '(613) 000-0000' : '(613) 000-0000'} />
-                <p id="phone-hint" class="sr-only">{isFr ? 'Le numéro de téléphone est requis' : 'Phone number is required'}</p>
-              </div>
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-navy">{isFr ? 'Courriel' : 'Email'}</label>
-              <input type="email" id="email" name="email" autocomplete="email" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-2.5 text-sm text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20" placeholder={isFr ? 'votre@courriel.ca' : 'your@email.ca'} />
-            </div>
-            <div>
-              <label for="service" class="block text-sm font-medium text-navy">{isFr ? 'Service souhaité' : 'Service Needed'}</label>
-              <select id="service" name="service" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-2.5 text-sm text-navy transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20">
-                <option value="">{isFr ? 'Sélectionnez un service' : 'Select a service'}</option>
-                <option value="window-cleaning">{isFr ? 'Nettoyage de Vitres' : 'Window Cleaning'}</option>
-                <option value="gutter-cleaning">{isFr ? 'Nettoyage de Gouttières' : 'Gutter Cleaning'}</option>
-                <option value="pressure-washing">{isFr ? 'Lavage sous Pression' : 'Pressure Washing'}</option>
-                <option value="siding-cleaning">{isFr ? 'Nettoyage de Revêtement' : 'Siding Cleaning'}</option>
-                <option value="snow-removal">{isFr ? 'Dénéigement' : 'Snow Removal'}</option>
-                <option value="other">{isFr ? 'Autre' : 'Other'}</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-medium text-navy">{isFr ? 'Message' : 'Message'}</label>
-              <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border border-border bg-card px-4 py-2.5 text-sm text-navy placeholder:text-muted-foreground transition-colors focus:border-teal-text focus:outline-none focus:ring-2 focus:ring-teal-text/20 resize-y" placeholder={isFr ? 'Décrivez vos besoins en nettoyage...' : 'Describe your cleaning needs...'}></textarea>
-            </div>
-            <button type="submit" class="w-full rounded-none uppercase tracking-wider bg-teal-text px-6 py-3 text-sm font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text active:scale-[0.98] touch-target sm:w-auto">
-              {isFr ? 'Envoyer la Demande' : 'Send Request'}
-            </button>
-          </form>
-          <div id="form-success" role="alert" aria-live="polite" class="hidden rounded-lg bg-green/10 border border-green/20 p-4 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <p class="mt-2 font-semibold text-navy">{isFr ? 'Demande envoyée !' : 'Request sent!'}</p>
-            <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Nous vous répondrons dans les plus brefs délais.' : "We'll get back to you shortly."}</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -100,7 +119,6 @@ const altLocale = isFr ? 'en' : 'fr';
   if (form && success) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Custom validation with accessible error messages
       let isValid = true;
       const requiredFields = form.querySelectorAll('[required]');
       requiredFields.forEach((field) => {
@@ -129,14 +147,11 @@ const altLocale = isFr ? 'en' : 'fr';
         firstError?.focus();
         return;
       }
-      // In production, replace with actual form submission (e.g., Formspree, Netlify Forms)
       form.classList.add('hidden');
       success.classList.remove('hidden');
-      // Move focus to success message for screen readers
       success.setAttribute('tabindex', '-1');
       success.focus();
     });
-    // Clear error on input
     form.querySelectorAll('[required]').forEach((field) => {
       field.addEventListener('input', () => {
         field.classList.remove('field-error');
@@ -147,4 +162,4 @@ const altLocale = isFr ? 'en' : 'fr';
     });
   }
 </script>
-</BaseLayout>
+</PageLayout>

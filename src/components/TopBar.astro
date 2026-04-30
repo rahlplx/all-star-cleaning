@@ -4,29 +4,48 @@ interface Props { locale: 'en' | 'fr'; }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 ---
-<div class="navy-gradient text-text-on-dark text-xs sm:text-sm fade-in" role="complementary" aria-label="Contact information">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-1.5">
-    <div class="flex items-center gap-4">
-      <span class="flex items-center gap-1.5 opacity-90">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        {t.contact.hours}
-      </span>
+<div class="navy-gradient text-text-on-dark fade-in" role="complementary" aria-label="Contact information">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5">
+    <!-- Left: Hours + Address (desktop) / Hours only (mobile) -->
+    <div class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm opacity-90 min-w-0">
+      <div class="flex items-center gap-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="truncate">Mon–Sun: 9AM–7PM</span>
+      </div>
+      <!-- Address (desktop only) -->
+      <span class="opacity-30 hidden lg:inline" aria-hidden="true">|</span>
+      <div class="hidden lg:flex items-center gap-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="truncate">800 Hunt Club Rd, Ottawa</span>
+      </div>
     </div>
-    <div class="flex items-center gap-4">
-      <a href={`tel:${t.contact.phoneLink}`} class="touch-target inline-flex items-center gap-1.5 font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        {t.contact.phone}
+
+    <!-- Right: Contact links -->
+    <div class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+      <!-- Phone -->
+      <a href={`tel:${t.contact.phoneLink}`} class="touch-target inline-flex items-center gap-1.5 font-semibold text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy whitespace-nowrap">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="hidden sm:inline">{t.contact.phone}</span>
+        <span class="sm:hidden">Call</span>
       </a>
-      <span class="opacity-40" aria-hidden="true">|</span>
-      <a href={`mailto:${t.contact.email}`} class="touch-target hidden font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy sm:inline-flex items-center gap-1.5">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+
+      <!-- Separator (desktop only) -->
+      <span class="opacity-30 hidden sm:inline" aria-hidden="true">|</span>
+
+      <!-- Email (desktop only) -->
+      <a href={`mailto:${t.contact.email}`} class="touch-target hidden font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy sm:inline-flex items-center gap-1.5 whitespace-nowrap">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         {t.contact.email}
       </a>
-      <span class="opacity-40 hidden sm:inline" aria-hidden="true">|</span>
+
+      <!-- Separator (desktop only) -->
+      <span class="opacity-30 hidden sm:inline" aria-hidden="true">|</span>
+
+      <!-- Language switcher -->
       {locale === 'en' ? (
-        <a href={Astro.url.pathname.replace(/^\/en/, '/fr')} class="touch-target font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy" lang="fr" hreflang="fr">Français</a>
+        <a href={Astro.url.pathname.replace(/^\/en/, '/fr')} class="touch-target font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy whitespace-nowrap" lang="fr" hreflang="fr">FR</a>
       ) : (
-        <a href={Astro.url.pathname.replace(/^\/fr/, '/en')} class="touch-target font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy" lang="en" hreflang="en">English</a>
+        <a href={Astro.url.pathname.replace(/^\/fr/, '/en')} class="touch-target font-medium text-teal-light transition-colors duration-200 hover:text-gold focus-visible:ring-2 focus-visible:ring-teal-text focus-visible:ring-offset-2 focus-visible:ring-offset-navy whitespace-nowrap" lang="en" hreflang="en">EN</a>
       )}
     </div>
   </div>

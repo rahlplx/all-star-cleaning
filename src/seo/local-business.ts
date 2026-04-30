@@ -13,7 +13,7 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
     alternateName: locale === 'fr' ? 'Nettoyage All Star' : 'All Star Cleaning Ottawa',
     url,
     logo: 'https://allstarcleaning.ca/logo.svg',
-    image: 'https://allstarcleaning.ca/og-default.jpg',
+    image: 'https://allstarcleaning.ca/images/og-default.jpg',
     description: locale === 'fr'
       ? "Service de nettoyage extérieur de confiance à Ottawa. Vitres, gouttières, lavage sous pression, revêtement et déneigement. Devis gratuits."
       : "Ottawa's trusted exterior cleaning service. Window, gutter, pressure washing, siding & snow removal. Free quotes.",
@@ -21,7 +21,7 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
     email: 'hello@allstarcleaning.ca',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Unit 7 - 800 Hunt Club Road',
+      streetAddress: '800 Hunt Club Rd',
       addressLocality: 'Ottawa',
       addressRegion: 'ON',
       postalCode: 'K1V 1C3',
@@ -48,8 +48,8 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
     priceRange: '$$',
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '327',
+      ratingValue: '5',
+      reviewCount: '16',
       bestRating: '5',
     },
     sameAs: [

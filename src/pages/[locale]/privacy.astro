@@ -18,16 +18,50 @@ const altLocale = isFr ? 'en' : 'fr';
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-3xl px-4">
       <h1 class="slide-up font-heading text-4xl font-bold text-navy">{isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}</h1>
-      <p class="mt-4 text-sm text-muted-foreground">{isFr ? 'Dernière mise à jour : Avril 2026' : 'Last updated: April 2026'}</p>
+      <p class="mt-4 text-sm text-muted-foreground">{isFr ? 'Dernière mise à jour : Mars 2026' : 'Last updated: March 2026'}</p>
       <div class="measure mt-8 space-y-6 text-muted-foreground leading-relaxed">
+
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Collecte de renseignements' : 'Information Collection'}</h2>
         <p>{isFr ? "Nous recueillons des renseignements personnels uniquement lorsque vous remplissez notre formulaire de contact, notamment votre nom, adresse courriel, numéro de téléphone et adresse. Nous ne recueillons pas de renseignements de manière automatique." : 'We collect personal information only when you fill out our contact form, including your name, email address, phone number, and address. We do not collect information automatically.'}</p>
+
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Utilisation des renseignements' : 'Use of Information'}</h2>
         <p>{isFr ? 'Nous utilisons vos renseignements uniquement pour répondre à vos demandes de devis et fournir nos services. Nous ne vendons ni ne partageons vos renseignements avec des tiers à des fins marketing.' : 'We use your information only to respond to quote requests and provide our services. We do not sell or share your information with third parties for marketing purposes.'}</p>
+
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Conservation des données' : 'Data Retention'}</h2>
+        <p>{isFr ? "Nous conservons vos renseignements personnels uniquement pendant la durée nécessaire aux fins pour lesquelles ils ont été recueillis, ou selon les exigences légales. Les demandes de devis sont conservées pendant 12 mois, après quoi elles sont supprimées de manière sécuritaire." : 'We retain your personal information only for as long as necessary for the purposes for which it was collected, or as required by law. Quote requests are retained for 12 months, after which they are securely deleted.'}</p>
+
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Vos droits' : 'Your Rights'}</h2>
+        <p>{isFr ? "Conformément aux lois applicables, vous avez le droit d'accéder à vos renseignements personnels, de demander leur correction ou leur suppression, et de retirer votre consentement à tout moment. Pour exercer ces droits, contactez-nous aux coordonnées ci-dessous." : 'Under applicable laws, you have the right to access your personal information, request its correction or deletion, and withdraw your consent at any time. To exercise these rights, contact us using the details below.'}</p>
+
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Sécurité' : 'Security'}</h2>
+        <p>{isFr ? "Nous prenons des mesures raisonnables pour protéger vos renseignements personnels contre l'accès non autorisé, la modification, la divulgation ou la destruction. Cependant, aucune méthode de transmission sur Internet n'est totalement sécurisée." : 'We take reasonable measures to protect your personal information from unauthorized access, modification, disclosure, or destruction. However, no method of transmission over the Internet is completely secure.'}</p>
+
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Témoins de connexion (cookies)' : 'Cookies'}</h2>
+        <p>{isFr ? "Notre site utilise des témoins de connexion (cookies) uniquement pour améliorer votre expérience de navigation. Nous n'utilisons pas de cookies de suivi publicitaire. Les cookies de Google Fonts peuvent être déposés pour le chargement des polices web." : 'Our website uses cookies only to improve your browsing experience. We do not use advertising tracking cookies. Google Fonts cookies may be set for web font loading.'}</p>
+
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Services tiers' : 'Third-Party Services'}</h2>
         <p>{isFr ? 'Nous utilisons Google Fonts pour les polices web et Web3Forms pour le traitement des formulaires. Ces services peuvent recueillir votre adresse IP conformément à leurs propres politiques de confidentialité.' : 'We use Google Fonts for web fonts and Web3Forms for form processing. These services may collect your IP address in accordance with their own privacy policies.'}</p>
+
+        <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Modifications' : 'Changes to This Policy'}</h2>
+        <p>{isFr ? "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Les modifications prendront effet dès leur publication sur cette page. Nous vous encourageons à consulter cette page régulièrement." : 'We reserve the right to modify this privacy policy at any time. Changes will take effect upon publication on this page. We encourage you to review this page periodically.'}</p>
+
         <h2 class="font-heading text-xl font-semibold text-navy">{isFr ? 'Contact' : 'Contact'}</h2>
-        <p>{isFr ? 'Pour toute question concernant cette politique, contactez-nous à hello@allstarcleaning.ca ou au (613) 314-3300.' : 'For questions about this policy, contact us at hello@allstarcleaning.ca or (613) 314-3300.'}</p>
+        <p>{isFr ? 'Pour toute question concernant cette politique, contactez-nous à' : 'For questions about this policy, contact us at'} <a href="mailto:hello@allstarcleaning.ca" class="text-teal-text hover:text-teal-dark touch-target">hello@allstarcleaning.ca</a> {isFr ? 'ou au' : 'or call'} <a href="tel:+16133143300" class="text-teal-text hover:text-teal-dark touch-target">(613) 314-3300</a>.</p>
+      </div>
+
+      <!-- CTA to return to conversion flow -->
+      <div class="mt-10 rounded-xl bg-navy px-6 py-8 text-center text-text-on-dark">
+        <h2 class="font-heading text-xl font-bold">{isFr ? 'Des questions sur votre vie privée?' : 'Questions About Your Privacy?'}</h2>
+        <p class="mt-2 text-text-on-dark-muted">{isFr ? "Nous serons heureux de discuter de la façon dont nous protégeons vos renseignements." : "We're happy to discuss how we protect your information."}</p>
+        <div class="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wider text-navy shadow-lg hover:bg-gold-light hover:shadow-xl transition-all">
+            {isFr ? 'Contactez-Nous' : 'Contact Us'}
+          </a>
+          <a href="tel:+16133143300" class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-text-on-dark hover:border-white/60 hover:bg-white/10 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (613) 314-3300
+          </a>
+        </div>
       </div>
     </div>
   </section>

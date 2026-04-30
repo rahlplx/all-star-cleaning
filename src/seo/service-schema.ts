@@ -15,7 +15,7 @@ export function getServiceSchema(service: Service, locale: 'en' | 'fr', url: str
       telephone: '+1-613-314-3300',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Unit 7 - 800 Hunt Club Road',
+        streetAddress: '800 Hunt Club Rd',
         addressLocality: 'Ottawa',
         addressRegion: 'ON',
         postalCode: 'K1V 1C3',

@@ -14,10 +14,18 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
   { label: 'Services', frLabel: 'Services', href: `/${locale}/services` },
 ];
+
+const serviceImages: Record<string, string> = {
+  'window-cleaning': '/images/window-cleaning.jpg',
+  'gutter-cleaning': '/images/gutter-cleaning.jpg',
+  'pressure-washing': '/images/pressure-washing.jpg',
+  'siding-cleaning': '/images/siding-cleaning.jpg',
+  'snow-removal': '/images/snow-removal.jpg',
+};
 ---
 
 <PageLayout
-  title={isFr ? 'Nos Services de Nettoyage | All Star Cleaning Ottawa' : 'Our Cleaning Services | All Star Cleaning Ottawa'}
+  title={isFr ? 'Nos Services de Nettoyage | All Star Cleaning Ottawa' : 'Professional Exterior Cleaning Services in Ottawa | All Star Cleaning'}
   description={isFr ? 'Services de nettoyage extérieur professionnels à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression, revêtement et déneigement.' : 'Professional exterior cleaning services in Ottawa. Window cleaning, gutter cleaning, pressure washing, siding cleaning, and snow removal.'}
   locale={locale}
   breadcrumbs={breadcrumbs}
@@ -25,31 +33,112 @@ const breadcrumbs: BreadcrumbItem[] = [
   heroSubtitle={isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/` }]}
 >
+  <!-- Trust Badge Bar -->
+  <div class="mb-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+    <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
+      <span class="text-gold-light text-sm">★★★★★</span>
+      <span class="text-sm font-bold text-navy">5/5</span>
+      <span class="text-xs text-muted-foreground">{isFr ? '16 avis Google' : '16 Google reviews'}</span>
+    </div>
+    <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span class="text-sm font-semibold text-navy">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+    </div>
+    <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span class="text-sm font-semibold text-navy">{isFr ? 'Satisfaction garantie à 100%' : '100% Satisfaction Guaranteed'}</span>
+    </div>
+  </div>
+
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {services.map((service, i) => {
       const delayClass = `delay-${Math.min(i + 1, 5)}`;
       const features = isFr ? service.frFeatures : service.features;
+      const imgSrc = serviceImages[service.slug];
+      const isFeatured = i === 0;
       return (
-        <a href={`/${locale}/services/${service.slug}`} class={`fade-in ${delayClass} hover-lift group rounded-xl border border-border bg-card p-6 transition-all hover:border-teal-text/30 hover:shadow-md ${i === 0 ? 'sm:col-span-2' : ''}`}>
-          <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
-          <p class="mt-2 text-sm text-muted-foreground line-clamp-3">{isFr ? service.frDescription : service.description}</p>
-          <!-- Feature list — differentiates from homepage cards -->
-          {features.length > 0 && (
-            <ul class="mt-4 space-y-1.5" aria-label={isFr ? `Caractéristiques de ${service.frName}` : `${service.name} features`}>
-              {features.slice(0, 3).map((feature) => (
-                <li class="flex items-start gap-2 text-sm text-muted-foreground">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+        <a
+          href={`/${locale}/services/${service.slug}`}
+          class:list={[
+            `fade-in ${delayClass} hover-lift group overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-teal-text/30 hover:shadow-md`,
+            isFeatured && 'sm:col-span-2',
+          ]}
+        >
+          {isFeatured ? (
+            /* Featured card: horizontal with image */
+            <div class="flex flex-col sm:flex-row">
+              {imgSrc && (
+                <div class="h-48 w-full sm:h-auto sm:w-2/5 lg:w-1/3">
+                  <img src={imgSrc} alt={isFr ? service.frName : service.name} width="800" height="400" class="h-full w-full object-cover" loading="eager" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col justify-center p-6">
+                <span class="mb-2 inline-block w-fit rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gold-dark">
+                  {isFr ? 'Populaire' : 'Popular'}
+                </span>
+                <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
+                <p class="mt-2 text-base text-muted-foreground line-clamp-2">{isFr ? service.frDescription : service.description}</p>
+                {features.length > 0 && (
+                  <ul class="mt-4 space-y-1.5" aria-label={isFr ? `Caractéristiques de ${service.frName}` : `${service.name} features`}>
+                    {features.slice(0, 3).map((feature) => (
+                      <li class="flex items-start gap-2 text-sm text-foreground">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <span class="mt-4 inline-flex items-center gap-1 rounded-full border border-teal-text/30 px-4 py-1.5 text-sm font-medium text-teal-text transition-colors group-hover:bg-teal-text group-hover:text-text-on-dark">
+                  {isFr ? 'En savoir plus' : 'Learn more'}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </span>
+              </div>
+            </div>
+          ) : (
+            /* Standard cards with image */
+            <div class="flex flex-col">
+              {imgSrc && (
+                <div class="h-40 w-full">
+                  <img src={imgSrc} alt={isFr ? service.frName : service.name} width="800" height="320" class="h-full w-full object-cover" loading="lazy" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-6">
+                <h2 class="font-heading text-lg font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
+                <p class="mt-2 text-base text-muted-foreground line-clamp-3 lg:line-clamp-none">{isFr ? service.frDescription : service.description}</p>
+                {features.length > 0 && (
+                  <ul class="mt-3 space-y-1">
+                    {features.slice(0, 2).map((feature) => (
+                      <li class="flex items-start gap-2 text-sm text-foreground">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <span class="mt-4 inline-flex items-center gap-1 rounded-full border border-teal-text/30 px-4 py-1.5 text-sm font-medium text-teal-text transition-colors group-hover:bg-teal-text group-hover:text-text-on-dark">
+                  {isFr ? 'En savoir plus' : 'Learn more'}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </span>
+              </div>
+            </div>
           )}
-          <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
-            {isFr ? 'En savoir plus' : 'Learn more'}
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-          </span>
         </a>
       );
     })}
+  </div>
+
+  <!-- Bottom CTA Section -->
+  <div class="mt-12 rounded-xl bg-teal-text px-6 py-8 text-center text-text-on-dark sm:px-10">
+    <h2 class="font-heading text-2xl font-bold">{isFr ? 'Prêt à commencer?' : 'Ready to Get Started?'}</h2>
+    <p class="mt-2 text-text-on-dark-muted">{isFr ? 'Contactez-nous pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!' : 'Contact us for a free quote. We\'re open 7 days a week!'}</p>
+    <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+      <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-gold px-8 py-3 text-lg font-semibold uppercase tracking-wider text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl">
+        {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
+      </a>
+      <a href="tel:+16133143300" class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3 text-lg font-semibold uppercase tracking-wider text-text-on-dark transition-all hover:border-white/60 hover:bg-white/10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (613) 314-3300
+      </a>
+    </div>
   </div>
 </PageLayout>

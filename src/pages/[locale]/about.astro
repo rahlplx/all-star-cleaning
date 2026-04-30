@@ -1,6 +1,7 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 import { useTranslations } from '@/i18n/translations';
+import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
@@ -9,24 +10,43 @@ const { locale } = Astro.params as { locale: 'en' | 'fr' };
 const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+  { label: 'About', frLabel: 'À Propos', href: `/${locale}/about` },
+];
 ---
-<BaseLayout
+<PageLayout
   title={isFr ? 'À Propos | All Star Cleaning Ottawa' : 'About | All Star Cleaning Ottawa'}
   description={isFr ? "Découvrez All Star Cleaning: des décennies d'expertise en nettoyage extérieur à Ottawa." : "Learn about All Star Cleaning: decades of exterior cleaning expertise in Ottawa."}
   locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={isFr ? 'À Propos' : 'About All Star Cleaning'}
+  heroSubtitle={isFr ? "Des décennies d'expertise locale en nettoyage extérieur à Ottawa" : 'Decades of local expertise in exterior cleaning across Ottawa'}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/about/` }]}
 >
-  <section class="py-16 sm:py-20 lg:py-24">
+  <section class="py-8 sm:py-12">
     <div class="mx-auto max-w-5xl px-4">
       <div class="section-asymmetric items-start">
         <!-- Left column (7fr): Main content -->
         <div>
-          <h1 class="slide-up heading-section font-heading font-bold text-navy">{isFr ? 'À Propos' : 'About All Star Cleaning'}</h1>
+          <!-- Review Badge -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2 rounded-full bg-gold/10 px-4 py-2 border border-gold/20">
+              <span class="text-gold-light text-sm">★★★★★</span>
+              <span class="text-sm font-bold text-navy">5/5</span>
+              <span class="text-xs text-muted-foreground">{isFr ? '16 avis Google' : '16 Google reviews'}</span>
+            </div>
+            <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <span class="text-sm font-semibold text-navy">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+            </div>
+          </div>
 
           <!-- Trust signal with subtle gold accent -->
           <p class="fade-in delay-1 mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gold-dark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            {isFr ? 'Au service d\'Ottawa depuis 2005' : 'Serving Ottawa since 2005'}
+            {isFr ? "Au service d'Ottawa depuis 2005" : 'Serving Ottawa since 2005'}
           </p>
 
           <div class="measure mt-8 space-y-6 text-muted-foreground leading-relaxed">
@@ -42,13 +62,45 @@ const altLocale = isFr ? 'en' : 'fr';
             <p class="fade-in delay-1">{isFr ? "Vous obtenez des résultats impeccables, sans désordre, et une confiance durable." : "You get spotless results, no mess, and lasting trust."}</p>
           </div>
 
-          <div class="mt-12">
-            <a href={`/${locale}/contact`} class="inline-flex items-center rounded-none uppercase tracking-wider bg-teal-text px-8 py-3.5 text-lg font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-text touch-target">{t.cta.freeQuote}</a>
+          <!-- Mobile-only inline CTA -->
+          <div class="mt-8 lg:hidden">
+            <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-gold px-8 py-4 text-base font-bold text-navy transition-all hover:bg-gold-light hover:shadow-xl w-full justify-center">
+              {t.cta.freeQuote}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+          </div>
+
+          <div class="mt-8 hidden lg:block">
+            <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-gold px-8 py-3.5 text-lg font-semibold text-navy transition-all hover:bg-gold-light hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold touch-target">{t.cta.freeQuote}</a>
           </div>
         </div>
 
-        <!-- Right column (5fr): Visual accent card -->
+        <!-- Right column (5fr): Visual accent cards + team image -->
         <div class="space-y-6">
+          <!-- Team image -->
+          <div class="fade-in delay-1 overflow-hidden rounded-xl shadow-lg">
+            <img
+              src="/images/team-at-work.jpg"
+              alt={isFr ? "L'équipe All Star Cleaning au travail" : 'All Star Cleaning team at work'}
+              width="800"
+              height="450"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Stats row -->
+          <div class="fade-in delay-2 grid grid-cols-2 gap-4">
+            <div class="rounded-xl border border-border bg-card p-5 text-center">
+              <span class="text-4xl font-bold text-navy">20+</span>
+              <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Années' : 'Years'}</p>
+            </div>
+            <div class="rounded-xl border border-border bg-card p-5 text-center">
+              <span class="text-4xl font-bold text-navy">5/5</span>
+              <p class="mt-1 text-sm text-muted-foreground">{isFr ? 'Note Google' : 'Google Rating'}</p>
+            </div>
+          </div>
+
           <div class="fade-in delay-2 rounded-xl bg-teal-text p-6 text-text-on-dark shadow-lg">
             <h2 class="font-heading text-2xl font-bold">{isFr ? 'Nos Valeurs' : 'Our Values'}</h2>
             <ul class="mt-4 space-y-3">
@@ -70,15 +122,8 @@ const altLocale = isFr ? 'en' : 'fr';
               </li>
             </ul>
           </div>
-
-          <div class="fade-in delay-3 rounded-xl border border-border bg-card p-6">
-            <div class="flex items-center gap-3">
-              <span class="text-3xl font-bold text-navy">20+</span>
-              <span class="text-sm text-muted-foreground">{isFr ? "Années au Service d'Ottawa" : 'Years Serving Ottawa'}</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
-</BaseLayout>
+</PageLayout>

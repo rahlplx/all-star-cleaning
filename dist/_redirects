@@ -1,5 +1,0 @@
-# Redirect root to EN (permanent)
-/  /en  301
-
-# Redirect www to apex
-https://www.allstarcleaning.ca/*  https://allstarcleaning.ca/:splat  301

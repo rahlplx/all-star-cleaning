@@ -8,7 +8,7 @@ interface Props {
   alternateUrls?: { locale: string; url: string }[];
   noindex?: boolean;
 }
-const { title, description, canonicalUrl = Astro.url.href, ogImage = 'https://allstarcleaning.ca/og-default.jpg', locale = 'en', alternateUrls = [], noindex = false } = Astro.props;
+const { title, description, canonicalUrl = Astro.url.href, ogImage = 'https://allstarcleaning.ca/images/og-default.jpg', locale = 'en', alternateUrls = [], noindex = false } = Astro.props;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

@@ -15,7 +15,7 @@ const en = {
     phone: '(613) 314-3300',
     phoneLink: '+16133143300',
     email: 'hello@allstarcleaning.ca',
-    address: 'Unit 7 - 800 Hunt Club Road, Ottawa, ON K1V 1C3',
+    address: '800 Hunt Club Rd, Ottawa, ON K1V 1C3',
     hours: 'Monday to Sunday: 9AM – 7PM',
   },
 } as const;
@@ -37,7 +37,7 @@ const fr = {
     phone: '(613) 314-3300',
     phoneLink: '+16133143300',
     email: 'hello@allstarcleaning.ca',
-    address: 'Unité 7 - 800, chemin Hunt Club, Ottawa, ON K1V 1C3',
+    address: '800, chemin Hunt Club, Ottawa, ON K1V 1C3',
     hours: 'Lundi au dimanche : 9h – 19h',
   },
 } as const;

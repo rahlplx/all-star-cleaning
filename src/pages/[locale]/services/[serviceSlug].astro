@@ -38,6 +38,18 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 >
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="lg:col-span-2">
+      <!-- Review Badge -->
+      <div class="mb-6 flex flex-wrap items-center gap-3">
+        <div class="flex items-center gap-2 rounded-full bg-gold/10 px-4 py-2 border border-gold/20">
+          <span class="text-gold-light text-sm">★★★★★</span>
+          <span class="text-sm font-bold text-navy">5/5</span>
+          <span class="text-xs text-muted-foreground">{isFr ? '16 avis Google' : '16 Google reviews'}</span>
+        </div>
+        <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span class="text-sm font-semibold text-navy">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+        </div>
+      </div>
       <h2 class="font-heading text-2xl font-bold text-navy">{isFr ? 'Ce qui est inclus' : "What's Included"}</h2>
       <ul class="mt-4 space-y-3">
         {(isFr ? service.frFeatures : service.features).map((feature) => (
@@ -47,6 +59,14 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
           </li>
         ))}
       </ul>
+      <!-- Mobile-only inline CTA -->
+      <div class="mt-6 lg:hidden">
+        <a href={`/${locale}/contact?service=${service.slug}`} class="touch-target inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-gold px-6 py-4 text-base font-bold text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl w-full justify-center">
+          {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+        <p class="mt-2 text-center text-xs text-muted-foreground">{isFr ? 'Sans engagement · Réponse sous 24h' : 'No obligation · 24hr response'}</p>
+      </div>
       <div class="mt-8">
         <h2 class="font-heading text-2xl font-bold text-navy">{isFr ? 'Pourquoi choisir All Star Cleaning?' : 'Why Choose All Star Cleaning?'}</h2>
         <div class="mt-4 grid gap-4 sm:grid-cols-2">
@@ -61,8 +81,14 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
       <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6">
         <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
         <p class="mt-2 text-sm text-muted-foreground">{isFr ? service.frCta : service.cta}</p>
-        <a href={`/${locale}/contact?service=${service.slug}`} class="mt-4 block rounded-none uppercase tracking-wider bg-teal-text px-6 py-3 text-center text-sm font-semibold text-text-on-dark transition-all hover:bg-teal-dark hover:shadow-lg active:scale-[0.98] touch-target">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</a>
-        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground"><a href="tel:+16133143300" class="font-medium text-teal-text hover:text-teal-dark touch-target">(613) 314-3300</a></div>
+        <a href={`/${locale}/contact?service=${service.slug}`} class="mt-4 block rounded-lg uppercase tracking-wider bg-gold px-6 py-4 text-center text-base font-bold text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl active:scale-[0.98] touch-target">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</a>
+        <p class="mt-2 text-center text-xs text-muted-foreground">{isFr ? 'Sans engagement · Réponse sous 24h' : 'No obligation · 24hr response'}</p>
+        <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground">
+          <a href="tel:+16133143300" class="inline-flex items-center gap-2 font-semibold text-teal-text hover:text-teal-dark touch-target">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (613) 314-3300
+          </a>
+        </div>
       </div>
     </div>
   </div>
