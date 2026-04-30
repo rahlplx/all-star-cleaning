@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import { useTranslations } from '@/i18n/translations';
+import { getBreadcrumbSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
@@ -15,12 +16,34 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
   { label: 'Contact', frLabel: 'Contact', href: `/${locale}/contact` },
 ];
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: isFr ? 'Contactez-Nous | All Star Cleaning Ottawa' : 'Contact Us | All Star Cleaning Ottawa',
+  url: `https://allstarcleaning.ca/${locale}/contact/`,
+  mainEntity: {
+    '@type': 'HomeAndConstructionBusiness',
+    name: 'All Star Cleaning',
+    telephone: '+1-613-314-3300',
+    email: 'hello@allstarcleaning.ca',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '800 Hunt Club Rd',
+      addressLocality: 'Ottawa',
+      addressRegion: 'ON',
+      postalCode: 'K1V 1C3',
+      addressCountry: 'CA',
+    },
+  },
+};
 ---
 <PageLayout
   title={isFr ? 'Contactez-Nous | All Star Cleaning Ottawa' : 'Contact Us | All Star Cleaning Ottawa'}
   description={isFr ? 'Contactez All Star Cleaning pour un devis gratuit. Appelez le (613) 314-3300 ou remplissez notre formulaire en ligne.' : 'Contact All Star Cleaning for a free quote. Call (613) 314-3300 or fill out our online form.'}
   locale={locale}
   breadcrumbs={breadcrumbs}
+  schema={[contactPageSchema, breadcrumbSchema]}
   heroTitle={isFr ? 'Contactez-Nous' : 'Contact Us'}
   heroSubtitle={isFr ? "Obtenez un devis gratuit pour tous vos besoins en nettoyage extérieur" : 'Get a free quote for all your exterior cleaning needs'}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/contact/` }]}

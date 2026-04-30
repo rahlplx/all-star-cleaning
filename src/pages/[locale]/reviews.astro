@@ -1,6 +1,8 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import { useTranslations } from '@/i18n/translations';
+import { getReviewSchema, getBreadcrumbSchema } from '@/seo';
+import type { ReviewData } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
@@ -24,41 +26,41 @@ const aggregateRatingSchema = {
   "ratingCount": "16",
 };
 
-const reviews = isFr ? [
+const reviewData: ReviewData[] = isFr ? [
   {
     author: 'Marie Tremblay',
     rating: 5,
     text: "Service exceptionnel ! Ils ont nettoyé nos gouttières et fenêtres en une seule visite. L'équipe était ponctuelle, professionnelle et a tout laissé impeccable. Nous les engageons chaque saison maintenant.",
     service: 'Nettoyage de Gouttières',
-    date: 'Février 2026',
+    date: '2026-02-15',
   },
   {
     author: 'Jean-Pierre Beaulieu',
     rating: 5,
     text: "Le lavage sous pression a redonné vie à notre entrée : on dirait qu'elle est neuve ! Résultats impressionnants et prix très raisonnable. Je recommande fortement All Star Cleaning.",
     service: 'Lavage sous Pression',
-    date: 'Janvier 2026',
+    date: '2026-01-20',
   },
   {
     author: 'Sophie Lafontaine',
     rating: 5,
     text: "Nos fenêtres n'ont jamais été aussi propres. L'équipe a utilisé le système à eau pure et le résultat est éblouissant, même au soleil. Aucune trace, aucun dommage. Service cinq étoiles !",
     service: 'Nettoyage de Vitres',
-    date: 'Décembre 2025',
+    date: '2025-12-10',
   },
   {
     author: 'Marc Dupuis',
     rating: 4,
     text: "Excellent service de déneigement cet hiver. Réponse rapide lors des tempêtes et always à l'heure. Le seul petit bémol est qu'ils sont parfois difficiles à joindre les jours de forte demande, mais la qualité est au rendez-vous.",
     service: 'Déneigement',
-    date: 'Novembre 2025',
+    date: '2025-11-05',
   },
   {
     author: 'Isabelle Roux',
     rating: 5,
     text: "Nous avons fait nettoyer le revêtement de notre maison : quelle transformation ! La technique de lavage doux a éliminé toutes les taches de moisissure sans abîmer le vinyle. Résultat spectaculaire.",
     service: 'Nettoyage de Revêtement',
-    date: 'Octobre 2025',
+    date: '2025-10-18',
   },
 ] : [
   {
@@ -66,37 +68,40 @@ const reviews = isFr ? [
     rating: 5,
     text: "Outstanding service! They cleaned our gutters and windows in a single visit. The crew was on time, professional, and left everything spotless. We've booked them for every season now.",
     service: 'Gutter Cleaning',
-    date: 'February 2026',
+    date: '2026-02-15',
   },
   {
     author: 'David Chen',
     rating: 5,
     text: "The pressure washing brought our driveway back to life: it looks brand new! Impressive results and very reasonable pricing. I highly recommend All Star Cleaning.",
     service: 'Pressure Washing',
-    date: 'January 2026',
+    date: '2026-01-20',
   },
   {
     author: 'Emily Watson',
     rating: 5,
     text: "Our windows have never been this clean. The team used a pure water-fed pole system and the result is dazzling, even in direct sunlight. No streaks, no damage. Five-star service!",
     service: 'Window Cleaning',
-    date: 'December 2025',
+    date: '2025-12-10',
   },
   {
     author: 'Robert Patel',
     rating: 4,
     text: "Great snow removal service this winter. Fast response during storms and always on time. The only minor issue is they can be hard to reach on peak demand days, but the quality is always excellent.",
     service: 'Snow Removal',
-    date: 'November 2025',
+    date: '2025-11-05',
   },
   {
     author: 'Jennifer Adams',
     rating: 5,
     text: "We had our siding cleaned and what a transformation! The soft-wash technique removed all the mold stains without damaging the vinyl. Spectacular results: our home looks years newer.",
     service: 'Siding Cleaning',
-    date: 'October 2025',
+    date: '2025-10-18',
   },
 ];
+
+const reviewSchemas = getReviewSchema(reviewData, locale);
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
 ---
 <PageLayout
   title={isFr ? 'Témoignages | All Star Cleaning Ottawa' : 'Reviews | All Star Cleaning Ottawa'}
@@ -106,7 +111,7 @@ const reviews = isFr ? [
   heroTitle={isFr ? 'Témoignages' : 'Customer Reviews'}
   heroSubtitle={isFr ? 'Découvrez pourquoi nos clients nous donnent 5/5 sur Google' : 'See why our customers give us a perfect 5/5 on Google'}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/reviews/` }]}
-  schema={aggregateRatingSchema}
+  schema={[...reviewSchemas, aggregateRatingSchema, breadcrumbSchema]}
 >
   <section class="py-4 sm:py-8">
     <div class="mx-auto max-w-5xl px-4">
@@ -132,7 +137,7 @@ const reviews = isFr ? [
 
       <!-- Review cards -->
       <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {reviews.map((review, i) => {
+        {reviewData.map((review, i) => {
           const delayClass = `delay-${Math.min(i + 1, 5)}`;
           return (
             <div class={`fade-in ${delayClass} hover-lift rounded-xl border border-border bg-card p-6`}>

@@ -16,6 +16,7 @@ export interface Service {
   frMetaDescription: string;
   cta: string;
   frCta: string;
+  faqs: FAQItem[];
 }
 
 export interface Location {

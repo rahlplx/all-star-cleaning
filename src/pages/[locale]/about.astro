@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import { useTranslations } from '@/i18n/translations';
+import { getFounderSchema, getBreadcrumbSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
@@ -15,6 +16,9 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
   { label: 'About', frLabel: 'À Propos', href: `/${locale}/about` },
 ];
+
+const founderSchema = getFounderSchema(locale);
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
 ---
 <PageLayout
   title={isFr ? 'À Propos | All Star Cleaning Ottawa' : 'About | All Star Cleaning Ottawa'}
@@ -23,6 +27,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   breadcrumbs={breadcrumbs}
   heroTitle={isFr ? 'À Propos' : 'About All Star Cleaning'}
   heroSubtitle={isFr ? "Des décennies d'expertise locale en nettoyage extérieur à Ottawa" : 'Decades of local expertise in exterior cleaning across Ottawa'}
+  schema={[founderSchema, breadcrumbSchema]}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/about/` }]}
 >
   <section class="py-8 sm:py-12">

@@ -1,7 +1,7 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import { services, getServiceBySlug } from '@/data/services';
-import { getServiceSchema, getBreadcrumbSchema } from '@/seo';
+import { getServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
@@ -23,6 +23,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 const serviceSchema = getServiceSchema(service, locale, `https://allstarcleaning.ca/${locale}/services/${service.slug}`);
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+const faqSchema = service.faqs && service.faqs.length > 0 ? getFAQSchema(service.faqs, locale) : null;
+const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
 const altSlug = service.slug;  // Both locales use EN slugs in URLs
 ---
 
@@ -34,7 +36,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
   heroTitle={isFr ? service.frName : service.name}
   heroSubtitle={isFr ? service.frDescription : service.description}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/${altSlug}/` }]}
-  schema={[serviceSchema, breadcrumbSchema]}
+  schema={allSchemas}
 >
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="lg:col-span-2">

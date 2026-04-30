@@ -30,3 +30,12 @@ npm-debug.log*
 skills/
 download/
 worklog.md
+
+# audit / capture scripts
+capture-*.mjs
+capture-*.py
+serve-and-capture*.mjs
+comprehensive_screenshots.mjs
+screenshot*.mjs
+post_fix_screenshots.mjs
+screenshots/

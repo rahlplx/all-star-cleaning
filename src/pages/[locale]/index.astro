@@ -4,6 +4,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { services } from '@/data/services';
 import { useTranslations } from '@/i18n/translations';
+import { getHowToSchema, getBreadcrumbSchema } from '@/seo';
+import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
@@ -13,6 +15,10 @@ const { locale } = Astro.params as { locale: 'en' | 'fr' };
 const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
+const howtoSchema = getHowToSchema(locale);
+const homeBreadcrumbSchema = getBreadcrumbSchema([
+  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+], locale);
 const usps = [
   { icon: 'shield', title: t.usps.expertise.title, description: t.usps.expertise.description },
   { icon: 'sparkles', title: t.usps.equipment.title, description: t.usps.equipment.description },
@@ -33,6 +39,7 @@ const serviceImages: Record<string, string> = {
   description={isFr ? 'Service de nettoyage de confiance à Ottawa. Nettoyage de vitres, gouttières, lavage sous pression, revêtement et déneigement. Devis gratuits.' : "Ottawa's trusted cleaning service. Window cleaning, gutter cleaning, pressure washing, siding cleaning & snow removal. Free quotes: residential & commercial."}
   locale={locale}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/` }]}
+  schema={[howtoSchema, homeBreadcrumbSchema]}
 >
   <!-- ============================================================ -->
   <!-- HERO SECTION — Full-screen bg image + centered overlay (SHINE layout) -->

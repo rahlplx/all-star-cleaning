@@ -1,0 +1,74 @@
+---
+// Area directory page — lists all locations organized by zone
+import PageLayout from '@/layouts/PageLayout.astro';
+import { locations } from '@/data/locations';
+import { getBreadcrumbSchema } from '@/seo';
+import type { BreadcrumbItem } from '@/types';
+
+export function getStaticPaths() {
+  return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
+}
+const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const isFr = locale === 'fr';
+const altLocale = isFr ? 'en' : 'fr';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+  { label: 'Areas', frLabel: 'Régions', href: `/${locale}/area` },
+];
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+
+const areaZones = ['Central', 'East', 'West', 'South', 'South-West', 'East-Central', 'South-East'];
+const zoneNames: Record<string, { en: string; fr: string }> = {
+  'Central': { en: 'Central Ottawa', fr: 'Ottawa Centre' },
+  'East': { en: 'East Ottawa', fr: 'Ottawa Est' },
+  'West': { en: 'West Ottawa', fr: 'Ottawa Ouest' },
+  'South': { en: 'South Ottawa', fr: 'Ottawa Sud' },
+  'South-West': { en: 'South-West Ottawa', fr: 'Ottawa Sud-Ouest' },
+  'East-Central': { en: 'East-Central Ottawa', fr: 'Ottawa Est-Centre' },
+  'South-East': { en: 'South-East Ottawa', fr: 'Ottawa Sud-Est' },
+};
+---
+
+<PageLayout
+  title={isFr ? 'Régions desservies à Ottawa | All Star Cleaning' : 'Areas We Serve in Ottawa | All Star Cleaning'}
+  description={isFr
+    ? "All Star Cleaning desservit toutes les régions d'Ottawa. Trouvez des services de nettoyage extérieur près de chez vous."
+    : 'All Star Cleaning serves all areas of Ottawa. Find exterior cleaning services near you.'}
+  locale={locale}
+  breadcrumbs={breadcrumbs}
+  heroTitle={isFr ? 'Régions desservies' : 'Areas We Serve'}
+  heroSubtitle={isFr
+    ? "Nous desservons toutes les régions d'Ottawa et les environs. Sélectionnez votre quartier ci-dessous."
+    : 'We serve all areas of Ottawa and surrounding communities. Select your neighbourhood below.'}
+  alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/area/` }]}
+  schema={[breadcrumbSchema]}
+>
+  <div class="space-y-10">
+    {areaZones.map((zone) => {
+      const zoneLocs = locations.filter((l) => l.area === zone);
+      if (zoneLocs.length === 0) return null;
+      const zoneLabel = zoneNames[zone] || { en: zone, fr: zone };
+      return (
+        <div>
+          <h2 class="font-heading text-2xl font-bold text-navy">{isFr ? zoneLabel.fr : zoneLabel.en}</h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {zoneLocs.map((loc) => (
+              <a
+                href={`/${locale}/area/${loc.slug}`}
+                class="group rounded-lg border border-border bg-card p-4 transition-all hover:border-teal-text/30 hover:shadow-md hover-lift"
+              >
+                <h3 class="font-medium text-navy group-hover:text-teal-text">{isFr ? loc.frName : loc.name}</h3>
+                <p class="mt-1 text-xs text-muted-foreground">{loc.postalCode}</p>
+                <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+                  {isFr ? 'Voir les services' : 'View services'}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</PageLayout>

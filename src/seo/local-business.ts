@@ -41,10 +41,15 @@ export function getLocalBusinessSchema({ locale, url }: LocalBusinessSchemaOptio
       },
     ],
     areaServed: {
-      '@type': 'City',
-      name: 'Ottawa',
-      sameAs: 'https://en.wikipedia.org/wiki/Ottawa',
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: 45.4215,
+        longitude: -75.6972,
+      },
+      geoRadius: '30000',
     },
+    hasMap: 'https://g.page/allstarcleaningottawa',
     priceRange: '$$',
     aggregateRating: {
       '@type': 'AggregateRating',

@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import { services } from '@/data/services';
+import { getBreadcrumbSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 
 export function getStaticPaths() {
@@ -14,6 +15,18 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
   { label: 'Services', frLabel: 'Services', href: `/${locale}/services` },
 ];
+
+const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: services.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: isFr ? s.frName : s.name,
+    url: `https://allstarcleaning.ca/${locale}/services/${s.slug}`,
+  })),
+};
 
 const serviceImages: Record<string, string> = {
   'window-cleaning': '/images/window-cleaning.jpg',
@@ -32,6 +45,7 @@ const serviceImages: Record<string, string> = {
   heroTitle={isFr ? 'Nos Services' : 'Our Services'}
   heroSubtitle={isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/services/` }]}
+  schema={[breadcrumbSchema, itemListSchema]}
 >
   <!-- Trust Badge Bar -->
   <div class="mb-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
