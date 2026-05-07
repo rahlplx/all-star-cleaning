@@ -1,12 +1,9 @@
 ---
-import { makePage } from '@keystatic/astro/ui';
-import config from '../../../keystatic.config';
+import KeystaticApp from '../../components/KeystaticApp';
 
 export function getStaticPaths() {
   return [{ params: { params: undefined } }];
 }
-
-const KeystaticApp = makePage(config);
 ---
 
 <!DOCTYPE html>
