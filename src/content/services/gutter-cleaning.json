@@ -1,74 +1,74 @@
 {
-    "slug":  "gutter-cleaning",
-    "frSlug":  "nettoyage-gouttieres",
-    "name":  "Gutter Cleaning",
-    "frName":  "Nettoyage de Gouttières",
-    "description":  "Thorough gutter cleaning and downspout flushing across Ottawa. Prevent water damage, ice dams, and pest infestations with our professional gutter maintenance service designed for Canadian seasons.",
-    "frDescription":  "Nettoyage approfondi des gouttières et rinçage des descentes pluviales à Ottawa. Prévenez les dégâts d\u0027eau, les barrages de glace et les infestations de nuisibles avec notre service professionnel conçu pour les saisons canadiennes.",
-    "icon":  "lucide:droplets",
-    "image":  null,
-    "features":  [
-                     "Full debris removal by hand",
-                     "Downspout flushing \u0026 testing",
-                     "Before \u0026 after photos",
-                     "Minor re-securing included",
-                     "Seasonal maintenance plans"
-                 ],
-    "frFeatures":  [
-                       "Enlèvement complet des débris à la main",
-                       "Rinçage et test des descentes pluviales",
-                       "Photos avant et après",
-                       "Ré-securement mineur inclus",
-                       "Plans d\u0027entretien saisonnier"
-                   ],
-    "metaTitle":  "Gutter Cleaning Ottawa | All Star Cleaning — Protect Your Home",
-    "metaDescription":  "Professional gutter cleaning in Ottawa. Hand-cleaned, downspouts flushed, before \u0026 after photos. Prevent water damage \u0026 ice dams. Free quote.",
-    "frMetaTitle":  "Nettoyage de Gouttières Ottawa | All Star Cleaning — Protégez Votre Maison",
-    "frMetaDescription":  "Nettoyage professionnel de gouttières à Ottawa. Nettoyage à la main, rinçage des descentes, photos avant/après. Prévenez les dégâts d\u0027eau. Devis gratuit.",
-    "cta":  "Get a Free Gutter Cleaning Quote",
-    "frCta":  "Obtenez un Devis Gratuit de Nettoyage de Gouttières",
-    "faqs":  [
-                 {
-                     "question":  "How much does gutter cleaning cost in Ottawa?",
-                     "frQuestion":  "Combien coûte le nettoyage de gouttières à Ottawa?",
-                     "answer":  "Gutter cleaning in Ottawa typically ranges from $150-$350 depending on home size, number of storeys, and debris level. We provide free quotes with no obligation.",
-                     "frAnswer":  "Le nettoyage de gouttières à Ottawa varie entre 150$ et 350$ selon la taille et le niveau de débris. Devis gratuit sans engagement."
-                 },
-                 {
-                     "question":  "How often should gutters be cleaned in Ottawa?",
-                     "frQuestion":  "À quelle fréquence faut-il nettoyer les gouttières à Ottawa?",
-                     "answer":  "Ottawa homes need gutter cleaning at least twice a year — spring and fall — due to heavy leaf fall and winter ice dam risks.",
-                     "frAnswer":  "Les maisons d\u0027Ottawa nécessitent un nettoyage au moins deux fois par an — printemps et automne — en raison des feuilles et des barrages de glace."
-                 },
-                 {
-                     "question":  "What happens if I don\u0027t clean my gutters?",
-                     "frQuestion":  "Que se passe-t-il si je ne nettoye pas mes gouttières?",
-                     "answer":  "Clogged gutters cause water damage to foundations, roof leaks, ice dams, pest infestations, and landscape erosion. Regular cleaning prevents costly repairs.",
-                     "frAnswer":  "Des gouttières bouchées causent des dégâts d\u0027eau, fuites de toit, barrages de glace et infestations. Le nettoyage régulier prévient les réparations coûteuses."
-                 },
-                 {
-                     "question":  "Do you flush downspouts as part of gutter cleaning?",
-                     "frQuestion":  "Rincez-vous les descentes pluviales lors du nettoyage?",
-                     "answer":  "Yes, we flush and test every downspout to ensure proper water flow. We also provide before and after photos of our work.",
-                     "frAnswer":  "Oui, nous rinçons et testons chaque descente pluviale pour assurer un écoulement adéquat. Nous fournissons des photos avant et après."
-                 },
-                 {
-                     "question":  "Can you clean gutters on a 3-storey home?",
-                     "frQuestion":  "Pouvez-vous nettoyer les gouttières d\u0027une maison de 3 étages?",
-                     "answer":  "Yes, our professional equipment allows us to safely clean gutters on homes up to 4 storeys. We use harnesses and follow all safety protocols.",
-                     "frAnswer":  "Oui, notre équipement professionnel permet de nettoyer les gouttières jusqu\u0027à 4 étages en toute sécurité."
-                 },
-                 {
-                     "question":  "When is the best time to clean gutters in Ottawa?",
-                     "frQuestion":  "Quand est le meilleur moment pour nettoyer les gouttières à Ottawa?",
-                     "answer":  "The best times are late spring (after trees bud) and late fall (after leaves drop). Ottawa\u0027s heavy tree canopy makes these timing windows critical.",
-                     "frAnswer":  "Les meilleurs moments sont la fin du printemps et la fin de l\u0027automne. La canopée d\u0027Ottawa rend ces périodes critiques."
-                 },
-                 {
-                     "question":  "Do you offer seasonal gutter maintenance plans?",
-                     "frQuestion":  "Offrez-vous des plans d\u0027entretien saisonnier des gouttières?",
-                     "answer":  "Yes, we offer seasonal maintenance plans with priority scheduling and discounted rates. Ask about our spring-fall package for year-round protection.",
-                     "frAnswer":  "Oui, nous offrons des plans d\u0027entretien avec planification prioritaire et tarifs réduits. Demandez notre forfait printemps-automne."
-                 }
-             ]
+  "image": "/images/gutter-cleaning/image.jpg",
+  "slug": "gutter-cleaning",
+  "frSlug": "nettoyage-gouttieres",
+  "icon": "lucide:droplets",
+  "name": "Gutter Cleaning",
+  "frName": "Nettoyage de Gouttières",
+  "description": "Thorough gutter cleaning and downspout flushing across Ottawa. Prevent water damage, ice dams, and pest infestations with our professional gutter maintenance service designed for Canadian seasons.",
+  "frDescription": "Nettoyage approfondi des gouttières et rinçage des descentes pluviales à Ottawa. Prévenez les dégâts d'eau, les barrages de glace et les infestations de nuisibles avec notre service professionnel conçu pour les saisons canadiennes.",
+  "features": [
+    "Full debris removal by hand",
+    "Downspout flushing & testing",
+    "Before & after photos",
+    "Minor re-securing included",
+    "Seasonal maintenance plans"
+  ],
+  "frFeatures": [
+    "Enlèvement complet des débris à la main",
+    "Rinçage et test des descentes pluviales",
+    "Photos avant et après",
+    "Ré-securement mineur inclus",
+    "Plans d'entretien saisonnier"
+  ],
+  "metaTitle": "Gutter Cleaning Ottawa | All Star Cleaning — Protect Your Home",
+  "metaDescription": "Professional gutter cleaning in Ottawa. Hand-cleaned, downspouts flushed, before & after photos. Prevent water damage & ice dams. Free quote.",
+  "frMetaTitle": "Nettoyage de Gouttières Ottawa | All Star Cleaning — Protégez Votre Maison",
+  "frMetaDescription": "Nettoyage professionnel de gouttières à Ottawa. Nettoyage à la main, rinçage des descentes, photos avant/après. Prévenez les dégâts d'eau. Devis gratuit.",
+  "cta": "Get a Free Gutter Cleaning Quote",
+  "frCta": "Obtenez un Devis Gratuit de Nettoyage de Gouttières",
+  "faqs": [
+    {
+      "question": "How much does gutter cleaning cost in Ottawa?",
+      "frQuestion": "Combien coûte le nettoyage de gouttières à Ottawa?",
+      "answer": "Gutter cleaning in Ottawa typically ranges from $150-$350 depending on home size, number of storeys, and debris level. We provide free quotes with no obligation.",
+      "frAnswer": "Le nettoyage de gouttières à Ottawa varie entre 150$ et 350$ selon la taille et le niveau de débris. Devis gratuit sans engagement."
+    },
+    {
+      "question": "How often should gutters be cleaned in Ottawa?",
+      "frQuestion": "À quelle fréquence faut-il nettoyer les gouttières à Ottawa?",
+      "answer": "Ottawa homes need gutter cleaning at least twice a year — spring and fall — due to heavy leaf fall and winter ice dam risks.",
+      "frAnswer": "Les maisons d'Ottawa nécessitent un nettoyage au moins deux fois par an — printemps et automne — en raison des feuilles et des barrages de glace."
+    },
+    {
+      "question": "What happens if I don't clean my gutters?",
+      "frQuestion": "Que se passe-t-il si je ne nettoye pas mes gouttières?",
+      "answer": "Clogged gutters cause water damage to foundations, roof leaks, ice dams, pest infestations, and landscape erosion. Regular cleaning prevents costly repairs.",
+      "frAnswer": "Des gouttières bouchées causent des dégâts d'eau, fuites de toit, barrages de glace et infestations. Le nettoyage régulier prévient les réparations coûteuses."
+    },
+    {
+      "question": "Do you flush downspouts as part of gutter cleaning?",
+      "frQuestion": "Rincez-vous les descentes pluviales lors du nettoyage?",
+      "answer": "Yes, we flush and test every downspout to ensure proper water flow. We also provide before and after photos of our work.",
+      "frAnswer": "Oui, nous rinçons et testons chaque descente pluviale pour assurer un écoulement adéquat. Nous fournissons des photos avant et après."
+    },
+    {
+      "question": "Can you clean gutters on a 3-storey home?",
+      "frQuestion": "Pouvez-vous nettoyer les gouttières d'une maison de 3 étages?",
+      "answer": "Yes, our professional equipment allows us to safely clean gutters on homes up to 4 storeys. We use harnesses and follow all safety protocols.",
+      "frAnswer": "Oui, notre équipement professionnel permet de nettoyer les gouttières jusqu'à 4 étages en toute sécurité."
+    },
+    {
+      "question": "When is the best time to clean gutters in Ottawa?",
+      "frQuestion": "Quand est le meilleur moment pour nettoyer les gouttières à Ottawa?",
+      "answer": "The best times are late spring (after trees bud) and late fall (after leaves drop). Ottawa's heavy tree canopy makes these timing windows critical.",
+      "frAnswer": "Les meilleurs moments sont la fin du printemps et la fin de l'automne. La canopée d'Ottawa rend ces périodes critiques."
+    },
+    {
+      "question": "Do you offer seasonal gutter maintenance plans?",
+      "frQuestion": "Offrez-vous des plans d'entretien saisonnier des gouttières?",
+      "answer": "Yes, we offer seasonal maintenance plans with priority scheduling and discounted rates. Ask about our spring-fall package for year-round protection.",
+      "frAnswer": "Oui, nous offrons des plans d'entretien avec planification prioritaire et tarifs réduits. Demandez notre forfait printemps-automne."
+    }
+  ]
 }
