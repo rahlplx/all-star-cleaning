@@ -90,7 +90,10 @@ function stripHtmlComments() {
 
 export default defineConfig({
   output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    prerenderEnvironment: 'node',
+    imageService: 'passthrough',
+  }),
   site: 'https://allstarcleaning.ca',
 
   // === TECH-STACK OBFUSCATION ===
