@@ -1,19 +1,30 @@
 {
-  "teamImage": null,
   "sinceYear": "2005",
   "yearsInBusiness": "20+",
-  "storyParagraph1En": "With decades of experience serving Ottawa homes, All Star Cleaning is your trusted partner for all exterior cleaning needs. Our local team masters the unique challenges of Ottawa's harsh winters, gutters, and siding.",
-  "storyParagraph1Fr": "Forte de décennies d'expérience au service des foyers d'Ottawa, All Star Cleaning est votre partenaire de confiance pour tous vos besoins en nettoyage extérieur. Notre équipe locale maîtrise les défis uniques des hivers rigoureux d'Ottawa, des gouttières et des revêtements.",
+  "storyParagraph1En": "At All Star Cleaning, we believe a clean exterior is the hallmark of a well-cared-for home. We founded this company with a clear mission: to provide Ottawa homeowners with a premium, reliable cleaning service built on trust and excellence.\n\nWe recognize that your home is your most valuable asset. That is why we bring a professional, detail-oriented approach to every project. Using specialized, damage-free equipment and eco-friendly products, we ensure your property looks its absolute best. From precision pressure washing to meticulous window, gutter, and siding cleaning, we focus on delivering safe, efficient, and high-quality results every time.",
+  "storyParagraph1Fr": "Chez All Star Cleaning, nous pensons qu’un extérieur propre est le signe d’une maison bien entretenue. Nous avons fondé cette entreprise avec une mission claire : offrir aux propriétaires d’Ottawa un service de nettoyage haut de gamme et fiable, basé sur la confiance et l’excellence.\n\nNous reconnaissons que votre maison est votre bien le plus précieux. C’est pourquoi nous adoptons une approche professionnelle et orientée vers les détails pour chaque projet. En utilisant des équipements spécialisés sans risque de dommage et des produits écologiques, nous veillons à ce que votre propriété ait la meilleure apparence possible. Du lavage haute pression précis au nettoyage minutieux des fenêtres, des gouttières et des revêtements extérieurs, nous nous concentrons sur la livraison de résultats sûrs, efficaces et de haute qualité à chaque intervention.",
   "blockquoteEn": "100% satisfaction promised with flexible scheduling and eco-friendly products",
   "blockquoteFr": "Satisfaction à 100% promise avec des horaires flexibles et des produits écologiques",
-  "storyParagraph2En": "We use specialized equipment: vacuums, gutter cameras, and safe pressure washers, to ensure thorough cleans without home damage, harsh chemicals, or risks.",
-  "storyParagraph2Fr": "Nous utilisons des équipements spécialisés: aspirateurs, caméras de gouttière et laveuses sous pression sécuritaires, pour garantir un nettoyage approfondi sans dommage à votre propriété, sans produits chimiques agressifs et sans risques.",
+  "storyParagraph2En": "We do more than just clean; we protect your home’s curb appeal and ensure it remains a source of pride. Our team is dedicated to providing a spotless finish and earning your confidence from day one.",
+  "storyParagraph2Fr": "Nous faisons plus que simplement nettoyer ; nous protégeons l’attrait extérieur de votre maison et veillons à ce qu’elle reste une source de fierté. Notre équipe s’engage à fournir une finition impeccable et à gagner votre confiance dès le premier jour.",
   "storyParagraph3En": "You get spotless results, no mess, and lasting trust.",
   "storyParagraph3Fr": "Vous obtenez des résultats impeccables, sans désordre, et une confiance durable.",
   "values": [
-    { "en": "Locally Owned & Operated", "fr": "Entreprise Locale et Indépendante" },
-    { "en": "Eco-Friendly Products", "fr": "Produits Écologiques" },
-    { "en": "Insured & Bonded", "fr": "Assurés et Cautionnés" },
-    { "en": "Free Estimates", "fr": "Devis Gratuits" }
+    {
+      "en": "Locally Owned & Operated",
+      "fr": "Entreprise Locale et Indépendante"
+    },
+    {
+      "en": "Eco-Friendly Products",
+      "fr": "Produits Écologiques"
+    },
+    {
+      "en": "Insured & Bonded",
+      "fr": "Assurés et Cautionnés"
+    },
+    {
+      "en": "Free Estimates",
+      "fr": "Devis Gratuits"
+    }
   ]
 }
