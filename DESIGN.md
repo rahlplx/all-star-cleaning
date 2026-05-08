@@ -1,14 +1,14 @@
 # Design System — All Star Cleaning Ottawa
 
-## Color Strategy: Committed
-One saturated color (teal) carries 30-60% of the hero and CTA surfaces. Navy serves as the authoritative anchor. Gold accents appear only for emphasis moments. This is a brand surface where color IS voice.
+## Color Strategy: Royal Blue & White
+Deep Royal Blue (#0047AB) carries the authoritative brand voice across headings, primary CTAs, and active states. A clean white/off-white background anchors the experience, with Navy used for depth and Gold reserved strictly for ratings and specialized emphasis.
 
 ## Palette
 
-### Primary: Teal
-- `--color-teal`: `#0d9488` / `oklch(56% 0.1 175)` — Primary brand color, CTAs, links, active states
-- `--color-teal-light`: `#14b8a6` / `oklch(65% 0.12 175)` — Hover states, accents, secondary emphasis
-- `--color-teal-dark`: `#0a5e57` / `oklch(40% 0.08 175)` — CTA backgrounds, deep emphasis
+### Primary: Royal Blue
+- `--color-royal-blue`: `#0047AB` / `oklch(41% 0.18 255)` — Primary brand color, headings, CTAs, links
+- `--color-royal-blue-light`: `#2e6fd1` / `oklch(55% 0.15 255)` — Hover states, accents
+- `--color-royal-blue-dark`: `#003075` / `oklch(30% 0.14 255)` — Deep emphasis, button hovers
 
 ### Anchor: Navy
 - `--color-navy`: `#0f1b2d` / `oklch(18% 0.02 260)` — Hero backgrounds, headings, authoritative elements
@@ -75,7 +75,7 @@ Flat by default. Shadows only on state change (hover, sticky).
 ## Components
 
 ### CTA Buttons
-- Primary: `rounded-full bg-teal-dark text-white shadow-lg hover:bg-navy`
+- Primary: `rounded-full bg-royal-blue text-white shadow-lg hover:bg-royal-blue-dark`
 - Secondary: `rounded-full border-2 border-white/30 text-white hover:border-white/60`
 - Touch targets: minimum 44x44px (48px on coarse pointers)
 

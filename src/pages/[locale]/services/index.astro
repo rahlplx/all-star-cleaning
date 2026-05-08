@@ -45,17 +45,17 @@ const cms = homepageData;
 >
   <!-- Trust Badge Bar -->
   <div class="mb-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-    <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
-      <span class="text-gold-light text-sm">★★★★★</span>
+    <div class="flex items-center gap-2 rounded-full bg-royal-blue/10 px-4 py-2 border border-royal-blue/20">
+      <span class="text-royal-blue text-sm">★★★★★</span>
       <span class="text-sm font-bold text-navy">{cms.googleRating}</span>
       <span class="text-xs text-muted-foreground">{isFr ? `${cms.googleReviewCount} avis Google` : `${cms.googleReviewCount} Google reviews`}</span>
     </div>
-    <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+    <div class="flex items-center gap-2 rounded-full bg-royal-blue/10 px-4 py-2 border border-royal-blue/20">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-royal-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
       <span class="text-sm font-semibold text-navy">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
     </div>
-    <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="flex items-center gap-2 rounded-full bg-royal-blue/10 px-4 py-2 border border-royal-blue/20">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-royal-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       <span class="text-sm font-semibold text-navy">{isFr ? 'Satisfaction garantie à 100%' : '100% Satisfaction Guaranteed'}</span>
     </div>
   </div>
@@ -70,7 +70,7 @@ const cms = homepageData;
         <a
           href={`/${locale}/services/${service.slug}`}
           class:list={[
-            `fade-in ${delayClass} hover-lift group overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-teal-text/30 hover:shadow-md`,
+            `fade-in ${delayClass} hover-lift group overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-royal-blue/30 hover:shadow-md`,
             isFeatured && 'sm:col-span-2',
           ]}
         >
@@ -83,22 +83,22 @@ const cms = homepageData;
                 </div>
               )}
               <div class="flex flex-1 flex-col justify-center p-6">
-                <span class="mb-2 inline-block w-fit rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gold-dark">
+                <span class="mb-2 inline-block w-fit rounded-full bg-royal-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-royal-blue">
                   {isFr ? 'Populaire' : 'Popular'}
                 </span>
-                <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
+                <h2 class="font-heading text-xl font-semibold text-navy group-hover:text-royal-blue transition-colors">{isFr ? service.frName : service.name}</h2>
                 <p class="mt-2 text-base text-muted-foreground line-clamp-2">{isFr ? service.frDescription : service.description}</p>
                 {features.length > 0 && (
                   <ul class="mt-4 space-y-1.5" aria-label={isFr ? `Caractéristiques de ${service.frName}` : `${service.name} features`}>
                     {features.slice(0, 3).map((feature) => (
                       <li class="flex items-start gap-2 text-sm text-foreground">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-royal-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 )}
-                <span class="mt-4 inline-flex items-center gap-1 rounded-full border border-teal-text/30 px-4 py-1.5 text-sm font-medium text-teal-text transition-colors group-hover:bg-teal-text group-hover:text-text-on-dark">
+                <span class="mt-4 inline-flex items-center gap-1 rounded-full border border-royal-blue/30 px-4 py-1.5 text-sm font-medium text-royal-blue transition-colors group-hover:bg-royal-blue group-hover:text-white">
                   {isFr ? 'En savoir plus' : 'Learn more'}
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                 </span>
@@ -113,19 +113,19 @@ const cms = homepageData;
                 </div>
               )}
               <div class="flex flex-1 flex-col p-6">
-                <h2 class="font-heading text-lg font-semibold text-navy group-hover:text-teal-text transition-colors">{isFr ? service.frName : service.name}</h2>
+                <h2 class="font-heading text-lg font-semibold text-navy group-hover:text-royal-blue transition-colors">{isFr ? service.frName : service.name}</h2>
                 <p class="mt-2 text-base text-muted-foreground line-clamp-3 lg:line-clamp-none">{isFr ? service.frDescription : service.description}</p>
                 {features.length > 0 && (
                   <ul class="mt-3 space-y-1">
                     {features.slice(0, 2).map((feature) => (
                       <li class="flex items-start gap-2 text-sm text-foreground">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0 text-royal-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 )}
-                <span class="mt-4 inline-flex items-center gap-1 rounded-full border border-teal-text/30 px-4 py-1.5 text-sm font-medium text-teal-text transition-colors group-hover:bg-teal-text group-hover:text-text-on-dark">
+                <span class="mt-4 inline-flex items-center gap-1 rounded-full border border-royal-blue/30 px-4 py-1.5 text-sm font-medium text-royal-blue transition-colors group-hover:bg-royal-blue group-hover:text-white">
                   {isFr ? 'En savoir plus' : 'Learn more'}
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                 </span>
@@ -138,11 +138,11 @@ const cms = homepageData;
   </div>
 
   <!-- Bottom CTA Section -->
-  <div class="mt-12 rounded-xl bg-teal-text px-6 py-8 text-center text-text-on-dark sm:px-10">
+  <div class="mt-12 rounded-xl bg-royal-blue px-6 py-8 text-center text-white sm:px-10">
     <h2 class="font-heading text-2xl font-bold">{isFr ? 'Prêt à commencer?' : 'Ready to Get Started?'}</h2>
     <p class="mt-2 text-text-on-dark-muted">{isFr ? 'Contactez-nous pour un devis gratuit. Nous sommes ouverts 7 jours par semaine!' : 'Contact us for a free quote. We\'re open 7 days a week!'}</p>
     <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-      <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-gold px-8 py-3 text-lg font-semibold uppercase tracking-wider text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl">
+      <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-white px-8 py-3 text-lg font-semibold uppercase tracking-wider text-royal-blue shadow-lg transition-all hover:bg-white/90 hover:shadow-xl">
         {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
       </a>
       <a href={`tel:${cms.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3 text-lg font-semibold uppercase tracking-wider text-text-on-dark transition-all hover:border-white/60 hover:bg-white/10">

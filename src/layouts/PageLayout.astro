@@ -19,9 +19,9 @@ const { title, description, locale, breadcrumbs = [], heroTitle, heroSubtitle, c
             <li class="flex items-center gap-2">
               {i > 0 && <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>}
               {i < breadcrumbs.length - 1 ? (
-                <a href={crumb.href} class="transition-colors hover:text-teal-text">{locale === 'fr' ? crumb.frLabel : crumb.label}</a>
+                <a href={crumb.href} class="transition-colors hover:text-royal-blue">{locale === 'fr' ? crumb.frLabel : crumb.label}</a>
               ) : (
-                <span class="font-semibold text-teal-text" aria-current="page">{locale === 'fr' ? crumb.frLabel : crumb.label}</span>
+                <span class="font-semibold text-royal-blue" aria-current="page">{locale === 'fr' ? crumb.frLabel : crumb.label}</span>
               )}
             </li>
           ))}
@@ -30,9 +30,9 @@ const { title, description, locale, breadcrumbs = [], heroTitle, heroSubtitle, c
     </nav>
   )}
   {heroTitle && (
-    <section class="relative overflow-hidden navy-gradient border-b border-border/50 py-16 text-text-on-dark md:py-20 lg:py-28">
+    <section class="relative overflow-hidden brand-gradient border-b border-border/50 py-16 text-text-on-dark md:py-20 lg:py-28">
       <div class="relative z-10 mx-auto max-w-7xl px-4">
-        <h1 class="slide-up font-heading font-bold tracking-tight text-[var(--text-display)]">{heroTitle}</h1>
+        <h1 class="slide-up font-heading font-bold tracking-tight text-[var(--text-display)] text-white">{heroTitle}</h1>
         {heroSubtitle && <p class="fade-in delay-2 mt-4 max-w-2xl text-lg text-text-on-dark-muted sm:text-xl">{heroSubtitle}</p>}
       </div>
     </section>

@@ -52,7 +52,7 @@ const cms = homepageData;
         class="h-full w-full object-cover"
         loading="eager"
       />
-      <div class="absolute inset-0 bg-navy/70"></div>
+      <div class="absolute inset-0 bg-royal-blue-dark/70"></div>
     </div>
 
     <!-- Centered hero content -->
@@ -65,7 +65,7 @@ const cms = homepageData;
         {isFr ? cms.heroSubtitleFr : cms.heroSubtitleEn}
       </p>
       <div class="fade-in delay-4 mt-10">
-        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-3 rounded-full bg-gold px-10 py-4 text-lg font-bold uppercase tracking-wider text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl active:scale-[0.98]">
+        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-3 rounded-full bg-royal-blue px-10 py-4 text-lg font-bold uppercase tracking-wider text-white shadow-lg transition-all hover:bg-royal-blue-dark hover:shadow-xl active:scale-[0.98]">
           {isFr ? 'Obtenez un Devis' : 'Get a Quote'}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </a>
@@ -80,14 +80,14 @@ const cms = homepageData;
         </div>
         <!-- Google Rating -->
         <div class="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 backdrop-blur-sm border border-white/10">
-          <span class="text-gold-light text-base" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span class="text-white/90 text-base" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
           <span class="text-sm font-bold text-text-on-dark">{cms.googleRating}</span>
           <span class="text-xs text-text-on-dark-muted">{isFr ? `${cms.googleReviewCount} avis Google` : `${cms.googleReviewCount} Google reviews`}</span>
         </div>
         <!-- Phone CTA -->
         <a href={`tel:${cms.phoneLink}`} class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-sm border border-white/10 transition-colors hover:bg-white/20 sm:px-5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="text-xs font-bold text-teal-light sm:text-sm">{cms.phone}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-royal-blue-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="text-xs font-bold text-royal-blue-light sm:text-sm">{cms.phone}</span>
         </a>
       </div>
     </div>
@@ -98,8 +98,8 @@ const cms = homepageData;
   <!-- ============================================================ -->
   <section aria-label={isFr ? 'Pourquoi nous choisir' : 'Why choose us'} class="py-16 md:py-20 lg:py-24 bg-card">
     <div class="mx-auto max-w-7xl px-4">
-      <!-- Decorative teal accent line -->
-      <div class="mb-10 h-px w-full bg-teal/20 md:mb-12"></div>
+      <!-- Decorative blue accent line -->
+      <div class="mb-10 h-px w-full bg-royal-blue/20 md:mb-12"></div>
 
       <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
         <!-- Left column: Image of team at work -->
@@ -115,15 +115,15 @@ const cms = homepageData;
             />
           </div>
           <!-- Floating badge overlay -->
-          <div class="absolute -bottom-4 -right-2 sm:right-4 flex items-center gap-2 rounded-xl bg-navy px-4 py-3 shadow-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            <span class="text-sm font-bold text-text-on-dark">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+          <div class="absolute -bottom-4 -right-2 sm:right-4 flex items-center gap-2 rounded-xl bg-royal-blue px-4 py-3 shadow-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="text-sm font-bold text-white">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
           </div>
         </div>
 
         <!-- Right column: Text + feature cards -->
         <div class="order-1 lg:order-2">
-          <h2 class="heading-section slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">
+          <h2 class="heading-section slide-up font-heading text-3xl font-bold text-royal-blue sm:text-4xl">
             {isFr ? 'Pourquoi Choisir All Star?' : 'Why Choose All Star?'}
           </h2>
           <p class="fade-in delay-2 mt-4 measure text-lg text-muted-foreground">
@@ -135,8 +135,8 @@ const cms = homepageData;
           <!-- Feature cards stacked -->
           <div class="mt-8 flex flex-col gap-4">
             {usps.map((usp, i) => (
-              <div class:list={['fade-in rounded-xl border p-5 flex items-start gap-4', i === 0 ? 'border-teal/20 bg-teal/5' : 'border-border bg-off-white']}>
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal-text">
+              <div class:list={['fade-in rounded-xl border p-5 flex items-start gap-4', i === 0 ? 'border-royal-blue/20 bg-royal-blue/5' : 'border-border bg-off-white']}>
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-royal-blue/10 text-royal-blue">
                   {usp.icon === 'shield' && (
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                   )}
@@ -148,14 +148,14 @@ const cms = homepageData;
                   )}
                 </div>
                 <div>
-                  <h3 class="font-heading text-base font-semibold text-navy">{usp.title}</h3>
+                  <h3 class="font-heading text-base font-semibold text-royal-blue">{usp.title}</h3>
                   <p class="mt-1 measure text-base leading-relaxed text-muted-foreground">{usp.description}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <a href={`/${locale}/contact`} class="fade-in delay-3 mt-8 inline-flex items-center gap-2 text-sm font-semibold text-teal-text transition-colors hover:text-teal-dark">
+          <a href={`/${locale}/contact`} class="fade-in delay-3 mt-8 inline-flex items-center gap-2 text-sm font-semibold text-royal-blue transition-colors hover:text-royal-blue-dark">
             {isFr ? 'Obtenez votre devis gratuit' : 'Get your free quote'}
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </a>
@@ -170,7 +170,7 @@ const cms = homepageData;
   <section aria-label={isFr ? 'Nos services' : 'Our services'} class="py-16 md:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4">
       <div class="text-center">
-        <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">{isFr ? 'Nos Services' : 'Our Services'}</h2>
+        <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-royal-blue sm:text-4xl">{isFr ? 'Nos Services' : 'Our Services'}</h2>
         <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -181,7 +181,7 @@ const cms = homepageData;
             <a
               href={`/${locale}/services/${service.slug}`}
               class:list={[
-                'hover-lift group overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-teal/30 hover:shadow-md',
+                'hover-lift group overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-royal-blue/30 hover:shadow-md',
                 isFeatured && 'md:col-span-2 lg:col-span-2',
               ]}
             >
@@ -199,12 +199,12 @@ const cms = homepageData;
                     />
                   </div>
                   <div class="flex flex-1 flex-col justify-center p-6">
-                    <span class="mb-2 inline-block w-fit rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-text">
+                    <span class="mb-2 inline-block w-fit rounded-full bg-royal-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-royal-blue">
                       {isFr ? 'Populaire' : 'Popular'}
                     </span>
-                    <h3 class="font-heading text-xl font-semibold text-navy group-hover:text-teal-text lg:text-2xl">{isFr ? service.frName : service.name}</h3>
+                    <h3 class="font-heading text-xl font-semibold text-royal-blue group-hover:text-royal-blue lg:text-2xl">{isFr ? service.frName : service.name}</h3>
                     <p class="mt-2 measure text-sm text-muted-foreground line-clamp-2 lg:line-clamp-none">{isFr ? service.frDescription : service.description}</p>
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-royal-blue">
                       {isFr ? 'En savoir plus' : 'Learn more'}
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                     </span>
@@ -224,9 +224,9 @@ const cms = homepageData;
                     />
                   </div>
                   <div class="flex flex-1 flex-col p-6">
-                    <h3 class="font-heading text-lg font-semibold text-navy group-hover:text-teal-text">{isFr ? service.frName : service.name}</h3>
+                    <h3 class="font-heading text-lg font-semibold text-royal-blue group-hover:text-royal-blue">{isFr ? service.frName : service.name}</h3>
                     <p class="mt-2 measure text-sm text-muted-foreground line-clamp-3 lg:line-clamp-none">{isFr ? service.frDescription : service.description}</p>
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-royal-blue">
                       {isFr ? 'En savoir plus' : 'Learn more'}
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                     </span>
@@ -243,19 +243,19 @@ const cms = homepageData;
   <!-- ============================================================ -->
   <!-- TRUST / STATS SECTION — 3 trust pillars in a row -->
   <!-- ============================================================ -->
-  <section class="bg-teal-text py-10 text-text-on-dark md:py-14" aria-label={isFr ? 'Preuve de confiance' : 'Trust indicators'}>
+  <section class="bg-royal-blue py-10 text-white md:py-14" aria-label={isFr ? 'Preuve de confiance' : 'Trust indicators'}>
     <div class="mx-auto max-w-5xl px-4">
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
         <!-- 5-star rating -->
         <div class="text-center">
-          <div class="text-gold-light text-2xl" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div class="text-white/90 text-2xl" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="mt-2 text-2xl font-bold">5/5</p>
           <p class="text-sm text-text-on-dark-muted">{isFr ? '16 avis Google vérifiés' : '16 verified Google reviews'}</p>
         </div>
         <!-- 100% satisfaction -->
         <div class="text-center">
           <div class="text-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <p class="mt-2 text-2xl font-bold">100%</p>
           <p class="text-sm text-text-on-dark-muted">{isFr ? 'Satisfaction garantie' : 'Satisfaction guaranteed'}</p>
@@ -263,7 +263,7 @@ const cms = homepageData;
         <!-- 7 days/week -->
         <div class="text-center">
           <div class="text-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <p class="mt-2 text-2xl font-bold">7 <span class="text-base">{isFr ? 'jours' : 'days'}</span></p>
           <p class="text-sm text-text-on-dark-muted">{isFr ? 'Ouvert chaque semaine' : 'Open every day of the week'}</p>
@@ -278,7 +278,7 @@ const cms = homepageData;
   <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="py-16 md:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4">
       <div class="text-center">
-        <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-navy sm:text-4xl">{isFr ? 'Comment Ça Marche' : 'How It Works'}</h2>
+        <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-royal-blue sm:text-4xl">{isFr ? 'Comment Ça Marche' : 'How It Works'}</h2>
         <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Obtenez un extérieur impeccable en trois étapes simples. C'est aussi facile que ça." : 'Get a spotless exterior in three simple steps. It\'s that easy.'}</p>
       </div>
 
@@ -286,26 +286,26 @@ const cms = homepageData;
       <div class="mt-12 grid gap-8 md:grid-cols-3">
         <!-- Step 1 -->
         <div class="fade-in text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal/10 text-teal-text border-2 border-teal/20">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-royal-blue/10 text-royal-blue border-2 border-royal-blue/20">
             <span class="font-heading text-3xl font-bold">1</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-navy">{isFr ? 'Demandez un Devis' : 'Request a Quote'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-royal-blue">{isFr ? 'Demandez un Devis' : 'Request a Quote'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Appelez-nous ou remplissez notre formulaire en ligne. Nous vous répondons sous 24 heures avec un devis gratuit et sans engagement." : 'Call us or fill out our online form. We respond within 24 hours with a free, no-obligation quote.'}</p>
         </div>
         <!-- Step 2 -->
         <div class="fade-in delay-1 text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal/10 text-teal-text border-2 border-teal/20">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-royal-blue/10 text-royal-blue border-2 border-royal-blue/20">
             <span class="font-heading text-3xl font-bold">2</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-navy">{isFr ? 'Nous Faisons le Travail' : 'We Do the Work'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-royal-blue">{isFr ? 'Nous Faisons le Travail' : 'We Do the Work'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Notre équipe professionnelle arrive à l'heure, utilise un équipement de qualité et traite votre maison avec soin. Aucun dégât, aucun désordre." : 'Our professional crew arrives on time, uses premium equipment, and treats your home with care. No damage, no mess.'}</p>
         </div>
         <!-- Step 3 -->
         <div class="fade-in delay-2 text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal/10 text-teal-text border-2 border-teal/20">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-royal-blue/10 text-royal-blue border-2 border-royal-blue/20">
             <span class="font-heading text-3xl font-bold">3</span>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-navy">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-royal-blue">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
           <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Vitres étincelantes, gouttières propres, allées comme neuves. Et si vous n'êtes pas satisfait à 100%, nous revenons sans frais." : 'Sparkling windows, clean gutters, driveways like new. And if you\'re not 100% satisfied, we come back at no charge.'}</p>
         </div>
       </div>
@@ -339,14 +339,14 @@ const cms = homepageData;
         class="h-full w-full object-cover"
         loading="lazy"
       />
-      <div class="absolute inset-0 bg-navy/90"></div>
+      <div class="absolute inset-0 bg-royal-blue-dark/90"></div>
     </div>
     <!-- Content -->
     <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
       <h2 class="heading-subsection slide-up font-heading text-3xl font-bold md:text-4xl">{isFr ? cms.ctaHeadlineFr : cms.ctaHeadlineEn}</h2>
       <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl text-text-on-dark-muted">{isFr ? cms.ctaSubtitleFr : cms.ctaSubtitleEn}</p>
       <div class="fade-in delay-4 mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
-        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-gold px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl">
+        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-royal-blue px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-white shadow-lg transition-all hover:bg-royal-blue-dark hover:shadow-xl">
           {t.cta.freeQuote}
         </a>
         <a href={`tel:${cms.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-text-on-dark transition-all hover:border-white/60 hover:bg-white/10">

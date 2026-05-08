@@ -52,12 +52,12 @@ const tocSections = isFr ? [
 
       <!-- Table of Contents -->
       <nav aria-label={isFr ? 'Table des matières' : 'Table of Contents'} class="mt-6 rounded-xl border border-border bg-off-white p-5">
-        <h2 class="font-heading text-sm font-semibold uppercase tracking-wider text-teal-text">{isFr ? 'Table des matières' : 'Table of Contents'}</h2>
+        <h2 class="font-heading text-sm font-semibold uppercase tracking-wider text-royal-blue">{isFr ? 'Table des matières' : 'Table of Contents'}</h2>
         <ol class="mt-3 space-y-2">
           {tocSections.map((section, i) => (
             <li class="flex items-start gap-2">
               <span class="text-xs font-medium text-muted-foreground mt-0.5">{i + 1}.</span>
-              <a href={`#${section.id}`} class="text-sm text-navy transition-colors hover:text-teal-text focus-visible:ring-2 focus-visible:ring-teal-text">{section.label}</a>
+              <a href={`#${section.id}`} class="text-sm text-navy transition-colors hover:text-royal-blue focus-visible:ring-2 focus-visible:ring-royal-blue">{section.label}</a>
             </li>
           ))}
         </ol>
@@ -66,57 +66,57 @@ const tocSections = isFr ? [
       <div class="measure mt-8 space-y-8 text-navy leading-relaxed">
 
         <div>
-          <h2 id="collection" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Collecte de renseignements' : 'Information Collection'}</h2>
+          <h2 id="collection" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Collecte de renseignements' : 'Information Collection'}</h2>
           <p class="mt-2">{isFr ? "Nous recueillons des renseignements personnels uniquement lorsque vous remplissez notre formulaire de contact, notamment votre nom, adresse courriel, numéro de téléphone et adresse. Nous ne recueillons pas de renseignements de manière automatique." : 'We collect personal information only when you fill out our contact form, including your name, email address, phone number, and address. We do not collect information automatically.'}</p>
         </div>
 
         <div>
-          <h2 id="use" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Utilisation des renseignements' : 'Use of Information'}</h2>
+          <h2 id="use" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Utilisation des renseignements' : 'Use of Information'}</h2>
           <p class="mt-2">{isFr ? 'Nous utilisons vos renseignements uniquement pour répondre à vos demandes de devis et fournir nos services. Nous ne vendons ni ne partageons vos renseignements avec des tiers à des fins marketing.' : 'We use your information only to respond to quote requests and provide our services. We do not sell or share your information with third parties for marketing purposes.'}</p>
         </div>
 
         <div>
-          <h2 id="retention" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Conservation des données' : 'Data Retention'}</h2>
+          <h2 id="retention" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Conservation des données' : 'Data Retention'}</h2>
           <p class="mt-2">{isFr ? "Nous conservons vos renseignements personnels uniquement pendant la durée nécessaire aux fins pour lesquelles ils ont été recueillis, ou selon les exigences légales. Les demandes de devis sont conservées pendant 12 mois, après quoi elles sont supprimées de manière sécuritaire." : 'We retain your personal information only for as long as necessary for the purposes for which it was collected, or as required by law. Quote requests are retained for 12 months, after which they are securely deleted.'}</p>
         </div>
 
         <div>
-          <h2 id="rights" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Vos droits' : 'Your Rights'}</h2>
+          <h2 id="rights" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Vos droits' : 'Your Rights'}</h2>
           <p class="mt-2">{isFr ? "Conformément à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE/PIPEDA) et aux lois provinciales applicables, vous avez le droit d'accéder à vos renseignements personnels, de demander leur correction ou leur suppression, et de retirer votre consentement à tout moment. Pour exercer ces droits, contactez-nous aux coordonnées ci-dessous." : 'Under the Personal Information Protection and Electronic Documents Act (PIPEDA) and applicable provincial privacy legislation, you have the right to access your personal information, request its correction or deletion, and withdraw your consent at any time. To exercise these rights, contact us using the details below.'}</p>
         </div>
 
         <div>
-          <h2 id="security" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Sécurité' : 'Security'}</h2>
+          <h2 id="security" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Sécurité' : 'Security'}</h2>
           <p class="mt-2">{isFr ? "Nous prenons des mesures raisonnables pour protéger vos renseignements personnels contre l'accès non autorisé, la modification, la divulgation ou la destruction. Cependant, aucune méthode de transmission sur Internet n'est totalement sécurisée." : 'We take reasonable measures to protect your personal information from unauthorized access, modification, disclosure, or destruction. However, no method of transmission over the Internet is completely secure.'}</p>
         </div>
 
         <div>
-          <h2 id="cookies" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Témoins de connexion (cookies)' : 'Cookies'}</h2>
+          <h2 id="cookies" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Témoins de connexion (cookies)' : 'Cookies'}</h2>
           <p class="mt-2">{isFr ? "Notre site utilise des témoins de connexion (cookies) uniquement pour améliorer votre expérience de navigation. Nous n'utilisons pas de cookies de suivi publicitaire. Les cookies de Google Fonts peuvent être déposés pour le chargement des polices web." : 'Our website uses cookies only to improve your browsing experience. We do not use advertising tracking cookies. Google Fonts cookies may be set for web font loading.'}</p>
         </div>
 
         <div>
-          <h2 id="third-party" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Services tiers' : 'Third-Party Services'}</h2>
+          <h2 id="third-party" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Services tiers' : 'Third-Party Services'}</h2>
           <p class="mt-2">{isFr ? 'Nous utilisons Google Fonts pour les polices web et Web3Forms pour le traitement des formulaires. Ces services peuvent recueillir votre adresse IP conformément à leurs propres politiques de confidentialité.' : 'We use Google Fonts for web fonts and Web3Forms for form processing. These services may collect your IP address in accordance with their own privacy policies.'}</p>
         </div>
 
         <div>
-          <h2 id="changes" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Modifications' : 'Changes to This Policy'}</h2>
+          <h2 id="changes" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Modifications' : 'Changes to This Policy'}</h2>
           <p class="mt-2">{isFr ? "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Les modifications prendront effet dès leur publication sur cette page. Nous vous encourageons à consulter cette page régulièrement." : 'We reserve the right to modify this privacy policy at any time. Changes will take effect upon publication on this page. We encourage you to review this page periodically.'}</p>
         </div>
 
         <div>
-          <h2 id="contact" class="font-heading text-xl font-semibold text-navy">{isFr ? 'Contact' : 'Contact'}</h2>
-          <p class="mt-2">{isFr ? 'Pour toute question concernant cette politique, contactez-nous à' : 'For questions about this policy, contact us at'} <a href="mailto:hello@allstarcleaning.ca" class="text-teal-text hover:text-teal-dark touch-target">hello@allstarcleaning.ca</a> {isFr ? 'ou au' : 'or call'} <a href="tel:+16133143300" class="text-teal-text hover:text-teal-dark touch-target">(613) 314-3300</a>.</p>
+          <h2 id="contact" class="font-heading text-xl font-semibold text-royal-blue">{isFr ? 'Contact' : 'Contact'}</h2>
+          <p class="mt-2">{isFr ? 'Pour toute question concernant cette politique, contactez-nous à' : 'For questions about this policy, contact us at'} <a href="mailto:hello@allstarcleaning.ca" class="text-royal-blue hover:text-royal-blue-dark touch-target">hello@allstarcleaning.ca</a> {isFr ? 'ou au' : 'or call'} <a href="tel:+16133143300" class="text-royal-blue hover:text-royal-blue-dark touch-target">(613) 314-3300</a>.</p>
         </div>
       </div>
 
       <!-- CTA to return to conversion flow -->
-      <div class="mt-10 rounded-xl bg-navy px-6 py-8 text-center text-text-on-dark">
+      <div class="mt-10 rounded-xl bg-royal-blue-dark px-6 py-8 text-center text-white">
         <h2 class="font-heading text-xl font-bold">{isFr ? 'Des questions sur votre vie privée?' : 'Questions About Your Privacy?'}</h2>
         <p class="mt-2 text-text-on-dark-muted">{isFr ? "Nous serons heureux de discuter de la façon dont nous protégeons vos renseignements." : "We're happy to discuss how we protect your information."}</p>
         <div class="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wider text-navy shadow-lg hover:bg-gold-light hover:shadow-xl transition-all">
+          <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-royal-blue px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg hover:bg-royal-blue-dark hover:shadow-xl transition-all">
             {isFr ? 'Contactez-Nous' : 'Contact Us'}
           </a>
           <a href="tel:+16133143300" class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-text-on-dark hover:border-white/60 hover:bg-white/10 transition-all">

@@ -53,7 +53,7 @@ const heroSubtitle = isFr
     <div class="lg:col-span-2">
       <!-- Area Context -->
       <div class="mb-8 rounded-xl border border-border bg-card p-6">
-        <h2 class="font-heading text-2xl font-bold text-navy">
+        <h2 class="font-heading text-2xl font-bold text-royal-blue">
           {isFr ? `Nettoyage Extérieur à ${location.frName}` : `Exterior Cleaning in ${location.name}`}
         </h2>
         <p class="mt-2 measure text-muted-foreground leading-relaxed">
@@ -78,7 +78,7 @@ const heroSubtitle = isFr
       </div>
 
       <!-- All Services Grid -->
-      <h2 class="font-heading text-2xl font-bold text-navy">
+      <h2 class="font-heading text-2xl font-bold text-royal-blue">
         {isFr ? 'Nos Services à' : 'Our Services in'} {isFr ? location.frName : location.name}
       </h2>
       <div class="mt-4 grid gap-4 sm:grid-cols-2">
@@ -86,17 +86,17 @@ const heroSubtitle = isFr
           <a
             href={`/${locale}/area/${location.slug}/${service.slug}`}
             class:list={[
-              'group rounded-lg border border-border bg-card p-5 transition-all hover:border-teal-text/30 hover:shadow-md hover-lift',
-              i === 0 ? 'sm:col-span-2 border-teal-text/20 bg-teal/5' : '',
+              'group rounded-lg border border-border bg-card p-5 transition-all hover:border-royal-blue/30 hover:shadow-md hover-lift',
+              i === 0 ? 'sm:col-span-2 border-royal-blue/20 bg-royal-blue/5' : '',
             ]}
           >
-            <h3 class="font-heading text-lg font-semibold text-navy group-hover:text-teal-text">
+            <h3 class="font-heading text-lg font-semibold text-navy group-hover:text-royal-blue">
               {isFr ? service.frName : service.name}
             </h3>
             <p class="mt-2 text-sm text-muted-foreground line-clamp-2">
               {isFr ? service.frDescription : service.description}
             </p>
-            <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+            <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-royal-blue">
               {isFr ? 'En savoir plus' : 'Learn more'}
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             </span>
@@ -107,7 +107,7 @@ const heroSubtitle = isFr
       <!-- Neighbouring Areas -->
       {location.neighbours.length > 0 && (
         <div class="mt-10">
-          <h2 class="font-heading text-2xl font-bold text-navy">
+          <h2 class="font-heading text-2xl font-bold text-royal-blue">
             {isFr ? 'Quartiers avoisinants' : 'Nearby Areas'}
           </h2>
           <div class="mt-4 flex flex-wrap gap-2">
@@ -125,18 +125,18 @@ const heroSubtitle = isFr
     <!-- Sidebar CTA -->
     <div class="lg:col-span-1">
       <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6">
-        <h3 class="font-heading text-xl font-bold text-navy">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
+        <h3 class="font-heading text-xl font-bold text-royal-blue">{isFr ? 'Obtenez un Devis' : 'Get a Quote'}</h3>
         <p class="mt-2 text-sm text-muted-foreground">
           {isFr
             ? `Besoin de services de nettoyage à ${location.frName}? Contactez-nous pour un devis gratuit.`
             : `Need cleaning services in ${location.name}? Contact us for a free quote.`}
         </p>
-        <a href={`/${locale}/contact?area=${location.slug}`} class="mt-4 block rounded-lg uppercase tracking-wider bg-gold px-6 py-4 text-center text-base font-bold text-navy shadow-lg transition-all hover:bg-gold-light hover:shadow-xl active:scale-[0.98] touch-target">
+        <a href={`/${locale}/contact?area=${location.slug}`} class="mt-4 block rounded-lg uppercase tracking-wider bg-royal-blue px-6 py-4 text-center text-base font-bold text-white shadow-lg transition-all hover:bg-royal-blue-dark hover:shadow-xl active:scale-[0.98] touch-target">
           {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
         </a>
         <p class="mt-2 text-center text-sm text-muted-foreground">{isFr ? 'Sans engagement · Réponse sous 24h' : 'No obligation · 24hr response'}</p>
         <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground">
-          <a href="tel:+16133143300" class="inline-flex items-center gap-2 font-semibold text-teal-text hover:text-teal-dark touch-target">
+          <a href="tel:+16133143300" class="inline-flex items-center gap-2 font-semibold text-royal-blue hover:text-royal-blue-dark touch-target">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             (613) 314-3300
           </a>

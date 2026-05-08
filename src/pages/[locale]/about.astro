@@ -41,13 +41,13 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
         <div class="order-2 lg:order-1">
           <!-- Review Badge -->
           <div class="flex flex-wrap items-center gap-3">
-            <div class="flex items-center gap-2 rounded-full bg-gold/10 px-4 py-2 border border-gold/20">
-              <span class="text-gold-light text-sm" aria-label="5 out of 5 stars">★★★★★</span>
+            <div class="flex items-center gap-2 rounded-full bg-royal-blue/10 px-4 py-2 border border-royal-blue/20">
+              <span class="text-royal-blue text-sm" aria-label="5 out of 5 stars">★★★★★</span>
               <span class="text-sm font-bold text-navy">{home.googleRating}</span>
               <span class="text-xs text-muted-foreground">{isFr ? `${home.googleReviewCount} avis Google` : `${home.googleReviewCount} Google reviews`}</span>
             </div>
-            <div class="flex items-center gap-2 rounded-full bg-teal/10 px-4 py-2 border border-teal/20">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-teal-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div class="flex items-center gap-2 rounded-full bg-royal-blue/10 px-4 py-2 border border-royal-blue/20">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-royal-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
               <span class="text-sm font-semibold text-navy">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
             </div>
           </div>
@@ -55,7 +55,7 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
           <div class="measure mt-8 space-y-6 text-muted-foreground leading-relaxed">
             <p class="fade-in delay-1">{isFr ? cms.storyParagraph1Fr : cms.storyParagraph1En}</p>
 
-            <blockquote class="my-8 rounded-lg border border-teal-text/20 bg-teal/5 px-6 py-4">
+            <blockquote class="my-8 rounded-lg border border-royal-blue/20 bg-royal-blue/5 px-6 py-4">
               <p class="font-heading text-xl text-navy italic">{isFr ? cms.blockquoteFr : cms.blockquoteEn}</p>
               <footer class="mt-2 text-sm text-muted-foreground not-italic">{isFr ? 'Notre Garantie sans Tracas' : 'Our Hassle-Free Guarantee'}</footer>
             </blockquote>
@@ -65,13 +65,13 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
           </div>
 
           <div class="mt-8 lg:hidden">
-            <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-gold px-8 py-4 text-base font-bold text-navy transition-all hover:bg-gold-light hover:shadow-xl w-full justify-center">
+            <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-royal-blue px-8 py-4 text-base font-bold text-white transition-all hover:bg-royal-blue-dark hover:shadow-xl w-full justify-center">
               {t.cta.freeQuote}
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             </a>
           </div>
           <div class="mt-8 hidden lg:block">
-            <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-gold px-8 py-4 text-lg font-semibold text-navy transition-all hover:bg-gold-light hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold touch-target">{t.cta.freeQuote}</a>
+            <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-royal-blue px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-royal-blue-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal-blue touch-target">{t.cta.freeQuote}</a>
           </div>
         </div>
 
@@ -95,12 +95,12 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
             </div>
           </div>
 
-          <div class="fade-in delay-2 rounded-xl bg-teal-text p-6 text-text-on-dark shadow-lg">
+          <div class="fade-in delay-2 rounded-xl bg-royal-blue p-6 text-white shadow-lg">
             <h2 class="font-heading text-2xl font-bold">{isFr ? 'Nos Valeurs' : 'Our Values'}</h2>
             <ul class="mt-4 space-y-3">
               {cms.values.map((value) => (
                 <li class="flex items-start gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-teal-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                   <span>{isFr ? value.fr : value.en}</span>
                 </li>
               ))}

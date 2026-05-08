@@ -51,16 +51,16 @@ const zoneNames: Record<string, { en: string; fr: string }> = {
       const zoneLabel = zoneNames[zone] || { en: zone, fr: zone };
       return (
         <div>
-          <h2 class="font-heading text-2xl font-bold text-navy">{isFr ? zoneLabel.fr : zoneLabel.en}</h2>
+          <h2 class="font-heading text-2xl font-bold text-royal-blue">{isFr ? zoneLabel.fr : zoneLabel.en}</h2>
           <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {zoneLocs.map((loc) => (
               <a
                 href={`/${locale}/area/${loc.slug}`}
-                class="group rounded-lg border border-border bg-card p-4 transition-all hover:border-teal-text/30 hover:shadow-md hover-lift"
+                class="group rounded-lg border border-border bg-card p-4 transition-all hover:border-royal-blue/30 hover:shadow-md hover-lift"
               >
-                <h3 class="font-medium text-navy group-hover:text-teal-text">{isFr ? loc.frName : loc.name}</h3>
+                <h3 class="font-medium text-navy group-hover:text-royal-blue">{isFr ? loc.frName : loc.name}</h3>
                 <p class="mt-1 text-xs text-muted-foreground">{loc.postalCode}</p>
-                <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-teal-text">
+                <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-royal-blue">
                   {isFr ? 'Voir les services' : 'View services'}
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                 </span>

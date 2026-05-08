@@ -6,24 +6,22 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 
-  /* === COLOR STRATEGY: Committed === */
-  /* OKLCH-Only Rule: All new colors declared in OKLCH. Hex reserved for fenced Command Category Tints only. */
-  /* Teal carries 30-60% of hero/CTA surfaces. Navy anchors. Gold accents rare emphasis. */
-  /* Neutrals tinted toward brand hue (255 navy / 185 teal) with chroma 0.005-0.015 */
+  /* === COLOR STRATEGY: Royal Blue & White === */
+  /* Blue carries 30-60% of hero/CTA surfaces. Navy anchors. White keeps it clean. */
+  /* Neutrals tinted toward blue (hue 255) with chroma 0.005-0.015 */
 
-  /* Primary: Teal — accessible text variants, hex fallbacks + OKLCH */
-  --color-teal: #0e7c7b; --color-teal: oklch(55.8% 0.119 185);
-  --color-teal-light: #1aada3; --color-teal-light: oklch(64.8% 0.120 185);
-  --color-teal-dark: #0a5a59; --color-teal-dark: oklch(40.5% 0.090 185);
-  --color-teal-text: #0c6e6d; --color-teal-text: oklch(46.7% 0.100 185);    /* 4.62:1 on off-white — AA compliant */
-  --color-teal-surface: #f0fafa; --color-teal-surface: oklch(98.5% 0.010 185);  /* Lightest teal tint for backgrounds */
+  /* Brand: Royal Blue — #0047AB */
+  --color-royal-blue: #0047AB; --color-royal-blue: oklch(41.1% 0.177 255.4);
+  --color-royal-blue-light: #2e6fd1; --color-royal-blue-light: oklch(55% 0.15 255.4);
+  --color-royal-blue-dark: #003075; --color-royal-blue-dark: oklch(30% 0.14 255.4);
+  --color-royal-blue-surface: #f0f4fa; --color-royal-blue-surface: oklch(97.5% 0.015 255.4);
 
-  /* Anchor: Navy — warm-tinted, never pure black */
+  /* Anchor: Navy — warm-tinted blue, never pure black */
   --color-navy: #0f1b2d; --color-navy: oklch(17.5% 0.030 255);
   --color-navy-light: #1c2f47; --color-navy-light: oklch(25.5% 0.035 255);
   --color-navy-dark: #0a111b; --color-navy-dark: oklch(12.0% 0.025 255);
 
-  /* Accent: Gold — used sparingly for emphasis moments */
+  /* Accent: Keeping a refined Gold for ratings, but reduced elsewhere */
   --color-gold: #d4a017; --color-gold: oklch(75.5% 0.167 75);
   --color-gold-light: #e0b82e; --color-gold-light: oklch(82.0% 0.165 80);
   --color-gold-dark: #b08010; --color-gold-dark: oklch(62.0% 0.155 65);
@@ -38,8 +36,8 @@
   --color-off-white-dark: #eaeaed; --color-off-white-dark: oklch(93.5% 0.006 255);
   --color-background: var(--color-off-white);
   --color-foreground: var(--color-navy);
-  --color-primary: var(--color-teal);
-  --color-primary-foreground: #f6f6f9; --color-primary-foreground: oklch(98.5% 0.004 255);  /* Navy-tinted off-white, not pure #fff */
+  --color-primary: var(--color-royal-blue);
+  --color-primary-foreground: #ffffff;
   --color-secondary: var(--color-navy);
   --color-secondary-foreground: #f6f6f9; --color-secondary-foreground: oklch(98.5% 0.004 255);
   --color-accent: var(--color-gold);
@@ -47,7 +45,7 @@
   --color-muted: #4a4d5e; --color-muted: oklch(42.0% 0.025 255);              /* WCAG AA: 4.56:1 on card */
   --color-muted-foreground: #52556a; --color-muted-foreground: oklch(45.0% 0.025 255);   /* WCAG AA: 5.22:1 on off-white */
   --color-border: #d8d8de; --color-border: oklch(92.0% 0.008 255);              /* Tinted toward brand, not pure gray */
-  --color-ring: var(--color-teal-text);                 /* AA-compliant teal for focus rings */
+  --color-ring: var(--color-royal-blue);                 /* Royal blue for focus rings */
   --color-destructive: #b91c1c; --color-destructive: oklch(55.0% 0.200 25);
   --color-card: #ededf1; --color-card: oklch(94.5% 0.007 255);                /* Distinct from page bg */
   --color-card-foreground: var(--color-navy);
@@ -113,7 +111,7 @@
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.08);
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.08);
   --shadow-hover: 0 4px 24px -4px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
-  --shadow-teal-glow: 0 8px 32px -8px rgba(14,124,123,0.25);
+  --shadow-blue-glow: 0 8px 32px -8px rgba(0,71,171,0.25);
 
   /* === Z-INDEX === */
   --z-base: 0;
@@ -136,7 +134,7 @@
   body { font-family: var(--font-body); color: var(--color-foreground); background-color: var(--color-background); line-height: 1.6; min-height: 100vh; font-kerning: normal; padding-top: env(safe-area-inset-top); padding-bottom: max(0px, env(safe-area-inset-bottom)); }
 
   /* Impeccable typeset: hierarchy through scale + weight contrast (≥1.25 ratio) */
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.15; text-wrap: balance; color: var(--color-royal-blue); }
   h1 { font-weight: 700; letter-spacing: -0.02em; }
   h2 { font-weight: 700; }
   h3 { font-weight: 600; }
@@ -145,9 +143,9 @@
   /* Reduce orphans and ragged endings in long prose */
   article p, .measure { text-wrap: pretty; }
 
-  /* Links: use AA-compliant teal for text */
-  a { color: var(--color-teal-text); text-decoration: none; transition: color var(--transition-fast); }
-  a:hover { color: var(--color-teal-dark); }
+  /* Links: use Royal Blue */
+  a { color: var(--color-royal-blue); text-decoration: none; transition: color var(--transition-fast); }
+  a:hover { color: var(--color-royal-blue-dark); }
 
   img { max-width: 100%; height: auto; display: block; }
   :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; border-radius: 4px; }
@@ -194,11 +192,11 @@
     opacity: 0.6;
   }
 
-  /* Navy gradient — kept for hero sections */
-  .navy-gradient { background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-light) 100%); }
+  /* Brand gradient — Royal Blue focused */
+  .brand-gradient { background: linear-gradient(180deg, var(--color-royal-blue) 0%, var(--color-royal-blue-dark) 100%); }
 
-  /* CTA gradient — subtle, not aggressive */
-  .cta-gradient { background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-dark) 100%); }
+  /* CTA gradient — Royal Blue focused */
+  .cta-gradient { background: linear-gradient(135deg, var(--color-royal-blue) 0%, var(--color-royal-blue-dark) 100%); }
 
   /* Minimum touch target size — WCAG 2.5.8 */
   .touch-target { min-height: 44px; min-width: 44px; }
