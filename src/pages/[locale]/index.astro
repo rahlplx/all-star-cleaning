@@ -65,42 +65,44 @@ const cms = homepageData;
         {isFr ? cms.heroSubtitleFr : cms.heroSubtitleEn}
       </p>
       
-      <div class="fade-in delay-4 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <div class="fade-in delay-4 mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold uppercase tracking-wider text-royal-blue shadow-2xl transition-all hover:bg-white/90 hover:scale-105 active:scale-95 sm:w-auto">
           {isFr ? 'Obtenez un Devis' : 'Get a Quote'}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </a>
       </div>
 
-      <!-- Trust badges row (Optimized for mobile) -->
-      <div class="fade-in delay-5 mt-12 flex flex-wrap items-center justify-center gap-3 md:gap-4">
-        <!-- Insured & Bonded -->
-        <div class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
-        </div>
-        
-        <!-- Google Rating (Consolidated) -->
-        <div class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
-          <div class="flex text-yellow-400">
-            {[...Array(5)].map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            ))}
+      <!-- Trust badges (Stacked Layout for visual balance) -->
+      <div class="fade-in delay-5 mt-12 flex flex-col items-center gap-3">
+        <!-- Top Row: Uniform sizing -->
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <!-- Free Estimates -->
+          <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-md border border-white/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-royal-blue-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
           </div>
-          <span class="text-xs font-bold text-white">{cms.googleRating}</span>
-          <span class="hidden text-[10px] uppercase tracking-widest text-white/70 sm:inline">{isFr ? 'Avis' : 'Reviews'}</span>
+
+          <!-- Google Rating -->
+          <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-md border border-white/20">
+            <div class="flex text-yellow-400">
+              {[...Array(5)].map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <span class="text-xs font-bold text-white">{cms.googleRating}</span>
+          </div>
         </div>
 
-        <!-- Experience Badge (New UI) -->
-        <div class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">20+ Years Exp.</span>
+        <!-- Bottom Row: Primary Trust -->
+        <div class="flex min-w-[200px] items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-2.5 backdrop-blur-md border border-white/20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
         </div>
       </div>
     </div>
 
     <!-- Bottom scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5"/><path d="m7 6 5 5 5-5"/></svg>
     </div>
   </section>
