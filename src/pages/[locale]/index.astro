@@ -40,7 +40,7 @@ const cms = homepageData;
   <!-- ============================================================ -->
   <!-- HERO SECTION — Full-screen bg image + centered overlay (SHINE layout) -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Accueil' : 'Homepage hero'} class="relative flex min-h-[85vh] items-center justify-center overflow-hidden md:min-h-screen">
+  <section aria-label={isFr ? 'Accueil' : 'Homepage hero'} class="relative flex min-h-[90vh] items-center justify-center overflow-hidden md:min-h-screen pt-20">
     <!-- Background image with dark blue overlay -->
     <div class="absolute inset-0 z-0">
       <img
@@ -52,44 +52,56 @@ const cms = homepageData;
         class="h-full w-full object-cover"
         loading="eager"
       />
-      <div class="absolute inset-0 bg-royal-blue-dark/70"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-royal-blue-dark/80 via-royal-blue-dark/70 to-royal-blue-dark/90"></div>
     </div>
 
     <!-- Centered hero content -->
-    <div class="relative z-10 mx-auto max-w-4xl px-6 pb-20 text-center md:pb-20">
-      <img src="/images/logo.png" alt="All Star Cleaning" width="80" height="80" class="slide-up mx-auto mb-6 h-16 w-16 sm:h-20 sm:w-20" />
-      <h1 class="slide-up font-heading text-4xl font-bold uppercase tracking-wide text-text-on-dark sm:text-5xl md:text-6xl lg:text-7xl">
+    <div class="relative z-10 mx-auto max-w-5xl px-4 py-16 text-center sm:px-6">
+      <img src="/images/logo.png" alt="All Star Cleaning" width="100" height="100" class="slide-up mx-auto mb-8 h-20 w-20 sm:h-24 sm:w-24 brightness-0 invert" />
+      <h1 class="slide-up font-heading text-3xl font-extrabold uppercase tracking-tight text-text-on-dark sm:text-5xl md:text-6xl lg:text-8xl">
         {isFr ? cms.heroHeadlineFr : cms.heroHeadlineEn}
       </h1>
-      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-center text-lg text-text-on-dark-muted sm:text-xl">
+      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-lg font-medium text-white/80 sm:text-xl md:text-2xl">
         {isFr ? cms.heroSubtitleFr : cms.heroSubtitleEn}
       </p>
-      <div class="fade-in delay-4 mt-10">
-        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-3 rounded-full bg-royal-blue px-10 py-4 text-lg font-bold uppercase tracking-wider text-white shadow-lg transition-all hover:bg-royal-blue-dark hover:shadow-xl active:scale-[0.98]">
+      
+      <div class="fade-in delay-4 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold uppercase tracking-wider text-royal-blue shadow-2xl transition-all hover:bg-white/90 hover:scale-105 active:scale-95 sm:w-auto">
           {isFr ? 'Obtenez un Devis' : 'Get a Quote'}
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </a>
       </div>
 
-      <!-- Trust badges row (inside content flow, above bottom) -->
-      <div class="fade-in delay-5 mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-6">
+      <!-- Trust badges row (Optimized for mobile) -->
+      <div class="fade-in delay-5 mt-12 flex flex-wrap items-center justify-center gap-3 md:gap-4">
         <!-- Insured & Bonded -->
-        <div class="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 backdrop-blur-sm border border-white/10">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-green-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span class="text-sm font-bold uppercase tracking-wider text-text-on-dark">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+        <div class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
         </div>
-        <!-- Google Rating -->
-        <div class="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 backdrop-blur-sm border border-white/10">
-          <span class="text-white/90 text-base" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-          <span class="text-sm font-bold text-text-on-dark">{cms.googleRating}</span>
-          <span class="text-xs text-text-on-dark-muted">{isFr ? `${cms.googleReviewCount} avis Google` : `${cms.googleReviewCount} Google reviews`}</span>
+        
+        <!-- Google Rating (Consolidated) -->
+        <div class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
+          <div class="flex text-yellow-400">
+            {[...Array(5)].map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            ))}
+          </div>
+          <span class="text-xs font-bold text-white">{cms.googleRating}</span>
+          <span class="hidden text-[10px] uppercase tracking-widest text-white/70 sm:inline">{isFr ? 'Avis' : 'Reviews'}</span>
         </div>
-        <!-- Phone CTA -->
-        <a href={`tel:${cms.phoneLink}`} class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-sm border border-white/10 transition-colors hover:bg-white/20 sm:px-5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-royal-blue-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="text-xs font-bold text-royal-blue-light sm:text-sm">{cms.phone}</span>
-        </a>
+
+        <!-- Experience Badge (New UI) -->
+        <div class="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">20+ Years Exp.</span>
+        </div>
       </div>
+    </div>
+
+    <!-- Bottom scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5"/><path d="m7 6 5 5 5-5"/></svg>
     </div>
   </section>
 
