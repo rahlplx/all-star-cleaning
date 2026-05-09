@@ -67,7 +67,7 @@ const navLinks = [
           {link.children ? (
             <div class="mobile-nav-dropdown">
               <button type="button" class="touch-target flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-royal-blue" aria-expanded="false">
-                <a href={link.href} class="hover:text-royal-blue transition-colors">{link.label}</a>
+                <span class="hover:text-royal-blue transition-colors">{link.label}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-dropdown-arrow h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
               <div class="mobile-dropdown-content ml-3 pl-3 hidden">

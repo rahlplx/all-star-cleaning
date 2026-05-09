@@ -126,6 +126,9 @@ export default defineConfig({
   },
 
   vite: {
+    optimizeDeps: {
+      exclude: ['virtual:keystatic-config', 'virtual:keystatic-content-components'],
+    },
     resolve: {
       alias: { '@': '/src' },
     },
