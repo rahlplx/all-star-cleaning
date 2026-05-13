@@ -4,7 +4,7 @@ interface Props { locale: 'en' | 'fr'; }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 ---
-<div class="fixed bottom-0 left-0 right-0 z-overlay border-t border-white/10 bg-card/95 backdrop-blur-md md:hidden" style="padding-bottom: env(safe-area-inset-bottom);">
+<div class="fixed bottom-0 left-0 right-0 z-overlay border-t border-text-on-dark/10 bg-card/95 backdrop-blur-md md:hidden" style="padding-bottom: env(safe-area-inset-bottom);">
   <div class="flex items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6">
     <a 
       href={`tel:${t.contact.phoneLink}`} 
@@ -15,7 +15,7 @@ const t = useTranslations(locale);
     </a>
     <a 
       href={`/${locale}/contact`} 
-      class="flex flex-1 items-center justify-center rounded-xl bg-royal-blue px-4 py-3 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-royal-blue/20 transition-all duration-200 active:scale-95 active:bg-royal-blue-dark"
+      class="flex flex-1 items-center justify-center rounded-xl bg-royal-blue px-4 py-3 text-xs font-black uppercase tracking-widest text-text-on-dark shadow-lg shadow-royal-blue/20 transition-all duration-200 active:scale-95 active:bg-royal-blue-dark"
     >
       {t.cta.freeQuote}
     </a>

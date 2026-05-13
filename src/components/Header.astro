@@ -9,12 +9,18 @@ const s = siteSettings;
 const currentPath = Astro.url.pathname;
 const navLinks = [
   { label: t.nav.home, href: `/${locale}` },
-  { label: t.nav.services, href: `/${locale}/services`, children: services.map((svc) => ({ label: locale === 'fr' ? svc.frName : svc.name, href: `/${locale}/services/${svc.slug}` })) },
+  { 
+    label: t.nav.services, 
+    href: `/${locale}/services`, 
+    hasDropdown: true,
+    children: services.map((svc) => ({ label: locale === 'fr' ? svc.frName : svc.name, href: `/${locale}/services/${svc.slug}` })) 
+  },
   { label: t.nav.about, href: `/${locale}/about` },
   { label: t.nav.reviews, href: `/${locale}/reviews` },
   { label: t.nav.contact, href: `/${locale}/contact` },
 ];
 ---
+<div id="header-sentinel" class="absolute top-0 h-px w-full pointer-events-none"></div>
 <header id="main-header" class="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-sm transition-all duration-300">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3">
     <!-- Logo -->
@@ -27,7 +33,13 @@ const navLinks = [
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
       {navLinks.map((link) => (
         <div class="group relative">
-          <a href={link.href} class:list={['touch-target inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-royal-blue', currentPath === link.href ? 'bg-royal-blue/10 text-royal-blue' : 'text-navy hover:bg-off-white-dark hover:text-royal-blue']} aria-haspopup={link.children ? 'true' : undefined} aria-expanded={link.children ? 'false' : undefined} aria-current={currentPath === link.href ? 'page' : undefined}>
+          <a 
+            href={link.href} 
+            class:list={['touch-target inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-royal-blue', currentPath === link.href ? 'bg-royal-blue/10 text-royal-blue' : 'text-navy hover:bg-off-white-dark hover:text-royal-blue']} 
+            aria-haspopup={link.hasDropdown ? "true" : undefined} 
+            aria-expanded={link.hasDropdown ? "false" : undefined} 
+            aria-current={currentPath === link.href ? 'page' : undefined}
+          >
             {link.label}
             {link.children && (
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180 [.group[aria-expanded=true]_&]:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
@@ -47,12 +59,12 @@ const navLinks = [
 
     <!-- Right side: CTA + Mobile toggle -->
     <div class="flex items-center gap-2 sm:gap-3">
-      <a href={`/${locale}/contact`} class="hidden rounded-full bg-royal-blue px-5 py-2 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-200 hover:bg-royal-blue-dark hover:shadow-xl focus-visible:ring-2 focus-visible:ring-royal-blue focus-visible:ring-offset-2 lg:inline-flex">{t.nav.getQuote}</a>
+      <a href={`/${locale}/contact`} class="hidden rounded-full bg-royal-blue px-5 py-2 text-sm font-bold uppercase tracking-wider text-text-on-dark shadow-lg transition-all duration-200 hover:bg-royal-blue-dark hover:shadow-xl focus-visible:ring-2 focus-visible:ring-royal-blue focus-visible:ring-offset-2 lg:inline-flex">{t.nav.getQuote}</a>
       <!-- Phone icon for mobile (quick call) -->
-      <a href={`tel:${s.phoneLink}`} class="touch-target inline-flex items-center justify-center rounded-full border border-royal-blue/30 p-2.5 text-royal-blue transition-colors hover:bg-royal-blue/5 lg:hidden min-h-[44px] min-w-[44px]" aria-label="Call us">
+      <a href={`tel:${s.phoneLink}`} class="touch-target inline-flex items-center justify-center rounded-full border border-royal-blue/30 p-2.5 text-royal-blue transition-colors hover:bg-royal-blue/5 lg:hidden min-h-11 min-w-11" aria-label="Call us">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </a>
-      <button id="mobile-menu-toggle" class="touch-target inline-flex items-center justify-center rounded-md p-2.5 text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-royal-blue lg:hidden min-h-[44px] min-w-[44px]" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button id="mobile-menu-toggle" class="touch-target inline-flex items-center justify-center rounded-md p-2.5 text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-royal-blue lg:hidden min-h-11 min-w-11" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
@@ -66,7 +78,7 @@ const navLinks = [
         <div>
           {link.children ? (
             <div class="mobile-nav-dropdown">
-              <button type="button" class="touch-target flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-royal-blue" aria-expanded="false">
+              <button type="button" class="touch-target flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-royal-blue" aria-expanded="false" aria-haspopup="true">
                 <span class="hover:text-royal-blue transition-colors">{link.label}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-dropdown-arrow h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
@@ -83,12 +95,13 @@ const navLinks = [
         </div>
       ))}
       <div class="mt-4 border-t border-border pt-4">
-        <a href={`/${locale}/contact`} class="touch-target block rounded-full bg-royal-blue px-5 py-2.5 text-center text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-all duration-200 hover:bg-royal-blue-dark hover:shadow-xl focus-visible:ring-2 focus-visible:ring-royal-blue focus-visible:ring-offset-2">{t.nav.getQuote}</a>
+        <a href={`/${locale}/contact`} class="touch-target block rounded-full bg-royal-blue px-5 py-2.5 text-center text-sm font-bold uppercase tracking-wider text-text-on-dark shadow-lg transition-all duration-200 hover:bg-royal-blue-dark hover:shadow-xl focus-visible:ring-2 focus-visible:ring-royal-blue focus-visible:ring-offset-2">{t.nav.getQuote}</a>
       </div>
     </nav>
   </div>
 </header>
 <script>
+  // --- Mobile Menu Logic ---
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const openIcon = document.getElementById('menu-open-icon');
@@ -152,78 +165,61 @@ const navLinks = [
     const arrow = dropdown.querySelector('.mobile-dropdown-arrow');
     if (!btn || !content || !arrow) return;
 
-    // Prevent the <a> inside button from navigating on click (toggle instead)
-    const linkInBtn = btn.querySelector('a');
-    if (linkInBtn) {
-      linkInBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-        content.classList.toggle('hidden', isExpanded);
-        arrow.classList.toggle('rotate-180', !isExpanded);
-      });
-    }
-
     btn.addEventListener('click', (e) => {
-      // If click was on the link, already handled above
+      // If click was on the link inside the button, handle it separately or allow it
       if ((e.target as HTMLElement).closest('a')) return;
+      
       const isExpanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
       content.classList.toggle('hidden', isExpanded);
       arrow.classList.toggle('rotate-180', !isExpanded);
     });
   });
-</script>
-<script>
-  // Desktop dropdown aria-expanded toggle + arrow rotation
+
+  // --- Desktop Dropdown Logic ---
   document.querySelectorAll<HTMLElement>('.group > a[aria-haspopup="true"]').forEach(trigger => {
     const parent = trigger.closest('.group');
-    const dropdown = parent?.querySelector(':scope > div[class*="invisible"]');
-    const arrow = trigger.querySelector('svg');
 
     // Toggle on click for touch/desktop hybrid
     trigger.addEventListener('click', (e) => {
       const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-      trigger.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+      if (window.innerWidth < 1024) return;
+      
+      if (!isExpanded) {
+        e.preventDefault();
+        trigger.setAttribute('aria-expanded', 'true');
+      }
     });
 
-    // Update aria-expanded when dropdown shows/hides via hover
-    parent?.addEventListener('mouseenter', () => {
-      trigger.setAttribute('aria-expanded', 'true');
-    });
-    parent?.addEventListener('mouseleave', () => {
-      trigger.setAttribute('aria-expanded', 'false');
-    });
-    parent?.addEventListener('focusin', () => {
-      trigger.setAttribute('aria-expanded', 'true');
-    });
-    parent?.addEventListener('focusout', () => {
-      // Small delay to check if focus moved to dropdown content
-      setTimeout(() => {
-        if (!parent?.contains(document.activeElement)) {
-          trigger.setAttribute('aria-expanded', 'false');
-        }
-      }, 100);
+    parent?.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
+    parent?.addEventListener('mouseleave', () => trigger.setAttribute('aria-expanded', 'false'));
+    parent?.addEventListener('focusin', () => trigger.setAttribute('aria-expanded', 'true'));
+    parent?.addEventListener('focusout', (e) => {
+      if (!parent?.contains(e.relatedTarget as Node)) {
+        trigger.setAttribute('aria-expanded', 'false');
+      }
     });
   });
-</script>
-<script>
-  // Sticky header animation on scroll
+
+  // --- Sticky Header Logic ---
   const header = document.getElementById('main-header');
-  let isSticky = false;
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const threshold = 100;
-
-    if (scrollY > threshold && !isSticky) {
-      isSticky = true;
-      header?.classList.add('is-sticky');
-    } else if (scrollY <= threshold && isSticky) {
-      isSticky = false;
-      header?.classList.remove('is-sticky');
-    }
-  }, { passive: true });
+  const sentinel = document.getElementById('header-sentinel');
+  
+  if (header && sentinel) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          header.classList.add('is-sticky');
+        } else {
+          header.classList.remove('is-sticky');
+        }
+      });
+    }, {
+      rootMargin: '100px 0px 0px 0px',
+      threshold: 0
+    });
+    observer.observe(sentinel);
+  }
 </script>
 
 <style>

@@ -107,3 +107,7 @@ PUBLIC_SITE_URL        # Canonical URL (https://www.allstarcleaning.ca)
 8. **Add location**: Append to `src/data/locations.ts` — programmatic pages auto-generate at build time.
 9. **Add service**: Create JSON in `src/content/services/`, update `src/data/services.ts` loader array.
 10. **Layouts**: Wrap pages in `BaseLayout.astro` (head + header + footer) or `PageLayout.astro` (adds breadcrumbs + hero).
+
+## Impeccable (Design Anti-Slop)
+Skill installed at `.agents/skills/impeccable/SKILL.md`.  
+`DESIGN.md` + `PRODUCT.md` satisfy the `/teach` prerequisite — skip `/teach`, go straight to `/audit`, `/polish`, `/craft`.

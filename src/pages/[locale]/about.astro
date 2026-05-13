@@ -76,13 +76,13 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
           </div>
 
           <div class="mt-8 lg:hidden">
-            <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-royal-blue px-8 py-4 text-base font-bold text-white transition-all hover:bg-royal-blue-dark hover:shadow-xl w-full justify-center">
+            <a href={`/${locale}/contact`} class="touch-target inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-royal-blue px-8 py-4 text-base font-bold text-text-on-dark transition-all hover:bg-royal-blue-dark hover:shadow-xl w-full justify-center">
               {t.cta.freeQuote}
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             </a>
           </div>
           <div class="mt-8 hidden lg:block">
-            <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-royal-blue px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-royal-blue-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal-blue touch-target">{t.cta.freeQuote}</a>
+            <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 rounded-lg uppercase tracking-wider bg-royal-blue px-8 py-4 text-lg font-semibold text-text-on-dark transition-all hover:bg-royal-blue-dark hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal-blue touch-target">{t.cta.freeQuote}</a>
           </div>
         </div>
 
@@ -112,12 +112,12 @@ const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
             </a>
           </div>
 
-          <div class="fade-in delay-2 rounded-xl bg-royal-blue p-6 text-white shadow-lg">
+          <div class="fade-in delay-2 rounded-xl bg-royal-blue p-6 text-text-on-dark shadow-lg">
             <h2 class="font-heading text-2xl font-bold">{isFr ? 'Nos Valeurs' : 'Our Values'}</h2>
             <ul class="mt-4 space-y-3">
               {cms.values.map((value) => (
                 <li class="flex items-start gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-text-on-dark/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                   <span>{isFr ? value.fr : value.en}</span>
                 </li>
               ))}

@@ -34,6 +34,8 @@ skills/
 download/
 worklog.md
 
+skills-lock.json
+
 # audit / capture scripts
 capture-*.mjs
 capture-*.py

@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-7xl px-4 py-12 sm:py-16">
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <div>
-        <a href={`/${locale}`} class="group flex flex-col items-start gap-4 no-underline text-text-on-dark focus-visible:ring-2 focus-visible:ring-white">
+        <a href={`/${locale}`} class="group flex flex-col items-start gap-4 no-underline text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">
           <img 
             src={s.footerLogo || '/images/logo-light.png'} 
             alt="" 
@@ -24,57 +24,57 @@ const year = new Date().getFullYear();
         </a>
         <p class="mt-4 text-sm leading-relaxed text-text-on-dark-muted">{locale === 'fr' ? s.taglineFr : s.taglineEn}</p>
         <div class="mt-8 flex gap-3">
-          <a href={s.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-white">
+          <a href={s.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-text-on-dark transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-text-on-dark">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href={s.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-white">
+          <a href={s.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-text-on-dark transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-text-on-dark">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
-          <a href={s.tiktokUrl} target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-white">
+          <a href={s.tiktokUrl} target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-text-on-dark transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-text-on-dark">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13.1a8.27 8.27 0 005.58 2.17V11.8a4.83 4.83 0 01-3.77-1.78V6.69h3.77z"/></svg>
           </a>
-          <a href={s.googleUrl} target="_blank" rel="noopener noreferrer" aria-label="Google (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-white">
+          <a href={s.googleUrl} target="_blank" rel="noopener noreferrer" aria-label="Google (opens in new window)" class="hover-lift flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-text-on-dark transition-all duration-200 hover:bg-white/30 hover:scale-110 focus-visible:ring-2 focus-visible:ring-text-on-dark">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           </a>
         </div>
       </div>
       <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">{t.nav.services}</h3>
+        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-on-dark">{t.nav.services}</h3>
         <ul class="space-y-2">
-          {services.map((s) => <li><a href={`/${locale}/services/${s.slug}`} class="text-sm text-text-on-dark-muted transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white">{locale === 'fr' ? s.frName : s.name}</a></li>)}
+          {services.map((s) => <li><a href={`/${locale}/services/${s.slug}`} class="text-sm text-text-on-dark-muted transition-colors duration-200 hover:text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">{locale === 'fr' ? s.frName : s.name}</a></li>)}
         </ul>
       </div>
       <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">{t.footer.contactUs}</h3>
+        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-on-dark">{t.footer.contactUs}</h3>
         <ul class="space-y-4 text-sm text-text-on-dark-muted">
           <li class="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 h-4 w-4 shrink-0 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 h-4 w-4 shrink-0 text-text-on-dark/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             <span class="leading-tight">{locale === 'fr' ? s.addressFr : s.addressEn}</span>
           </li>
           <li class="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <a href={`tel:${s.phoneLink}`} class="text-white/90 no-underline transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white">{s.phone}</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-text-on-dark/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href={`tel:${s.phoneLink}`} class="text-text-on-dark/90 no-underline transition-colors duration-200 hover:text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">{s.phone}</a>
           </li>
           <li class="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <a href={`mailto:${s.email}`} class="text-white/90 no-underline transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white">{s.email}</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-text-on-dark/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <a href={`mailto:${s.email}`} class="text-text-on-dark/90 no-underline transition-colors duration-200 hover:text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">{s.email}</a>
           </li>
         </ul>
       </div>
       <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">{t.footer.hours}</h3>
-        <p class="text-sm text-white/90 leading-relaxed">
+        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-on-dark">{t.footer.hours}</h3>
+        <p class="text-sm text-text-on-dark/90 leading-relaxed">
           {locale === 'fr' ? s.hoursFr : s.hoursEn}
         </p>
       </div>
     </div>
     <div class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-text-on-dark-muted sm:flex-row">
       <p>&copy; {year} All Star Cleaning. {t.footer.copyright}</p>
-      <p class="text-white/50">Built with ❤️ by TrendTok Social</p>
+      <p class="text-text-on-dark/50">Built with ❤️ by TrendTok Social</p>
       <div class="flex gap-4">
-        <a href={`/${locale}/privacy`} class="text-white/80 transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white">{t.footer.privacy}</a>
-        <a href={`/${locale}/terms`} class="text-white/80 transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white">{t.footer.terms}</a>
-        <a href={`/${locale}/sitemap`} class="text-white/80 transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-white">{t.footer.sitemap}</a>
+        <a href={`/${locale}/privacy`} class="text-text-on-dark/80 transition-colors duration-200 hover:text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">{t.footer.privacy}</a>
+        <a href={`/${locale}/terms`} class="text-text-on-dark/80 transition-colors duration-200 hover:text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">{t.footer.terms}</a>
+        <a href={`/${locale}/sitemap`} class="text-text-on-dark/80 transition-colors duration-200 hover:text-text-on-dark focus-visible:ring-2 focus-visible:ring-text-on-dark">{t.footer.sitemap}</a>
       </div>
     </div>
   </div>

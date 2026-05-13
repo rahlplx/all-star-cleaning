@@ -78,7 +78,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
       <h1 class="slide-up font-heading text-3xl font-extrabold uppercase tracking-tight text-text-on-dark sm:text-5xl md:text-6xl lg:text-8xl">
         {isFr ? cms.heroHeadlineFr : cms.heroHeadlineEn}
       </h1>
-      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-lg font-medium text-white/80 sm:text-xl md:text-2xl">
+      <p class="fade-in delay-2 mx-auto mt-6 max-w-2xl text-lg font-medium text-text-on-dark-muted sm:text-xl md:text-2xl">
         {isFr ? cms.heroSubtitleFr : cms.heroSubtitleEn}
       </p>
       
@@ -96,7 +96,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           <!-- Free Estimates -->
           <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 backdrop-blur-md border border-white/20">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-royal-blue-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
           </div>
 
           <!-- Google Rating -->
@@ -113,21 +113,21 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               ))}
             </div>
-            <span class="text-xs font-bold text-white">{cms.googleRating}</span>
+            <span class="text-xs font-bold text-text-on-dark">{cms.googleRating}</span>
           </a>
         </div>
 
         <!-- Bottom Row: Primary Trust -->
         <div class="flex min-w-[200px] items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-2.5 backdrop-blur-md border border-white/20">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-white sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
         </div>
       </div>
     </div>
 
     <!-- Bottom scroll indicator -->
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5"/><path d="m7 6 5 5 5-5"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5"/><path d="m7 6 5 5 5-5"/></svg>
     </div>
   </section>
 
@@ -154,8 +154,8 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
           </div>
           <!-- Floating badge overlay -->
           <div class="absolute -bottom-4 -right-2 sm:right-4 flex items-center gap-2 rounded-xl bg-royal-blue px-4 py-3 shadow-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            <span class="text-sm font-bold text-white">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="text-sm font-bold text-text-on-dark">{isFr ? 'Assuré & Cautionné' : 'Insured & Bonded'}</span>
           </div>
         </div>
 
@@ -248,24 +248,24 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
                   const badge = serviceBadgeMap[service.slug];
                   return (
                     <div class="flex flex-wrap gap-1.5">
-                      <span class:list={['w-fit rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm', badge?.color ?? 'bg-royal-blue/35']}>
+                      <span class:list={['w-fit rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-text-on-dark backdrop-blur-sm', badge?.color ?? 'bg-royal-blue/35']}>
                         {badge ? (isFr ? badge.fr : badge.en) : service.name}
                       </span>
                     </div>
                   );
                 })()}
 
-                <h3 class:list={['font-heading font-bold text-white drop-shadow', isFeatured ? 'text-2xl lg:text-3xl' : 'text-xl']}>
+                <h3 class:list={['font-heading font-bold text-text-on-dark drop-shadow', isFeatured ? 'text-2xl lg:text-3xl' : 'text-xl']}>
                   {isFr ? service.frName : service.name}
                 </h3>
-                <p class="line-clamp-2 text-sm leading-relaxed text-white/80">
+                <p class="line-clamp-2 text-sm leading-relaxed text-text-on-dark-muted">
                   {isFr ? service.frDescription : service.description}
                 </p>
                 {features?.length > 0 && (
                   <ul class="space-y-1">
                     {features.slice(0, isFeatured ? 3 : 2).map((feature: string) => (
-                      <li class="flex items-center gap-2 text-xs text-white/75">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                      <li class="flex items-center gap-2 text-xs text-text-on-dark-muted">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-text-on-dark/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -274,11 +274,11 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
 
                 {/* Frosted glass CTA */}
                 <div class="mt-1 flex w-fit items-center gap-2 rounded-xl border border-white/30 bg-white/15 py-1.5 pl-3 pr-1.5 backdrop-blur-md transition-all duration-300 group-hover:bg-white/25">
-                  <span class="text-xs font-semibold text-white">
+                  <span class="text-xs font-semibold text-text-on-dark">
                     {isFr ? 'En savoir plus' : 'Learn more'}
                   </span>
                   <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border border-white/30 transition-transform duration-300 group-hover:translate-x-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                   </div>
                 </div>
               </div>
@@ -292,19 +292,19 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   <!-- ============================================================ -->
   <!-- TRUST / STATS SECTION — 3 trust pillars in a row -->
   <!-- ============================================================ -->
-  <section class="bg-royal-blue py-10 text-white md:py-14" aria-label={isFr ? 'Preuve de confiance' : 'Trust indicators'}>
+  <section class="bg-royal-blue py-10 text-text-on-dark md:py-14" aria-label={isFr ? 'Preuve de confiance' : 'Trust indicators'}>
     <div class="mx-auto max-w-5xl px-4">
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
         <!-- 5-star rating -->
         <div class="text-center">
-          <div class="text-white/90 text-2xl" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div class="text-text-on-dark/90 text-2xl" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="mt-2 text-2xl font-bold">5/5</p>
           <p class="text-sm text-text-on-dark-muted">{cms.googleReviewCount} {isFr ? cms.statsRatingFr : cms.statsRatingEn}</p>
         </div>
         <!-- Free Estimates -->
         <div class="text-center">
           <div class="text-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-text-on-dark/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
           </div>
           <p class="mt-2 text-2xl font-bold uppercase">{isFr ? 'Gratuit' : 'Free'}</p>
           <p class="text-sm text-text-on-dark-muted">{isFr ? 'Estimations Gratuites' : 'Free Estimates'}</p>
@@ -312,7 +312,7 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
         <!-- 7 days/week -->
         <div class="text-center">
           <div class="text-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-text-on-dark/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <p class="mt-2 text-2xl font-bold">7 <span class="text-base">{isFr ? 'jours' : 'days'}</span></p>
           <p class="text-sm text-text-on-dark-muted">{isFr ? 'Ouvert chaque semaine' : 'Open every day of the week'}</p>
@@ -392,10 +392,10 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
     </div>
     <!-- Content -->
     <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
-      <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-white md:text-4xl">{isFr ? cms.ctaHeadlineFr : cms.ctaHeadlineEn}</h2>
+      <h2 class="heading-subsection slide-up font-heading text-3xl font-bold text-text-on-dark md:text-4xl">{isFr ? cms.ctaHeadlineFr : cms.ctaHeadlineEn}</h2>
       <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl text-text-on-dark-muted">{isFr ? cms.ctaSubtitleFr : cms.ctaSubtitleEn}</p>
       <div class="fade-in delay-4 mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-center">
-        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-royal-blue px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-white shadow-lg transition-all hover:bg-royal-blue-dark hover:shadow-xl">
+        <a href={`/${locale}/contact`} class="touch-target inline-flex items-center rounded-full bg-royal-blue px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-text-on-dark shadow-lg transition-all hover:bg-royal-blue-dark hover:shadow-xl">
           {t.cta.freeQuote}
         </a>
         <a href={`tel:${cms.phoneLink}`} class="touch-target inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 text-lg font-semibold uppercase tracking-wider text-text-on-dark transition-all hover:border-white/60 hover:bg-white/10">
