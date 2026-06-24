@@ -141,3 +141,64 @@ All CTA text imports from `src/data/cta.ts`. No hardcoded strings.
 --color-example: #hexvalue;        /* fallback */
 --color-example: oklch(L C H);    /* modern */
 ```
+
+## Service Page Patterns
+
+### Template Structure (`[serviceSlug].astro`)
+- Grid: `lg:grid-cols-3` — main content (2/3) + sticky sidebar (1/3)
+- Sidebar: `sticky top-24 z-sticky overflow-y-auto overscroll-behavior-contain`
+- Mobile CTA: `lg:hidden` — inline CTA only visible on mobile
+- Snow removal: conditional response time text via `responseTimeText` const
+
+### Content JSON Fields
+```json
+{
+  "slug": "service-name",        // EN slug (used in URLs for both locales)
+  "frSlug": "nom-français",      // UNUSED — orphaned, kept for CMS compat
+  "name": "Service Name",
+  "frName": "Nom du Service",
+  "description": "...",
+  "frDescription": "...",
+  "features": ["..."],
+  "frFeatures": ["..."],
+  "metaTitle": "... | All Star Cleaning",
+  "metaDescription": "...",
+  "cta": "Get a Free Service Quote",    // Sidebar heading
+  "frCta": "Obtenez un Devis Gratuit...",
+  "faqs": [{ "question": "...", "answer": "..." }]
+}
+```
+
+### SEO Schema
+- Service JSON-LD: `src/seo/service-schema.ts` — includes `image` field
+- Breadcrumb JSON-LD: `src/seo/breadcrumb-schema.ts`
+- FAQ JSON-LD: `src/seo/faq-schema.ts`
+- `og:image`: passed per-service via `ogImage` prop to PageLayout
+
+### Bilingual Rules
+- All user-facing text must have EN/FR ternary: `isFr ? frText : enText`
+- French typesetting: non-breaking space before `:` (`\u00A0:`)
+- Snow removal CTA: "4hr response during storms" (not "24hr")
+- Review count: pull from `siteSettings.googleReviewCount` (not hardcoded)
+
+### Touch Target Checklist
+Every `<a>` and `<button>` must have `touch-target` class (min 44×44px):
+- Header nav links, hamburger, phone icon
+- Breadcrumb links
+- Google review badge, Insured & Bonded badge
+- Service CTA buttons (mobile + sidebar)
+- Related service card links
+- Footer service links, phone/email links, legal links
+- FAQ accordion summary
+
+### Transition Rules
+- Never use `transition-all` (except `button.tsx` shared component)
+- Use `transition-colors duration-200` for color changes
+- Use `transition-transform` for scale/rotate
+- `hover-lift` uses `::after` pseudo-element with opacity transition
+- `will-change-transform`: only on actively animated elements, not static hovers
+
+### Glassmorphism Ban
+- No `backdrop-blur` on cards or content areas
+- `backdrop-blur-md` on `StickyBottomCTA` is acceptable (persistent mobile bar)
+- Use solid backgrounds with opacity: `bg-card/95` instead of blur
