@@ -290,9 +290,9 @@
   }
 
   /* Impeccable delight: hover lift with soft shadow — GPU-composited */
-  .hover-lift { position: relative; transition: transform var(--transition-base); will-change: transform; }
+  .hover-lift { position: relative; transition: transform var(--transition-base); }
   .hover-lift::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: var(--shadow-hover); opacity: 0; transition: opacity var(--transition-base); pointer-events: none; }
-  .hover-lift:hover { transform: translateY(-2px); }
+  .hover-lift:hover { transform: translateY(-2px); will-change: transform; }
   .hover-lift:hover::after { opacity: 1; }
 
   /* Impeccable delight: entrance animations */

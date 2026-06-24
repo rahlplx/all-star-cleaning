@@ -5,26 +5,26 @@
   "icon": "lucide:snowflake",
   "name": "Snow Removal",
   "frName": "Déneigement",
-  "description": "Reliable snow removal in Ottawa all winter long. Driveways, walkways, parking lots — we clear it all with 24/7 response during snow events. Seasonal contracts and per-visit pricing available.",
-  "frDescription": "Déneigement fiable à Ottawa tout au long de l'hiver. Allées, trottoirs, stationnements — nous déblayons tout avec une réponse 24/7 lors des événements de neige. Contrats saisonniers et tarifs à la visite disponibles.",
+  "description": "Reliable snow removal in Ottawa all winter long. Driveways, walkways, parking lots — we clear it all with 4hr response during snow events. Seasonal contracts and per-visit pricing available.",
+  "frDescription": "Déneigement fiable à Ottawa tout au long de l'hiver. Allées, trottoirs, stationnements — nous déblayons tout avec une réponse de 4 heures lors des événements de neige. Contrats saisonniers et tarifs à la visite disponibles.",
   "features": [
-    "24/7 storm response",
+    "4hr storm response",
     "Driveways, walkways, parking lots",
     "Seasonal contracts available",
     "De-icing & salting included",
     "GPS-tracked service verification"
   ],
   "frFeatures": [
-    "Réponse aux tempêtes 24/7",
+    "Réponse aux tempêtes de 4 heures",
     "Allées, trottoirs, stationnements",
     "Contrats saisonniers disponibles",
     "Déglaçage et salage inclus",
     "Vérification de service par GPS"
   ],
-  "metaTitle": "Snow Removal Ottawa | All Star Cleaning — 24/7 Winter Service",
-  "metaDescription": "Dependable snow removal in Ottawa. 24/7 storm response, driveways, walkways, parking lots. Seasonal contracts & per-visit pricing. Free quote.",
-  "frMetaTitle": "Déneigement Ottawa | All Star Cleaning — Service Hivernal 24/7",
-  "frMetaDescription": "Déneigement fiable à Ottawa. Réponse aux tempêtes 24/7, allées, trottoirs, stationnements. Contrats saisonniers. Devis gratuit.",
+  "metaTitle": "Snow Removal Ottawa | All Star Cleaning — 4hr Winter Response",
+  "metaDescription": "Dependable snow removal in Ottawa. 4hr storm response, driveways, walkways, parking lots. Seasonal contracts & per-visit pricing. Free quote.",
+  "frMetaTitle": "Déneigement Ottawa | All Star Cleaning — Réponse Hivernale de 4 Heures",
+  "frMetaDescription": "Déneigement fiable à Ottawa. Réponse aux tempêtes de 4 heures, allées, trottoirs, stationnements. Contrats saisonniers. Devis gratuit.",
   "cta": "Get a Free Snow Removal Quote",
   "frCta": "Obtenez un Devis Gratuit de Déneigement",
   "faqs": [
@@ -37,8 +37,8 @@
     {
       "question": "Do you offer 24/7 snow removal service?",
       "frQuestion": "Offrez-vous un service de déneigement 24/7?",
-      "answer": "Yes, we provide 24/7 storm response during snow events. Our GPS-tracked fleet ensures your property is cleared promptly, even during overnight storms.",
-      "frAnswer": "Oui, nous offrons une réponse 24/7 lors des tempêtes de neige. Notre flotte GPS assure un déneigement rapide."
+      "answer": "Yes, we provide 4hr storm response during snow events. Our GPS-tracked fleet ensures your property is cleared promptly, even during overnight storms.",
+      "frAnswer": "Oui, nous offrons une réponse de 4 heures lors des tempêtes de neige. Notre flotte GPS assure un déneigement rapide."
     },
     {
       "question": "What areas of my property do you clear?",

@@ -56,6 +56,7 @@ export interface SiteSettings {
   address: string;
   frAddress: string;
   googleMapsUrl: string;
+  googleReviewCount?: number;
   socialLinks: { facebook: string; instagram: string; tiktok: string; google: string };
 }
 
