@@ -164,7 +164,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 
     <!-- Sidebar CTA -->
     <div class="lg:col-span-1">
-      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-border bg-card p-6">
+      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto overscroll-behavior-contain rounded-xl border border-border bg-card p-6">
         <h3 class="font-heading text-xl font-bold text-midnight-indigo">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
         <p class="mt-2 text-sm text-muted-foreground">{isFr ? service.frCta : service.cta}</p>
         <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full uppercase tracking-wider bg-midnight-indigo px-6 py-4 text-center text-base font-bold text-text-on-dark shadow-lg transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl active:scale-[0.98] touch-target">
