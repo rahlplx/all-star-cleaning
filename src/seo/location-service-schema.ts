@@ -13,6 +13,7 @@ export function getLocationServiceSchema(service: Service, location: Location, l
       ? `${service.frDescription} Desservant ${location.frName} et les environs.`
       : `${service.description} Serving ${location.name} and surrounding areas.`,
     url,
+    image: service.image ? `https://allstarcleaning.ca${service.image}` : undefined,
     provider: {
       '@type': 'HomeAndConstructionBusiness',
       name: 'All Star Cleaning',

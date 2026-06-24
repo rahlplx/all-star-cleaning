@@ -5,6 +5,7 @@ import { services } from '@/data/services';
 import { getServiceSchema, getBreadcrumbSchema, getFAQSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 import siteSettings from '@/content/settings.json';
+import homepageData from '@/content/homepage.json';
 
 export function getStaticPaths() {
   return ['en', 'fr'].flatMap((locale) =>
@@ -58,7 +59,7 @@ const responseTimeText = service.slug === 'snow-removal'
           aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
         >
           <span class="text-midnight-indigo text-sm" role="img" aria-label="5 out of 5 stars"><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-          <span class="text-sm font-bold text-navy">5/5</span>
+          <span class="text-sm font-bold text-navy">{homepageData.googleRating}</span>
           <span class="text-xs text-muted-foreground">{isFr ? `${siteSettings.googleReviewCount} avis Google` : `${siteSettings.googleReviewCount} Google reviews`}</span>
         </a>
         <div class="touch-target flex items-center gap-2 rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20">

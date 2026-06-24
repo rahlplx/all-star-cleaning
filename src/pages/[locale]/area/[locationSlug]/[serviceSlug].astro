@@ -45,6 +45,10 @@ const heroSubtitle = isFr
   ? `${service.frDescription} Desservant ${location.frName} et les environs d'Ottawa.`
   : `${service.description} Serving ${location.name} and surrounding Ottawa areas.`;
 const altSlug = service.slug;  // Both locales use EN slugs in URLs
+
+const responseTimeText = service.slug === 'snow-removal'
+  ? (isFr ? 'Sans engagement · Réponse sous 4h lors des tempêtes' : 'No obligation · Response within 4 hours during storms')
+  : (isFr ? 'Sans engagement · Réponse sous 24h' : 'No obligation · 24hr response');
 ---
 
 <PageLayout
@@ -97,7 +101,7 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
           {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </a>
-        <p class="mt-2 text-center text-sm text-muted-foreground">{isFr ? 'Sans engagement · Réponse sous 24h' : 'No obligation · 24hr response'}</p>
+        <p class="mt-2 text-center text-sm text-muted-foreground">{responseTimeText}</p>
       </div>
 
       <!-- Area Context -->
@@ -164,13 +168,13 @@ const altSlug = service.slug;  // Both locales use EN slugs in URLs
 
     <!-- Sidebar CTA -->
     <div class="lg:col-span-1">
-      <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto overscroll-behavior-contain rounded-xl border border-border bg-card p-6">
+      <div class="lg:sticky lg:top-24 max-h-[calc(100vh-8rem)] overflow-y-auto overscroll-behavior-contain rounded-xl border border-border bg-card p-6">
         <h3 class="font-heading text-xl font-bold text-midnight-indigo">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
         <p class="mt-2 text-sm text-muted-foreground">{isFr ? service.frCta : service.cta}</p>
         <a href={`/${locale}/contact?service=${service.slug}&area=${location.slug}`} class="mt-4 block rounded-full uppercase tracking-wider bg-midnight-indigo px-6 py-4 text-center text-base font-bold text-text-on-dark shadow-lg transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl active:scale-[0.98] touch-target">
           {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
         </a>
-        <p class="mt-2 text-center text-sm text-muted-foreground">{isFr ? 'Sans engagement · Réponse sous 24h' : 'No obligation · 24hr response'}</p>
+        <p class="mt-2 text-center text-sm text-muted-foreground">{responseTimeText}</p>
         <div class="mt-4 border-t border-border pt-4 text-center text-sm text-muted-foreground">
           <a href={`tel:${siteSettings.phoneLink}`} class="inline-flex items-center gap-2 font-semibold text-midnight-indigo hover:text-midnight-indigo-dark touch-target">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
