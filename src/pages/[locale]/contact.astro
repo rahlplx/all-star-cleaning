@@ -17,8 +17,8 @@ const s = siteSettings;
 const web3formsKey = import.meta.env.WEB3FORMS_ACCESS_KEY || '';
 
 const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
-  { label: 'Contact', frLabel: 'Contact', href: `/${locale}/contact` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.contact, frLabel: t.nav.contact, href: `/${locale}/contact` },
 ];
 
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);

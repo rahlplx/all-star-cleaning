@@ -19,8 +19,8 @@ const cms = aboutData;
 const home = homepageData;
 
 const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
-  { label: 'About', frLabel: 'À Propos', href: `/${locale}/about` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.about, frLabel: t.nav.about, href: `/${locale}/about` },
 ];
 
 const founderSchema = getFounderSchema(locale);

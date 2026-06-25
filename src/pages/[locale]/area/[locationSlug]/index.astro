@@ -25,8 +25,8 @@ const t = useTranslations(locale);
 const altLocale = isFr ? 'en' : 'fr';
 
 const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
-  { label: 'Areas', frLabel: 'Régions', href: `/${locale}/area` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.area, frLabel: t.nav.area, href: `/${locale}/area` },
   { label: location.name, frLabel: location.frName, href: `/${locale}/area/${location.slug}` },
 ];
 

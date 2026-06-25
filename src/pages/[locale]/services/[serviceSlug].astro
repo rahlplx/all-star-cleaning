@@ -23,8 +23,8 @@ const isFr = locale === 'fr';
 const t = useTranslations(locale);
 const altLocale = isFr ? 'en' : 'fr';
 const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
-  { label: 'Services', frLabel: 'Services', href: `/${locale}/services` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.services, frLabel: t.nav.services, href: `/${locale}/services` },
   { label: service.name, frLabel: service.frName, href: `/${locale}/services/${service.slug}` },
 ];
 const serviceSchema = getServiceSchema(service, locale, `https://allstarcleaning.ca/${locale}/services/${service.slug}`);

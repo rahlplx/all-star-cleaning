@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import GoogleReviewBadge from '@/components/GoogleReviewBadge.astro';
+import { useTranslations } from '@/i18n/translations';
 import { getReviewSchema, getBreadcrumbSchema } from '@/seo';
 import type { ReviewData } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
@@ -11,6 +12,7 @@ export function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
 }
 const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
 const home = homepageData;
@@ -27,8 +29,8 @@ const allReviews = Object.values(reviewFiles).map((m) => m.default as {
 allReviews.sort((a, b) => b.date.localeCompare(a.date));
 
 const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
-  { label: 'Reviews', frLabel: 'Témoignages', href: `/${locale}/reviews` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.reviews, frLabel: t.nav.reviews, href: `/${locale}/reviews` },
 ];
 
 const aggregateRatingSchema = {

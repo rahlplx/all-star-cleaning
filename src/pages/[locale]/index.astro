@@ -17,7 +17,7 @@ const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
 const howtoSchema = getHowToSchema(locale);
 const homeBreadcrumbSchema = getBreadcrumbSchema([
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
 ], locale);
 const usps = [
   { icon: 'shield', title: t.usps.expertise.title, description: t.usps.expertise.description },

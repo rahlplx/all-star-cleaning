@@ -2,6 +2,7 @@
 // Area directory page — lists all locations organized by zone
 import PageLayout from '@/layouts/PageLayout.astro';
 import { locations } from '@/data/locations';
+import { useTranslations } from '@/i18n/translations';
 import { getBreadcrumbSchema } from '@/seo';
 import type { BreadcrumbItem } from '@/types';
 
@@ -9,25 +10,21 @@ export function getStaticPaths() {
   return [{ params: { locale: 'en' } }, { params: { locale: 'fr' } }];
 }
 const { locale } = Astro.params as { locale: 'en' | 'fr' };
+const t = useTranslations(locale);
 const isFr = locale === 'fr';
 const altLocale = isFr ? 'en' : 'fr';
 
 const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', frLabel: 'Accueil', href: `/${locale}` },
-  { label: 'Areas', frLabel: 'Régions', href: `/${locale}/area` },
+  { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
+  { label: t.nav.area, frLabel: t.nav.area, href: `/${locale}/area` },
 ];
 const breadcrumbSchema = getBreadcrumbSchema(breadcrumbs, locale);
 
-const areaZones = ['Central', 'East', 'West', 'South', 'South-West', 'East-Central', 'South-East'];
-const zoneNames: Record<string, { en: string; fr: string }> = {
-  'Central': { en: 'Central Ottawa', fr: 'Ottawa Centre' },
-  'East': { en: 'East Ottawa', fr: 'Ottawa Est' },
-  'West': { en: 'West Ottawa', fr: 'Ottawa Ouest' },
-  'South': { en: 'South Ottawa', fr: 'Ottawa Sud' },
-  'South-West': { en: 'South-West Ottawa', fr: 'Ottawa Sud-Ouest' },
-  'East-Central': { en: 'East-Central Ottawa', fr: 'Ottawa Est-Centre' },
-  'South-East': { en: 'South-East Ottawa', fr: 'Ottawa Sud-Est' },
-};
+const areaZones = ['Central', 'East', 'West', 'South', 'South-West', 'East-Central', 'South-East'] as const;
+const zoneNameKeys = ['central', 'east', 'west', 'south', 'southWest', 'eastCentral', 'southEast'] as const;
+const zoneNames: Record<string, string> = Object.fromEntries(
+  areaZones.map((zone, i) => [zone, t.area.zones[zoneNameKeys[i]]])
+);
 ---
 
 <PageLayout
@@ -48,10 +45,10 @@ const zoneNames: Record<string, { en: string; fr: string }> = {
     {areaZones.map((zone) => {
       const zoneLocs = locations.filter((l) => l.area === zone);
       if (zoneLocs.length === 0) return null;
-      const zoneLabel = zoneNames[zone] || { en: zone, fr: zone };
+      const zoneLabel = zoneNames[zone] || zone;
       return (
         <div>
-          <h2 class="font-heading text-2xl font-bold text-midnight-indigo">{isFr ? zoneLabel.fr : zoneLabel.en}</h2>
+          <h2 class="font-heading text-2xl font-bold text-midnight-indigo">{zoneLabel}</h2>
           <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {zoneLocs.map((loc) => (
               <a
