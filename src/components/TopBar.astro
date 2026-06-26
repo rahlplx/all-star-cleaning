@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
 const enPath = currentPath.replace(/^\/[a-z]{2}/, '/en');
 const frPath = currentPath.replace(/^\/[a-z]{2}/, '/fr');
 ---
-<div class="brand-gradient text-text-on-dark" role="complementary" aria-label="Contact information">
+<div class="brand-gradient text-text-on-dark">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-1.5 sm:py-2">
     <!-- Left: Hours + Address (desktop) / Hours only (mobile) -->
     <div class="flex items-center gap-3 sm:gap-6 text-xs opacity-90 min-w-0">
@@ -42,25 +42,26 @@ const frPath = currentPath.replace(/^\/[a-z]{2}/, '/fr');
         {t.contact.email}
       </a>
 
-      <!-- Language switcher: Classic Toggle -->
+      <!-- Language switcher -->
       <div class="flex items-center border-l border-text-on-dark/20 pl-4 sm:pl-6">
-        <div class="flex items-center gap-1.5 rounded-full bg-black/20 p-1 border border-text-on-dark/10">
+        <div class="flex items-center gap-1">
           <a 
             href={enPath} 
             class:list={[
-              "touch-target rounded-full px-2 py-0.5 text-xs font-bold uppercase transition-colors duration-200",
-              locale === 'en' ? "bg-text-on-dark text-midnight-indigo shadow-sm" : "text-text-on-dark/60 hover:text-text-on-dark"
+              "touch-target rounded px-3 py-1.5 text-xs font-bold uppercase transition-colors duration-200",
+              locale === 'en' ? "text-text-on-dark" : "text-text-on-dark/50 hover:text-text-on-dark"
             ]}
             lang="en"
             aria-current={locale === 'en' ? 'page' : undefined}
           >
             EN
           </a>
+          <span class="text-text-on-dark/30" aria-hidden="true">|</span>
           <a 
             href={frPath} 
             class:list={[
-              "touch-target rounded-full px-2 py-0.5 text-xs font-bold uppercase transition-colors duration-200",
-              locale === 'fr' ? "bg-text-on-dark text-midnight-indigo shadow-sm" : "text-text-on-dark/60 hover:text-text-on-dark"
+              "touch-target rounded px-3 py-1.5 text-xs font-bold uppercase transition-colors duration-200",
+              locale === 'fr' ? "text-text-on-dark" : "text-text-on-dark/50 hover:text-text-on-dark"
             ]}
             lang="fr"
             aria-current={locale === 'fr' ? 'page' : undefined}

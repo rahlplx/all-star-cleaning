@@ -41,6 +41,7 @@ const zoneNames: Record<string, string> = Object.fromEntries(
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/area/` }]}
   schema={[breadcrumbSchema]}
 >
+  <div class="mx-auto max-w-7xl px-4 md:px-6">
   <div class="space-y-10">
     {areaZones.map((zone) => {
       const zoneLocs = locations.filter((l) => l.area === zone);
@@ -67,5 +68,6 @@ const zoneNames: Record<string, string> = Object.fromEntries(
         </div>
       );
     })}
+  </div>
   </div>
 </PageLayout>
