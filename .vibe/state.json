@@ -1,0 +1,29 @@
+{
+  "project": "all-star-cleaning",
+  "agent": "opencode",
+  "phase": "harness",
+  "step": "production-readiness",
+  "hasUI": true,
+  "startedAt": "2026-06-26T06:00:00Z",
+  "completed": [
+    "vibe:detect",
+    "audit-loop-1: AI tell removal",
+    "audit-loop-2: Hero/trust/CTA consolidation",
+    "audit-loop-3: Component extraction, i18n routing, schema fixes",
+    "audit-loop-4: Service page i18n + visual fixes",
+    "audit-loop-5: Grid/padding/alignment unification"
+  ],
+  "currentTask": "Production readiness gate",
+  "nextSteps": [
+    "Run /vibe:harness to validate 6 mandatory security/prod checks",
+    "Fix any harness failures",
+    "area/index.astro: add container wrapper",
+    "Homepage/about/reviews/contact: verify container consistency"
+  ],
+  "metrics": {
+    "commitCount": 10,
+    "pagesBuilt": 565,
+    "typecheckErrors": 0,
+    "lastBuildTime": "25.86s"
+  }
+}

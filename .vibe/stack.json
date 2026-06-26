@@ -1,0 +1,14 @@
+{
+  "framework": "astro",
+  "version": "6.3.0",
+  "language": "typescript",
+  "styling": "tailwindcss",
+  "build": "npm run build",
+  "dev": "npm run dev",
+  "test": "npm run typecheck",
+  "lint": "",
+  "packageManager": "npm",
+  "hasUI": true,
+  "hasTests": false,
+  "deployment": "cloudflare-pages"
+}

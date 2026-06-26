@@ -6,6 +6,9 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 
+  /* Layout */
+  --header-height: 6rem;
+
   /* === COLOR STRATEGY: Royal Blue & White === */
   /* Blue carries 30-60% of hero/CTA surfaces. Navy anchors. White keeps it clean. */
   /* Neutrals tinted toward blue (hue 255) with chroma 0.005-0.015 */

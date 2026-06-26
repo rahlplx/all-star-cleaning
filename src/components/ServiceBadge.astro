@@ -1,6 +1,6 @@
 ---
-interface Props { label: string; href?: string; variant?: 'default' | 'teal' | 'gold' | 'navy'; }
-const { label, href, variant = 'default' } = Astro.props;
+interface Props { key?: string; label: string; href?: string; variant?: 'default' | 'teal' | 'gold' | 'navy'; }
+const { key: _, label, href, variant = 'default' } = Astro.props;
 const variants = { default: 'bg-off-white text-navy border-border', teal: 'bg-midnight-indigo/10 text-midnight-indigo border-midnight-indigo/20', gold: 'bg-gold/10 text-navy border-gold/20', navy: 'bg-navy/10 text-navy border-navy/20' };
 ---
 {href ? (

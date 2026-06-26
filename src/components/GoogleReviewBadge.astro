@@ -31,7 +31,7 @@ const stars = Array.from({ length: 5 });
     <div class:list={[
       'flex gap-0.5',
       variant === 'bar' ? 'text-text-on-dark/90' : 'text-midnight-indigo',
-    ]} role="img" aria-label="5 out of 5 stars">
+    ]    } role="img" aria-label={`${rating} out of 5 stars`}>
       {stars.map(() => (
         <svg xmlns="http://www.w3.org/2000/svg" class:list={[
           'shrink-0',
@@ -41,7 +41,7 @@ const stars = Array.from({ length: 5 });
     </div>
     {variant === 'bar' ? (
       <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3 w-full">
-        <span class="text-lg font-semibold">{rating}, {isFr ? 'note parfaite' : 'perfect rating'}</span>
+        <span class="text-lg font-semibold">{rating}, {rating === '5' ? (isFr ? 'note parfaite' : 'perfect rating') : (isFr ? 'sur 5' : 'out of 5')}</span>
         <span class="text-sm text-text-on-dark-muted group-hover:text-text-on-dark transition-colors">
           {isFr ? `Basé sur ${reviewCount} avis Google` : `From ${reviewCount} Google reviews`}
         </span>
@@ -59,7 +59,7 @@ const stars = Array.from({ length: 5 });
     variant === 'pill' && 'rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20',
     variant === 'inline' && 'rounded-full bg-midnight-indigo/10 px-4 py-2 border border-midnight-indigo/20',
   ]}>
-    <div class="flex gap-0.5 text-midnight-indigo" role="img" aria-label="5 out of 5 stars">
+    <div class="flex gap-0.5 text-midnight-indigo" role="img" aria-label={`${rating} out of 5 stars`}>
       {stars.map(() => (
         <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       ))}

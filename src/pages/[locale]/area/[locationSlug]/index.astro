@@ -47,6 +47,7 @@ const heroSubtitle = isFr
     ? `Services de nettoyage extérieur professionnels à ${location.frName}, Ottawa. Vitres, gouttières, lavage sous pression, revêtement et déneigement. Devis gratuit.`
     : `Professional exterior cleaning services in ${location.name}, Ottawa. Window, gutter, pressure washing, siding cleaning & snow removal. Free quote.`}
   locale={locale}
+  ogImage="https://allstarcleaning.ca/og-default.jpg"
   breadcrumbs={breadcrumbs}
   heroTitle={heroTitle}
   heroSubtitle={heroSubtitle}
@@ -119,7 +120,7 @@ const heroSubtitle = isFr
             {location.neighbours.map((neighbour) => {
               const loc = locations.find((l) => l.slug === neighbour);
               return loc ? (
-                <ServiceBadge label={isFr ? loc.frName : loc.name} href={`/${locale}/area/${loc.slug}`} variant="teal" />
+                <ServiceBadge key={loc.slug} label={isFr ? loc.frName : loc.name} href={`/${locale}/area/${loc.slug}`} variant="teal" />
               ) : null;
             })}
           </div>
