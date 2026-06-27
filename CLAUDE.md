@@ -64,11 +64,11 @@ npm run typecheck  # Type check via astro check
 
 ### Page Generation
 
-The 440 programmatic pages (`[locationSlug]/[serviceSlug].astro`) are generated at build time from `locations.ts` × `services.ts`. All service slugs are English-only — `frSlug` in service JSON is orphaned and unused, kept only for CMS compatibility.
+The 440 programmatic pages (`src/pages/[locale]/area/[locationSlug]/[serviceSlug].astro`) are generated at build time from `locations.ts` × `services.ts`. All service slugs are English-only — `frSlug` in service JSON is orphaned and unused, kept only for CMS compatibility.
 
 ### i18n Pattern
 
-All user-facing text comes from `src/i18n/translations.ts`. Pages receive `locale` from `Astro.params`, then call `useTranslations(locale)` to get `t`. Bilingual ternaries follow the pattern `isFr ? t.someKey : t.someKey` (or more typically just `t.someKey` since both locales have the key). French typesetting requires a non-breaking space before colons: ` :`.
+All user-facing text comes from `src/i18n/translations.ts`. Pages receive `locale` from `Astro.params`, then call `useTranslations(locale)` to get `t`. UI strings use `t.nav.home`, `t.cta.freeQuote`, etc. — no ternary needed since both locales are keyed the same. CMS content (services, reviews) stores parallel fields accessed via ternary: `isFr ? service.frName : service.name`. French typesetting requires a non-breaking space before colons: ` :`.
 
 ### Layouts
 
@@ -129,8 +129,8 @@ Use generators in `src/seo/` — never hand-write JSON-LD:
 
 ### Mobile Menu
 ```html
-<button aria-label="Open menu" aria-expanded="false" aria-controls="menu-id">
-<div id="menu-id" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+<button aria-label="Open menu" aria-expanded="false" aria-controls="menu-id">...</button>
+<div id="menu-id" role="dialog" aria-modal="true" aria-label="Mobile navigation">...</div>
 ```
 Focus trap + Escape-to-close + restore focus on dismiss.
 
