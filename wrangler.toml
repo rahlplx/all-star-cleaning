@@ -1,5 +1,10 @@
 name = "all-star-cleaning-main-workers"
+pages_build_output_dir = "./dist"
+compatibility_date = "2024-01-01"
 
 [[kv_namespaces]]
 binding = "SESSION"
 id = "9e31056e116d4f38ac9d1bf99fbb3a9d"
+
+[ai]
+binding = "AI"

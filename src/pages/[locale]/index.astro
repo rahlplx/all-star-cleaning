@@ -1,5 +1,4 @@
 ---
-// Dynamic locale homepage — Astro v6
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { services } from '@/data/services';
 import { useTranslations } from '@/i18n/translations';
@@ -19,15 +18,9 @@ const howtoSchema = getHowToSchema(locale);
 const homeBreadcrumbSchema = getBreadcrumbSchema([
   { label: t.nav.home, frLabel: t.nav.home, href: `/${locale}` },
 ], locale);
-const usps = [
-  { icon: 'shield', title: t.usps.expertise.title, description: t.usps.expertise.description },
-  { icon: 'sparkles', title: t.usps.equipment.title, description: t.usps.equipment.description },
-  { icon: 'check-circle', title: t.usps.guarantee.title, description: t.usps.guarantee.description },
-];
 
-
-// CMS-managed content (editable via Keystatic at /keystatic)
 const cms = homepageData;
+const s = siteSettings;
 
 const serviceObjectPosition: Record<string, string> = {
   'window-cleaning':  'object-center',
@@ -35,14 +28,6 @@ const serviceObjectPosition: Record<string, string> = {
   'pressure-washing': 'object-center',
   'siding-cleaning':  'object-center',
   'snow-removal':     'object-center',
-};
-
-const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }> = {
-  'window-cleaning':  { en: 'Streak-Free',       fr: 'Sans Traces',        color: 'bg-sky-500/35' },
-  'gutter-cleaning':  { en: 'Clog Prevention',   fr: 'Anti-Obstruction',   color: 'bg-amber-600/35' },
-  'pressure-washing': { en: 'Deep Clean',        fr: 'Nettoyage Intensif', color: 'bg-emerald-600/35' },
-  'siding-cleaning':  { en: 'Curb Appeal',       fr: 'Façade Propre',      color: 'bg-violet-600/35' },
-  'snow-removal':     { en: 'Winter Ready',      fr: 'Prêt Hiver',         color: 'bg-blue-600/35' },
 };
 ---
 
@@ -54,154 +39,209 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   alternateUrls={[{ locale: altLocale, url: `https://allstarcleaning.ca/${altLocale}/` }]}
   schema={[howtoSchema, homeBreadcrumbSchema]}
 >
-  <!-- ============================================================ -->
-  <!-- HERO SECTION — Full-screen bg image + centered overlay (SHINE layout) -->
-  <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Accueil' : 'Homepage hero'} class="relative flex min-h-[85vh] items-center overflow-hidden md:min-h-screen pt-4 sm:pt-10">
-    <!-- Background image with dark blue overlay -->
-    <div class="absolute inset-0 z-0">
-      <img
-        src={cms.heroImage}
-        alt="All Star Cleaning — sparkling clean Ottawa home"
-        width="1344"
-        height="768"
-        class="h-full w-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-midnight-indigo-dark/55 via-midnight-indigo-dark/45 to-midnight-indigo-dark/60"></div>
-    </div>
 
-    <!-- Asymmetric hero content: left-aligned -->
-    <div class="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 w-full">
+  <!-- ============================================================ -->
+  <!-- HERO — Video (desktop) / Poster (mobile), bold editorial -->
+  <!-- ============================================================ -->
+  <section
+    aria-label={isFr ? 'Accueil' : 'Homepage hero'}
+    class="relative flex min-h-dvh items-center overflow-hidden"
+  >
+    <!-- Desktop video background -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster={cms.heroImage}
+      class="absolute inset-0 h-full w-full object-cover hidden md:block"
+      aria-hidden="true"
+    >
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <!-- Mobile: poster image -->
+    <img
+      src={cms.heroImage}
+      alt=""
+      width="800"
+      height="1066"
+      class="absolute inset-0 h-full w-full object-cover md:hidden"
+      loading="eager"
+      aria-hidden="true"
+    />
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/55 to-ink/75"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
       <div class="max-w-2xl">
-        <h1 class="slide-up font-heading heading-display uppercase tracking-tight text-text-on-dark">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-widest text-white/60">
+          {isFr ? "Ottawa's #1 — Nettoyage Extérieur" : "Ottawa's #1 — Exterior Cleaning"}
+        </p>
+        <h1
+          class="font-heading font-semibold text-white"
+          style="font-size: clamp(2.25rem, 6vw, 4.5rem); line-height: 1.08; letter-spacing: -0.02em;"
+        >
           {isFr ? cms.heroHeadlineFr : cms.heroHeadlineEn}
         </h1>
-        <p class="fade-in delay-2 mt-6 max-w-xl text-lg font-medium text-text-on-dark-muted sm:text-xl md:text-2xl">
+        <p class="mt-6 text-lg text-white/75 sm:text-xl" style="max-width: 42ch;">
           {isFr ? cms.heroSubtitleFr : cms.heroSubtitleEn}
         </p>
-        
-        <div class="fade-in delay-4 mt-8 flex flex-col items-start gap-4 sm:flex-row">
-          <a href={`/${locale}/contact`} class="touch-target group inline-flex w-full items-center justify-center gap-3 rounded-full bg-card px-10 py-4 text-lg font-bold uppercase tracking-wider text-midnight-indigo shadow-2xl transition-transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 sm:w-auto">
-            {isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+
+        <!-- CTA row -->
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a
+            href={`/${locale}/contact`}
+            class="touch-target inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-brand shadow-sm transition-colors duration-200 hover:bg-surface-soft active:scale-95 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
+          >
+            {t.cta.freeQuote}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <a
+            href={`tel:${s.phoneLink}`}
+            class="touch-target inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/20 active:scale-95 focus-visible:ring-2 focus-visible:ring-white"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            {s.phone}
           </a>
         </div>
 
-        <!-- Trust badges (Left-aligned for asymmetric balance) -->
-        <div class="fade-in delay-5 mt-12 flex flex-col items-start gap-3">
-          <div class="flex flex-wrap items-center gap-3">
-            <!-- Free Estimates -->
-            <div class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-amber-500/10 px-4 py-2.5 border border-amber-500/20">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-              <span class="text-[11px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{isFr ? 'Devis Gratuits' : 'Free Estimates'}</span>
+        <!-- Trust badges -->
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="text-xs font-medium text-white/90">{t.trust.insured}</span>
+          </div>
+          <a
+            href={s.googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="touch-target flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white"
+            aria-label={isFr ? `${cms.googleReviewCount} avis Google — ouvre une nouvelle fenêtre` : `${cms.googleReviewCount} Google reviews — opens new window`}
+          >
+            <div class="flex gap-0.5 text-amber-400" role="img" aria-label="5 out of 5 stars">
+              {[...Array(5)].map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
             </div>
-
-            <!-- Google Rating -->
-            <a 
-              href={siteSettings.googleUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="flex min-w-[150px] items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-3 border border-white/20 transition-transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 touch-target"
-              aria-label={isFr ? 'Voir nos avis Google (ouvre une nouvelle fenêtre)' : 'See our Google Reviews (opens in new window)'}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c3.11 0 5.72-1.03 7.63-2.77l-3.57-2.77c-1.01.68-2.31 1.09-4.06 1.09-3.13 0-5.78-2.11-6.73-4.96H2.62v2.87C4.52 20.38 8.04 23 12 23z" fill="#34A853"/><path d="M5.27 13.59c-.24-.71-.38-1.47-.38-2.27 0-.79.14-1.55.38-2.26V6.19H2.62C1.81 7.82 1.35 9.66 1.35 11.62c0 1.96.46 3.8 1.27 5.43l2.65-2.07z" fill="#FBBC05"/><path d="M12 4.39c1.7 0 3.22.58 4.42 1.73l3.31-3.31C17.71 1.05 15.09 0 12 0 8.04 0 4.52 2.62 2.62 6.19l3.3 2.57C6.88 6.5 9.53 4.39 12 4.39z" fill="#EA4335"/></svg>
-              <div class="flex text-gold" role="img" aria-label="5 out of 5 stars">
-                {[...Array(5)].map(() => (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                ))}
-              </div>
-              <span class="text-xs font-bold text-text-on-dark">{cms.googleRating}</span>
-            </a>
-          </div>
-
-          <!-- Primary Trust -->
-          <div class="flex min-w-[200px] items-center justify-center gap-2 rounded-full bg-emerald-500/10 px-6 py-2.5 border border-emerald-500/20">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            <span class="text-[11px] font-bold uppercase tracking-widest text-text-on-dark sm:text-xs">{t.trust.insured}</span>
-          </div>
+            <span class="text-xs font-medium text-white/90">{cms.googleRating} · {cms.googleReviewCount} {isFr ? cms.statsRatingFr : cms.statsRatingEn}</span>
+          </a>
         </div>
       </div>
     </div>
-
-
   </section>
 
   <!-- ============================================================ -->
-  <!-- USP SECTION — Image + feature cards split layout -->
+  <!-- CORAL SIGNATURE CARD — Full-bleed differentiator -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Pourquoi nous choisir' : 'Why choose us'} class="relative z-0 bg-card pt-16 pb-8 md:pt-20 md:pb-10 lg:pt-24 lg:pb-12" style="content-visibility: auto; contain-intrinsic-size: 0 600px">
-    <div class="mx-auto max-w-7xl px-4 md:px-6">
-      <!-- Decorative blue accent line -->
-      <div class="mb-10 h-px w-full bg-midnight-indigo/20 md:mb-12"></div>
+  <section class="bg-signature-coral" aria-label={isFr ? "Notre différence" : "Our difference"}>
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:flex lg:items-center lg:justify-between lg:gap-16 lg:py-20 lg:px-8">
+      <div class="max-w-xl">
+        <p class="text-[11px] font-semibold uppercase tracking-widest text-white/60 mb-3">
+          {isFr ? "Pourquoi All Star" : "Why All Star"}
+        </p>
+        <h2
+          class="font-heading font-semibold text-white"
+          style="font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.02em;"
+        >
+          {isFr ? "Ottawa aime un extérieur propre. Nous l'assurons." : "Ottawa loves a clean exterior. We make it happen."}
+        </h2>
+        <p class="mt-4 text-base text-white/75 leading-relaxed" style="max-width: 44ch;">
+          {isFr
+            ? "Service local, équipement professionnel, garantie de satisfaction — chaque fois."
+            : "Local service, professional equipment, satisfaction guarantee — every single time."}
+        </p>
+      </div>
+      <div class="mt-8 flex flex-col gap-3 lg:mt-0 lg:shrink-0">
+        <a
+          href={`/${locale}/contact`}
+          class="touch-target inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 bg-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/25 active:scale-95 focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {t.cta.freeQuote}
+        </a>
+        <a
+          href={`/${locale}/about`}
+          class="touch-target inline-flex items-center justify-center gap-1 text-sm font-medium text-white/70 transition-colors hover:text-white"
+        >
+          {isFr ? "Notre histoire" : "Our story"}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-        <!-- Left column: Image of team at work -->
-        <div class="fade-in relative z-0 order-2 lg:order-1">
-          <div class="overflow-hidden rounded-2xl shadow-lg">
-            <img
-              src={cms.teamImage}
-              alt={isFr ? "L'équipe All Star Cleaning au travail à Ottawa" : 'All Star Cleaning crew at work in Ottawa'}
-              width="1344"
-              height="768"
-              class="h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
+  <!-- ============================================================ -->
+  <!-- USP SECTION — White canvas, image + feature cards -->
+  <!-- ============================================================ -->
+  <section
+    aria-label={isFr ? 'Pourquoi nous choisir' : 'Why choose us'}
+    class="bg-canvas"
+    style="padding-top: var(--space-section); padding-bottom: var(--space-section);"
+  >
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <!-- Image -->
+        <div class="overflow-hidden rounded-lg shadow-md">
+          <img
+            src={cms.teamImage}
+            alt={isFr ? "L'équipe All Star Cleaning au travail à Ottawa" : 'All Star Cleaning crew at work in Ottawa'}
+            width="800"
+            height="600"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
         </div>
 
-        <!-- Right column: Text + feature cards -->
-        <div class="order-1 lg:order-2">
-          <h2 class="heading-section slide-up font-heading font-bold text-midnight-indigo">
-            {isFr ? 'Pourquoi Choisir All Star?' : 'Why Choose All Star?'}
+        <!-- Text + cards -->
+        <div>
+          <p class="text-[11px] font-semibold uppercase tracking-widest text-brand mb-3">
+            {isFr ? "Notre approche" : "Our approach"}
+          </p>
+          <h2
+            class="font-heading font-semibold text-ink"
+            style="font-size: clamp(1.5rem, 3.5vw, 2.5rem); line-height: 1.15; letter-spacing: -0.02em;"
+          >
+            {isFr ? 'Pourquoi choisir All Star ?' : 'Why choose All Star?'}
           </h2>
-          <p class="fade-in delay-2 mt-4 measure text-lg text-muted-foreground">
+          <p class="mt-4 text-base text-ink/60 leading-relaxed" style="max-width: 44ch;">
             {isFr
-              ? "Expertise locale, équipement de qualité professionnelle et une garantie de satisfaction sans tracas: c'est ce qui nous distingue à Ottawa."
-              : 'Local expertise, professional-grade equipment, and a hassle-free satisfaction guarantee: that\'s what sets us apart in Ottawa.'}
+              ? "Expertise locale, équipement professionnel et garantie sans tracas."
+              : 'Local expertise, professional gear, and a hassle-free guarantee.'}
           </p>
 
-          <!-- Feature cards stacked -->
-          <div class="mt-8 flex flex-col gap-4">
-            {usps.map((usp) => (
-              <div class:list={[
-                'fade-in rounded-xl border p-5 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5',
-                usp.icon === 'shield' ? 'bg-emerald-subtle border-green-500/20' : 
-                usp.icon === 'sparkles' ? 'bg-sky-subtle border-sky-500/20' : 
-                'bg-amber-subtle border-amber-500/20'
-              ]}>
-                <div class:list={[
-                  'flex h-10 w-10 shrink-0 items-center justify-center rounded-full',
-                  usp.icon === 'shield' ? 'bg-green-500/10 text-green-600' : 
-                  usp.icon === 'sparkles' ? 'bg-sky-500/10 text-sky-600' : 
-                  'bg-amber-500/10 text-amber-600'
-                ]}>
-                  {usp.icon === 'shield' && (
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  )}
-                  {usp.icon === 'sparkles' && (
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-                  )}
-                  {usp.icon === 'check-circle' && (
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-                  )}
-                </div>
-                <div>
-                  <h3 class:list={[
-                    'font-heading text-base font-semibold',
-                    usp.icon === 'shield' ? 'text-green-800' : 
-                    usp.icon === 'sparkles' ? 'text-sky-800' : 
-                    'text-amber-800'
-                  ]}>{usp.title}</h3>
-                  <p class="mt-1 measure text-base leading-relaxed text-muted-foreground">{usp.description}</p>
-                </div>
+          <div class="mt-8 flex flex-col gap-3">
+            <div class="flex items-start gap-4 rounded-lg border border-hairline bg-surface-soft p-4">
+              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand/10 text-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
-            ))}
+              <div>
+                <h3 class="text-sm font-semibold text-ink">{isFr ? "Expertise Locale" : "Local Expertise"}</h3>
+                <p class="mt-1 text-sm text-ink/60 leading-relaxed">{isFr ? "Spécialistes des hivers ottawiens — gouttières, vitres et revêtements." : "Specialists in Ottawa winters — gutters, windows, siding."}</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 rounded-lg border border-hairline bg-surface-soft p-4">
+              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand/10 text-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-ink">{isFr ? "Équipement Professionnel" : "Professional Equipment"}</h3>
+                <p class="mt-1 text-sm text-ink/60 leading-relaxed">{isFr ? "Aspirateurs spécialisés, caméras de gouttières, laveuses haute pression sécurisées." : "Specialized vacuums, gutter cameras, safe pressure washers."}</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 rounded-lg border border-hairline bg-surface-soft p-4">
+              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand/10 text-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-ink">{isFr ? "Garantie Sans Tracas" : "Hassle-Free Guarantee"}</h3>
+                <p class="mt-1 text-sm text-ink/60 leading-relaxed">{isFr ? "100% satisfaction promise. Pas satisfait ? Nous revenons sans frais." : "100% satisfaction. Not happy? We come back at no charge."}</p>
+              </div>
+            </div>
           </div>
 
-          <a href={`/${locale}/contact`} class="group fade-in delay-3 mt-8 inline-flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold text-midnight-indigo transition-colors hover:bg-midnight-indigo/5 hover:text-midnight-indigo-dark focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 touch-target">
-            {isFr ? 'Obtenez votre devis gratuit' : 'Get your free quote'}
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          <a href={`/${locale}/contact`} class="touch-target mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand transition-colors hover:text-brand-active focus-visible:ring-2 focus-visible:ring-brand rounded-md">
+            {t.cta.freeQuote}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </a>
         </div>
       </div>
@@ -209,32 +249,44 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
   </section>
 
   <!-- ============================================================ -->
-  <!-- SERVICES SECTION — Varied grid with featured first card -->
+  <!-- SERVICES GRID — White canvas -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Nos services' : 'Our services'} class="border-t border-midnight-indigo/10 bg-background pt-8 pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-24" style="content-visibility: auto; contain-intrinsic-size: 0 800px">
-    <div class="mx-auto max-w-7xl px-4 md:px-6">
-      <div class="text-center">
-        <h2 class="heading-subsection slide-up font-heading font-bold text-midnight-indigo">{isFr ? 'Nos Services' : 'Our Services'}</h2>
-        <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Des fenêtres étincelantes aux allées déneigées, nous couvrons tout Ottawa." : "From sparkling windows to snow-free driveways, we've got Ottawa covered."}</p>
+  <section
+    aria-label={isFr ? 'Nos services' : 'Our services'}
+    class="border-t border-hairline bg-canvas"
+    style="padding-top: var(--space-section); padding-bottom: var(--space-section);"
+  >
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-12 flex items-end justify-between gap-6">
+        <div>
+          <p class="text-[11px] font-semibold uppercase tracking-widest text-brand mb-2">
+            {isFr ? "Ce que nous faisons" : "What we do"}
+          </p>
+          <h2
+            class="font-heading font-semibold text-ink"
+            style="font-size: clamp(1.5rem, 3.5vw, 2.5rem); line-height: 1.15; letter-spacing: -0.02em;"
+          >
+            {isFr ? 'Nos Services' : 'Our Services'}
+          </h2>
+        </div>
+        <a href={`/${locale}/services`} class="touch-target shrink-0 rounded-md border border-hairline px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-brand hover:text-brand focus-visible:ring-2 focus-visible:ring-brand hidden sm:inline-flex">
+          {isFr ? "Tous les services" : "All services"}
+        </a>
       </div>
-      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, i) => {
           const imgSrc = service.image || `/images/${service.slug}.jpg`;
           const isFeatured = i === 0;
-          const features = isFr ? service.frFeatures : service.features;
           return (
             <a
               href={`/${locale}/services/${service.slug}`}
               class:list={[
-                'group relative overflow-hidden rounded-2xl transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl',
-                isFeatured
-                  ? 'md:col-span-2 lg:col-span-2 aspect-[4/3] md:aspect-[16/9] lg:aspect-[8/3]'
-                  : i === 1
-                  ? 'aspect-[4/3] lg:aspect-auto'
-                  : 'aspect-[4/3]',
+                'group relative overflow-hidden rounded-lg transition-transform duration-200 hover:scale-[1.01] hover:shadow-lg',
+                isFeatured ? 'md:col-span-2 lg:col-span-2' : '',
               ]}
+              style={isFeatured ? 'aspect-ratio: 16/7' : 'aspect-ratio: 4/3'}
             >
-              {/* Full-bleed image */}
               <img
                 src={imgSrc}
                 alt={isFr ? service.frName : service.name}
@@ -243,132 +295,223 @@ const serviceBadgeMap: Record<string, { en: string; fr: string; color: string }>
                 class:list={['absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', serviceObjectPosition[service.slug] ?? 'object-center']}
                 loading={i < 2 ? 'eager' : 'lazy'}
               />
-
-              {/* Gradient overlay — show image, text shadow for readability */}
-              <div class="absolute inset-0 bg-gradient-to-t from-midnight-indigo-dark/70 via-midnight-indigo-dark/50 to-transparent" />
-
-              {/* Content anchored to bottom */}
-              <div class="absolute bottom-0 left-0 right-0 flex flex-col gap-2 p-4 md:p-5">
-                {/* Badges row */}
-                {(() => {
-                  const badge = serviceBadgeMap[service.slug];
-                  return (
-                    <div class="flex flex-wrap gap-1.5">
-                      <span class:list={['w-fit rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-text-on-dark', badge?.color ?? 'bg-midnight-indigo/35']}>
-                        {badge ? (isFr ? badge.fr : badge.en) : service.name}
-                      </span>
-                    </div>
-                  );
-                })()}
-
-                <h3 class:list={['font-heading font-bold text-text-on-dark text-shadow', isFeatured ? 'text-lg lg:text-xl' : 'text-lg']}>
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-transparent" />
+              <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                <h3 class="font-heading text-base font-semibold text-white">
                   {isFr ? service.frName : service.name}
                 </h3>
-                <p class="line-clamp-2 text-sm leading-relaxed text-text-on-dark-muted text-shadow">
+                <p class="mt-1 line-clamp-2 text-sm text-white/70">
                   {isFr ? service.frDescription : service.description}
                 </p>
-                {features?.length > 0 && (
-                  <ul class="space-y-1">
-                    {features.slice(0, isFeatured ? 3 : 2).map((feature: string) => (
-                      <li class="flex items-center gap-2 text-xs text-text-on-dark-muted text-shadow">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-text-on-dark/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* CTA pill — solid background */}
-                <div class:list={[
-                  'mt-1 flex w-fit items-center gap-2 rounded-xl py-1.5 pl-3 pr-1.5 transition-colors duration-300 group-hover:bg-white/25',
-                  serviceBadgeMap[service.slug]?.color?.replace('bg-', 'bg-').replace('/35', '/20') || 'bg-white/15'
-                ]}>
-                  <span class="text-xs font-semibold text-text-on-dark">
-                    {t.ui.learnMore}
-                  </span>
-                  <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:translate-x-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-text-on-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-                  </div>
-                </div>
+                <span class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-white/80 group-hover:text-white transition-colors">
+                  {t.ui.learnMore}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </span>
               </div>
             </a>
           );
         })}
       </div>
+
+      <div class="mt-8 text-center sm:hidden">
+        <a href={`/${locale}/services`} class="touch-target inline-flex rounded-md border border-hairline px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-brand hover:text-brand focus-visible:ring-2 focus-visible:ring-brand">
+          {isFr ? "Tous les services" : "All services"}
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- TRUST / TESTIMONIAL SECTION — Real customer quote -->
+  <!-- DARK NAVY SIGNATURE CARD — CTA conversion section -->
   <!-- ============================================================ -->
-  <section class="bg-midnight-indigo py-16 text-text-on-dark md:py-20" aria-label={isFr ? 'Témoignage client' : 'Customer testimonial'} style="content-visibility: auto; contain-intrinsic-size: 0 400px">
-    <div class="mx-auto max-w-3xl px-4 text-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-text-on-dark/30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-      <blockquote class="mt-6 text-xl font-medium leading-relaxed text-text-on-dark sm:text-2xl">
-        {isFr
-          ? "Service exceptionnel ! Ils ont nettoyé nos gouttières et fenêtres en une seule visite. L'équipe était ponctuelle, professionnelle et a tout laissé impeccable."
-          : "Outstanding service! They cleaned our gutters and windows in a single visit. The crew was on time, professional, and left everything spotless."}
-      </blockquote>
-      <p class="mt-6 text-sm text-text-on-dark-muted">
-        — Sarah Mitchell, {isFr ? 'Nettoyage de gouttières' : 'Gutter Cleaning'}
+  <section class="bg-surface-dark" aria-label={isFr ? 'Contactez-nous' : 'Contact us'}>
+    <div class="mx-auto max-w-7xl px-6 py-16 text-center lg:py-20 lg:px-8">
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-white/40 mb-4">
+        {isFr ? "Passons à l'action" : "Let's get started"}
       </p>
-      <div class="mt-4 flex items-center justify-center gap-1 text-amber-surface" role="img" aria-label="5 out of 5 stars">
+      <h2
+        class="font-heading font-semibold text-white mx-auto"
+        style="font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 20ch;"
+      >
+        {isFr ? cms.ctaHeadlineFr : cms.ctaHeadlineEn}
+      </h2>
+      <p class="mt-4 text-base text-white/60 mx-auto" style="max-width: 44ch;">
+        {isFr ? cms.ctaSubtitleFr : cms.ctaSubtitleEn}
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a
+          href={`/${locale}/contact`}
+          class="touch-target inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-active active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-surface-dark"
+        >
+          {t.cta.freeQuote}
+        </a>
+        <a
+          href={`tel:${s.phoneLink}`}
+          class="touch-target inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/15 active:scale-95 focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {s.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TESTIMONIAL — Cream signature card -->
+  <!-- ============================================================ -->
+  <section class="bg-signature-cream" aria-label={isFr ? 'Témoignage client' : 'Customer testimonial'}>
+    <div class="mx-auto max-w-3xl px-6 py-16 text-center lg:py-20 lg:px-8">
+      <div class="flex justify-center gap-0.5 text-amber-500 mb-6" role="img" aria-label="5 out of 5 stars">
         {[...Array(5)].map(() => (
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         ))}
       </div>
-      <p class="mt-2 text-[11px] text-text-on-dark-muted sm:text-xs">{isFr ? `${cms.googleReviewCount} avis Google vérifiés` : `${cms.googleReviewCount} verified Google reviews`}</p>
+      <blockquote
+        class="font-heading font-medium text-ink"
+        style="font-size: clamp(1.125rem, 2.5vw, 1.5rem); line-height: 1.5; max-width: 38ch; margin: 0 auto;"
+      >
+        &ldquo;{isFr
+          ? "Service exceptionnel ! Ils ont nettoyé nos gouttières et fenêtres en une seule visite. L'équipe était ponctuelle, professionnelle et a tout laissé impeccable."
+          : "Outstanding service! They cleaned our gutters and windows in a single visit. The crew was on time, professional, and left everything spotless."}&rdquo;
+      </blockquote>
+      <p class="mt-6 text-sm text-ink/60">
+        — Sarah Mitchell, {isFr ? 'Nettoyage de gouttières · Ottawa' : 'Gutter Cleaning · Ottawa'}
+      </p>
+      <p class="mt-2 text-xs text-ink/40">
+        {isFr ? `${cms.googleReviewCount} avis Google vérifiés` : `${cms.googleReviewCount} verified Google reviews`}
+      </p>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- HOW IT WORKS SECTION — 3-step process with before/after image -->
+  <!-- HOW IT WORKS — White canvas, 3-step -->
   <!-- ============================================================ -->
-  <section aria-label={isFr ? 'Comment ça marche' : 'How it works'} class="py-16 md:py-20 lg:py-24" style="content-visibility: auto; contain-intrinsic-size: 0 700px">
-    <div class="mx-auto max-w-7xl px-4 md:px-6">
-      <div class="text-center">
-        <h2 class="heading-subsection slide-up font-heading font-bold text-midnight-indigo">{isFr ? 'Comment Ça Marche' : 'How It Works'}</h2>
-        <p class="fade-in delay-2 mx-auto mt-4 max-w-2xl measure text-muted-foreground">{isFr ? "Obtenez un extérieur impeccable en trois étapes simples. C'est aussi facile que ça." : 'Get a spotless exterior in three simple steps. It\'s that easy.'}</p>
+  <section
+    aria-label={isFr ? 'Comment ça marche' : 'How it works'}
+    class="bg-canvas border-t border-hairline"
+    style="padding-top: var(--space-section); padding-bottom: var(--space-section);"
+  >
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-[11px] font-semibold uppercase tracking-widest text-brand mb-2">
+          {isFr ? "Simple & rapide" : "Simple & fast"}
+        </p>
+        <h2
+          class="font-heading font-semibold text-ink"
+          style="font-size: clamp(1.5rem, 3.5vw, 2.5rem); line-height: 1.15; letter-spacing: -0.02em;"
+        >
+          {isFr ? 'Comment Ça Marche' : 'How It Works'}
+        </h2>
+        <p class="mt-4 text-base text-ink/60 mx-auto" style="max-width: 44ch;">
+          {isFr ? "Un extérieur impeccable en trois étapes." : 'A spotless exterior in three simple steps.'}
+        </p>
       </div>
 
-      <!-- 3-step process -->
-      <div class="mt-12 grid gap-8 md:grid-cols-3">
-        <!-- Step 1 -->
-        <div class="fade-in text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 border-2 border-sky-500/20">
-            <span class="font-heading text-3xl font-bold">1</span>
+      <div class="grid gap-8 md:grid-cols-3">
+        {[
+          {
+            num: '1',
+            en: { h: 'Get a Free Quote', p: 'Call or fill out our form. We respond within 24 hours with a no-obligation estimate.' },
+            fr: { h: 'Obtenez un Devis', p: 'Appelez ou remplissez notre formulaire. Réponse sous 24 heures.' },
+          },
+          {
+            num: '2',
+            en: { h: 'We Do the Work', p: 'Our crew arrives on time with premium equipment and treats your home with care.' },
+            fr: { h: 'Nous Faisons le Travail', p: "Notre équipe arrive à l'heure avec de l'équipement professionnel." },
+          },
+          {
+            num: '3',
+            en: { h: 'Enjoy the Result', p: 'Sparkling windows, clean gutters, fresh driveways — 100% satisfaction guaranteed.' },
+            fr: { h: 'Profitez du Résultat', p: 'Vitres étincelantes, gouttières propres — satisfaction garantie à 100%.' },
+          },
+        ].map((step) => (
+          <div class="text-center">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-brand/10 text-brand">
+              <span class="font-heading text-2xl font-semibold">{step.num}</span>
+            </div>
+            <h3 class="mt-5 font-heading text-base font-semibold text-ink">
+              {isFr ? step.fr.h : step.en.h}
+            </h3>
+            <p class="mt-2 text-sm text-ink/60 leading-relaxed mx-auto" style="max-width: 28ch;">
+              {isFr ? step.fr.p : step.en.p}
+            </p>
           </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-sky-900">{isFr ? 'Obtenez un Devis Gratuit' : 'Get a Free Quote'}</h3>
-          <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Appelez-nous ou remplissez notre formulaire en ligne. Nous vous répondons sous 24 heures avec un devis gratuit et sans engagement." : 'Call us or fill out our online form. We respond within 24 hours with a free, no-obligation quote.'}</p>
-        </div>
-        <!-- Step 2 -->
-        <div class="fade-in delay-1 text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-midnight-indigo/10 text-midnight-indigo border-2 border-midnight-indigo/20">
-            <span class="font-heading text-3xl font-bold">2</span>
-          </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-midnight-indigo">{isFr ? 'Nous Faisons le Travail' : 'We Do the Work'}</h3>
-          <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Notre équipe professionnelle arrive à l'heure, utilise un équipement de qualité et traite votre maison avec soin. Aucun dégât, aucun désordre." : 'Our professional crew arrives on time, uses premium equipment, and treats your home with care. No damage, no mess.'}</p>
-        </div>
-        <!-- Step 3 -->
-        <div class="fade-in delay-2 text-center">
-          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 border-2 border-emerald-500/20">
-            <span class="font-heading text-3xl font-bold">3</span>
-          </div>
-          <h3 class="mt-5 font-heading text-lg font-semibold text-emerald-900">{isFr ? 'Appréciez le Résultat' : 'Enjoy the Result'}</h3>
-          <p class="mt-2 measure text-base text-muted-foreground">{isFr ? "Vitres étincelantes, gouttières propres, allées comme neuves. Et si vous n'êtes pas satisfait à 100%, nous revenons sans frais." : 'Sparkling windows, clean gutters, driveways like new. And if you\'re not 100% satisfied, we come back at no charge.'}</p>
-        </div>
+        ))}
       </div>
 
-      <!-- Before/After image -->
-      <div class="fade-in delay-3 mt-14 overflow-hidden rounded-2xl shadow-lg">
+      <div class="mt-12 overflow-hidden rounded-lg shadow-sm">
         <img
           src={cms.beforeAfterImage}
           alt={isFr ? 'Résultats avant et après le nettoyage extérieur' : 'Before and after exterior cleaning results'}
           width="1344"
-          height="768"
+          height="480"
           class="h-full w-full object-cover"
           loading="lazy"
         />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOREST SIGNATURE CARD — Service areas -->
+  <!-- ============================================================ -->
+  <section class="bg-signature-forest" aria-label={isFr ? 'Zones desservies' : 'Service areas'}>
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:flex lg:items-center lg:justify-between lg:gap-16 lg:py-20 lg:px-8">
+      <div class="max-w-xl">
+        <p class="text-[11px] font-semibold uppercase tracking-widest text-white/50 mb-3">
+          {isFr ? "44 secteurs" : "44 communities"}
+        </p>
+        <h2
+          class="font-heading font-semibold text-white"
+          style="font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.02em;"
+        >
+          {isFr ? "Nous desservons tout Ottawa." : "Serving all of Ottawa."}
+        </h2>
+        <p class="mt-4 text-base text-white/70 leading-relaxed" style="max-width: 44ch;">
+          {isFr
+            ? "Barrhaven, Kanata, Nepean, Gloucester, Orléans, Stittsville, Manotick et plus encore."
+            : "Barrhaven, Kanata, Nepean, Gloucester, Orleans, Stittsville, Manotick, and more."}
+        </p>
+      </div>
+      <div class="mt-8 flex flex-col items-start gap-3 lg:mt-0 lg:shrink-0">
+        <a
+          href={`/${locale}/area`}
+          class="touch-target inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/20 active:scale-95 focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {isFr ? "Voir tous les secteurs" : "See all service areas"}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- LIGHT CTA BAND — Near-footer conversion -->
+  <!-- ============================================================ -->
+  <section class="bg-surface-strong" aria-label={isFr ? "Obtenez votre devis" : "Get your quote"}>
+    <div class="mx-auto max-w-7xl px-6 py-14 text-center lg:px-8">
+      <h2
+        class="font-heading font-semibold text-ink"
+        style="font-size: clamp(1.25rem, 3vw, 2rem); line-height: 1.2; letter-spacing: -0.01em;"
+      >
+        {isFr ? "Prêt pour un extérieur impeccable ?" : "Ready for a spotless exterior?"}
+      </h2>
+      <p class="mt-3 text-sm text-ink/60">
+        {isFr ? "Réponse sous 24 heures · Sans engagement" : "24hr response · No obligation"}
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href={`/${locale}/contact`}
+          class="touch-target inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-active active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        >
+          {t.cta.freeQuote}
+        </a>
+        <a
+          href={`tel:${s.phoneLink}`}
+          class="touch-target inline-flex items-center gap-2 rounded-lg border border-hairline bg-canvas px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-brand hover:text-brand active:scale-95 focus-visible:ring-2 focus-visible:ring-brand"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          {s.phone}
+        </a>
       </div>
     </div>
   </section>
