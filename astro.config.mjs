@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 import cloudflare from '@astrojs/cloudflare';
+import tailwindcss from '@tailwindcss/vite';
 
 /**
  * Tech-Stack Obfuscation Vite Plugin
@@ -160,6 +161,7 @@ export default defineConfig({
       devSourcemap: false,
     },
     plugins: [
+      tailwindcss(),
       obfuscateTechStack(),
       stripHtmlComments(),
     ],

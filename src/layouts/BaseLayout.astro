@@ -4,6 +4,7 @@ import TopBar from '@/components/TopBar.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import StickyBottomCTA from '@/components/StickyBottomCTA.astro';
+import AIChatDrawer from '@/components/AIChatDrawer.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import { getLocalBusinessSchema } from '@/seo';
 import '@/styles/global.css';
@@ -24,7 +25,7 @@ const allSchemas = schema ? [localBusinessSchema, ...(Array.isArray(schema) ? sc
   <head>
     <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage} locale={locale} alternateUrls={alternateUrls} noindex={noindex} />
     <JsonLd data={allSchemas} />
-    <meta name="theme-color" content="#1e2a4a" />
+    <meta name="theme-color" content="#1b61c9" />
   </head>
   <body class="flex min-h-screen flex-col bg-background text-foreground antialiased">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-midnight-indigo focus:px-4 focus:py-2 focus:text-text-on-dark focus:shadow-lg">{locale === 'fr' ? 'Aller au contenu principal' : 'Skip to main content'}</a>
@@ -33,6 +34,7 @@ const allSchemas = schema ? [localBusinessSchema, ...(Array.isArray(schema) ? sc
     <main id="main-content" class="flex-1"><slot /></main>
     <Footer locale={locale} />
     <StickyBottomCTA locale={locale} />
+    <AIChatDrawer locale={locale} />
 
 </body>
 </html>

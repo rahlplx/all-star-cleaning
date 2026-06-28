@@ -1,23 +1,51 @@
 ---
 import { useTranslations } from '@/i18n/translations';
+import siteSettings from '@/content/settings.json';
 interface Props { locale: 'en' | 'fr'; }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const s = siteSettings;
 ---
-<nav class="fixed bottom-0 left-0 right-0 z-[9999] border-t border-text-on-dark/10 bg-card/95 backdrop-blur-md md:hidden" aria-label={locale === 'fr' ? 'Actions rapides' : 'Quick actions'} style="padding-bottom: env(safe-area-inset-bottom);">
-  <div class="flex items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6">
-    <a 
-      href={`tel:${t.contact.phoneLink}`} 
-      class="touch-target group flex flex-1 items-center justify-center gap-2 rounded-full border border-midnight-indigo/30 bg-midnight-indigo/5 px-4 py-3 text-xs font-bold uppercase tracking-widest text-midnight-indigo transition-colors duration-200 hover:bg-midnight-indigo/10 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 active:scale-95 active:bg-midnight-indigo/15"
+<nav
+  class="fixed bottom-0 left-0 right-0 z-[9999] border-t border-hairline bg-canvas md:hidden"
+  aria-label={locale === 'fr' ? 'Actions rapides' : 'Quick actions'}
+  style="padding-bottom: env(safe-area-inset-bottom);"
+>
+  <div class="grid grid-cols-3" style="gap: 1px; background-color: var(--color-hairline);">
+    <!-- Call Now -->
+    <a
+      href={`tel:${s.phoneLink}`}
+      class="touch-target flex flex-col items-center justify-center gap-1 bg-canvas px-2 py-3 text-brand transition-colors duration-200 hover:bg-surface-soft active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset min-h-[56px]"
+      aria-label={t.cta.callNow}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-active:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      {t.cta.callNow}
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="text-[10px] font-medium leading-none">{t.cta.callNow}</span>
     </a>
-    <a 
-      href={`/${locale}/contact`} 
-      class="touch-target flex flex-1 items-center justify-center rounded-xl bg-midnight-indigo px-4 py-3 text-xs font-black uppercase tracking-widest text-text-on-dark shadow-lg shadow-midnight-indigo/20 transition-colors duration-200 hover:bg-midnight-indigo-dark focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 active:scale-95"
+
+    <!-- Free Quote (primary action) -->
+    <a
+      href={`/${locale}/contact`}
+      class="touch-target flex flex-col items-center justify-center gap-1 bg-brand px-2 py-3 text-white transition-colors duration-200 hover:bg-brand-active active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset min-h-[56px]"
     >
-      {t.cta.freeQuote}
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span class="text-[10px] font-medium leading-none">{t.cta.freeQuote}</span>
     </a>
+
+    <!-- AI Chat -->
+    <button
+      type="button"
+      id="open-ai-chat"
+      class="touch-target flex flex-col items-center justify-center gap-1 bg-canvas px-2 py-3 text-ink transition-colors duration-200 hover:bg-surface-soft active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset min-h-[56px] w-full"
+      aria-label={locale === 'fr' ? 'Ouvrir le chat IA' : 'Open AI chat'}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+      <span class="text-[10px] font-medium leading-none">{locale === 'fr' ? 'AI Chat' : 'AI Chat'}</span>
+    </button>
   </div>
 </nav>
+
+<script>
+  document.getElementById('open-ai-chat')?.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('openAIChat'));
+  });
+</script>

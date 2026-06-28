@@ -1,10 +1,12 @@
-# CLAUDE.md — All Star Cleaning
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
 Marketing website for All Star Cleaning, an Ottawa exterior cleaning service. Converts visitors to phone calls. ~600+ static pages.
 
-- **Framework**: Astro 6.3 + React 19
+- **Framework**: Astro 7 + React 19
 - **Deployment**: Cloudflare Pages
 - **CMS**: Keystatic (headless, cloud-backed JSON)
 - **Styling**: Tailwind CSS v4 + custom design tokens
@@ -29,9 +31,10 @@ npm run typecheck  # Type check via astro check
 | `keystatic.config.ts` | CMS schema — collections: reviews, services; singletons: settings, about, homepage |
 | `src/styles/global.css` | Tailwind `@theme` tokens (colors, typography, spacing, motion) |
 | `src/middleware.ts` | i18n routing middleware |
+| `src/i18n/translations.ts` | All UI strings (EN/FR) — `useTranslations(locale)` returns typed `Translation` |
 | `src/data/locations.ts` | 44 Ottawa locations with coordinates, area, postal codes, neighbours |
 | `src/data/services.ts` | Service data loader and helpers |
-| `src/types.ts` | TypeScript interfaces |
+| `src/types.ts` | TypeScript interfaces (`Service`, `Location`, `Review`, `SiteSettings`, etc.) |
 | `src/lib/utils.ts` | `cn()`, `formatPhone()`, `hreflangUrl()` |
 | `src/seo/` | Schema.org generators (local-business, service, FAQ, breadcrumb, review, etc.) |
 | `DESIGN.md` | Design system reference (colors, typography, elevation, motion, rules) |
@@ -40,80 +43,119 @@ npm run typecheck  # Type check via astro check
 ## Routes
 
 ```
-/                                           → redirects to /en/
-/[locale]/                                  → Homepage
+/                                               → redirects to /en/
+/[locale]/                                      → Homepage
 /[locale]/about
+/[locale]/contact                               → Web3Forms contact form
 /[locale]/reviews
+/[locale]/sitemap
 /[locale]/services/
-/[locale]/services/[serviceSlug]            → 5 services × 2 locales = 10 pages
+/[locale]/services/[serviceSlug]                → 5 services × 2 locales = 10 pages
 /[locale]/area/
-/[locale]/area/[locationSlug]/              → 44 locations × 2 locales = 88 pages
-/[locale]/area/[locationSlug]/[serviceSlug] → 440 programmatic pages
+/[locale]/area/[locationSlug]/                  → 44 locations × 2 locales = 88 pages
+/[locale]/area/[locationSlug]/[serviceSlug]     → 440 programmatic pages
 /[locale]/privacy
 /[locale]/terms
-/keystatic/*                                → CMS admin UI
-/api/keystatic/*                            → CMS API
+/keystatic/*                                    → CMS admin UI
+/api/keystatic/*                                → CMS API
 ```
 
-## Components
+## Architecture
 
-**Astro** (`src/components/`):
-- `BaseHead.astro` — meta, OG tags, hreflang, canonical
-- `Header.astro` — sticky nav, mobile hamburger, phone link
-- `Footer.astro` — 4-column layout with social icons
-- `TopBar.astro` — optional announcement bar
-- `StickyBottomCTA.astro` — fixed mobile call/quote CTA
-- `JsonLd.astro` — injects JSON-LD structured data
-- `FAQAccordion.astro` — accordion FAQ
-- `ServiceBadge.astro` — service card with icon
+### Page Generation
 
-**React** (`src/components/ui/`):
-- `button.tsx` — CVA button with variants (default/destructive/outline/secondary/ghost/link) and sizes
+The 440 programmatic pages (`src/pages/[locale]/area/[locationSlug]/[serviceSlug].astro`) are generated at build time from `locations.ts` × `services.ts`. All service slugs are English-only — `frSlug` in service JSON is orphaned and unused, kept only for CMS compatibility.
 
-## Content (Keystatic CMS)
+### i18n Pattern
+
+All user-facing text comes from `src/i18n/translations.ts`. Pages receive `locale` from `Astro.params`, then call `useTranslations(locale)` to get `t`. UI strings use `t.nav.home`, `t.cta.freeQuote`, etc. — no ternary needed since both locales are keyed the same. CMS content (services, reviews) stores parallel fields accessed via ternary: `isFr ? service.frName : service.name`. French typesetting requires a non-breaking space before colons: ` :`.
+
+### Layouts
+
+- `BaseLayout.astro` — head + header + footer; use for all new pages
+- `PageLayout.astro` — extends BaseLayout with breadcrumbs + hero section
+
+### Content (Keystatic CMS)
 
 JSON files in `src/content/`:
 - `services/*.json` — window-cleaning, gutter-cleaning, pressure-washing, siding-cleaning, snow-removal
 - `reviews/*.json` — 5 customer reviews
 - `about.json`, `homepage.json`, `settings.json`
 
-Edit via `/keystatic` admin UI (requires dev server) or directly in JSON files.
+Phone numbers and review counts must come from `siteSettings` (loaded from `settings.json`) — never hardcoded.
 
-## Environment Variables
+### Service Page Template
 
-**`.env`** — Keystatic CMS credentials:
-```
-KEYSTATIC_GITHUB_CLIENT_ID
-KEYSTATIC_GITHUB_CLIENT_SECRET
-KEYSTATIC_SECRET
-PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
-```
+`[serviceSlug].astro` uses a 3-column grid:
+- Main content (2/3): hero, features, FAQs
+- Sticky sidebar (1/3): quote CTA form, `sticky top-24 z-sticky overflow-y-auto`
+- Mobile: sidebar is hidden, replaced by `lg:hidden` inline CTA
+- Snow removal special case: uses 4hr response time text, not 24hr
 
-**`.env.local`** — Local overrides:
-```
-WEB3FORMS_ACCESS_KEY   # Contact form submissions
-PUBLIC_SITE_URL        # Canonical URL (https://www.allstarcleaning.ca)
-```
+### SEO Schemas
+
+Use generators in `src/seo/` — never hand-write JSON-LD:
+
+| Schema | Pages |
+|--------|-------|
+| HomeAndConstructionBusiness | All |
+| Service | 5 service pages |
+| FAQPage | Service + location+service pages |
+| BreadcrumbList | All |
+| HowTo | Homepage |
+| Person | About page |
+| Review + AggregateRating | Reviews page |
 
 ## Conventions
 
-1. **Path alias**: `@/*` → `src/*` — use `@/components/...`, `@/lib/utils`, etc.
-2. **i18n**: Always thread `locale` param through pages; use `hreflangUrl()` for alternate language links.
-3. **Tailwind tokens**: Use CSS vars from `global.css @theme` (e.g. `--color-brand-blue`), never hardcode hex.
-4. **Design rules**: See `DESIGN.md` — no pure black/white, no gradient text, no decorative side-stripes.
-5. **Obfuscation**: Vite plugins rename `--tw-*` → `--c-*` and reroute `/_astro/` → `/static/` in production. Don't reference internal Tailwind vars directly.
-6. **Static only**: No backend. Forms via Web3Forms. No DB queries anywhere.
-7. **SEO schemas**: Use generators in `src/seo/` — never hand-write JSON-LD.
-8. **Add location**: Append to `src/data/locations.ts` — programmatic pages auto-generate at build time.
-9. **Add service**: Create JSON in `src/content/services/`, update `src/data/services.ts` loader array.
-10. **Layouts**: Wrap pages in `BaseLayout.astro` (head + header + footer) or `PageLayout.astro` (adds breadcrumbs + hero).
-11. **oklch fallback**: Every CSS variable using oklch MUST have a hex fallback declared first: `--color-x: #hex; --color-x: oklch(...);`
-12. **CTA consistency**: All CTA text imports from `src/data/cta.ts`. No hardcoded CTA strings in components.
-13. **Form accessibility**: Every form input needs `<label>`, `autocomplete`, `aria-required`, and `inputmode` (tel/email) where applicable.
-14. **Mobile menu ARIA**: Hamburger menus MUST use `role="dialog"`, `aria-modal="true"`, focus trap, and Escape-to-close.
-15. **Star ratings**: Use `role="img"` + `aria-label` on rating containers. Stars get `aria-hidden="true"`.
-16. **Fluid headings**: All heading utility classes must use `clamp()` via CSS tokens, never fixed `rem` above body size.
+1. **Path alias**: `@/*` → `src/*`
+2. **Tailwind tokens**: Use CSS vars from `global.css @theme` (e.g. `--color-brand-blue`), never hardcode hex.
+3. **Design rules**: See `DESIGN.md` — no pure black/white, no gradient text, no decorative side-stripes, no nested cards, 65ch max body line length.
+4. **Obfuscation**: Vite plugins rename `--tw-*` → `--c-*` and reroute `/_astro/` → `/static/` in production. Don't reference internal Tailwind vars directly.
+5. **Static only**: No backend. Forms via Web3Forms. No DB queries anywhere.
+6. **Add location**: Append to `src/data/locations.ts` — programmatic pages auto-generate at build time.
+7. **Add service**: Create JSON in `src/content/services/`, update `src/data/services.ts` loader array.
+8. **oklch fallback**: Every CSS variable using oklch MUST have a hex fallback first: `--color-x: #hex; --color-x: oklch(...);`
+9. **CTA strings**: All CTA text lives in `src/i18n/translations.ts` under the `cta` namespace (`t.cta.freeQuote`, etc.). Never hardcode CTA copy.
+10. **Dark surfaces**: Use `text-text-on-dark` — never raw `text-white`.
+
+## Accessibility Rules
+
+### Forms
+- Every `<input>` needs `<label for="id">`
+- `autocomplete` on name/email/phone/address fields
+- `inputmode="tel"` on phone, `inputmode="email"` on email
+- `aria-required="true"` on required fields
+
+### Mobile Menu
+```html
+<button aria-label="Open menu" aria-expanded="false" aria-controls="menu-id">...</button>
+<div id="menu-id" role="dialog" aria-modal="true" aria-label="Mobile navigation">...</div>
+```
+Focus trap + Escape-to-close + restore focus on dismiss.
+
+### Star Ratings
+```html
+<div role="img" aria-label="5 out of 5 stars">
+  <span aria-hidden="true">★★★★★</span>
+</div>
+```
+
+### Touch Targets
+All `<a>` and `<button>` elements must have the `touch-target` class (min 44×44px).
+
+### Fluid Headings
+All heading utilities must use `clamp()` via CSS tokens — never fixed `rem` above body size.
+
+## Transition Rules
+
+- Never use `transition-all` (except `button.tsx` shared component)
+- `transition-colors duration-200` for color changes
+- `transition-transform` for scale/rotate
+- `will-change-transform` only on actively animating elements, not static hovers
+- No `backdrop-blur` on cards or content areas (`backdrop-blur-md` on `StickyBottomCTA` is the only exception)
 
 ## Impeccable (Design Anti-Slop)
+
 Skill installed at `.agents/skills/impeccable/SKILL.md`.  
 `DESIGN.md` + `PRODUCT.md` satisfy the `/teach` prerequisite — skip `/teach`, go straight to `/audit`, `/polish`, `/craft`.

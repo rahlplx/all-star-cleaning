@@ -21,10 +21,10 @@ const navLinks = [
 ];
 ---
 <div id="header-sentinel" class="absolute top-0 h-px w-full pointer-events-none"></div>
-<header id="main-header" class="sticky top-0 z-50 border-b border-border bg-card/95 transition-colors duration-300">
+<header id="main-header" class="sticky top-0 z-50 border-b border-hairline bg-canvas/95 backdrop-blur-sm transition-colors duration-300">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3">
     <!-- Logo -->
-    <a href={`/${locale}`} class="touch-target flex items-center gap-2.5 text-navy no-underline focus-visible:ring-2 focus-visible:ring-midnight-indigo">
+    <a href={`/${locale}`} class="touch-target flex items-center gap-2.5 text-ink no-underline focus-visible:ring-2 focus-visible:ring-brand">
       <img src={s.headerLogo || '/images/logo.png'} alt={s.businessName} width="180" height="60" class="h-11 w-auto sm:h-14 lg:h-16 xl:h-20 object-contain" loading="eager" />
     </a>
 
@@ -34,7 +34,7 @@ const navLinks = [
         <div class="group relative">
           <a 
             href={link.href} 
-            class:list={['touch-target inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-midnight-indigo', currentPath === link.href ? 'bg-midnight-indigo/10 text-midnight-indigo' : 'text-navy hover:bg-off-white-dark hover:text-midnight-indigo']} 
+            class:list={['touch-target inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand', currentPath === link.href ? 'bg-brand/10 text-brand' : 'text-ink hover:bg-surface-soft hover:text-brand']} 
             aria-haspopup={link.hasDropdown ? "true" : undefined} 
             aria-expanded={link.hasDropdown ? "false" : undefined} 
             aria-current={currentPath === link.href ? 'page' : undefined}
@@ -46,7 +46,7 @@ const navLinks = [
           </a>
           {link.children && (
             <div class="invisible absolute left-0 top-full z-dropdown mt-1 min-w-[220px] rounded-lg border border-border bg-card py-2 shadow-lg opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              {link.children.map((child) => <a href={child.href} class="touch-target flex items-center gap-2 px-4 py-2.5 text-sm text-navy transition-colors duration-200 hover:bg-off-white-dark hover:text-midnight-indigo focus-visible:ring-2 focus-visible:ring-midnight-indigo focus:bg-off-white-dark focus:text-midnight-indigo">
+              {link.children.map((child) => <a href={child.href} class="touch-target flex items-center gap-2 px-4 py-2.5 text-sm text-ink transition-colors duration-200 hover:bg-surface-soft hover:text-brand focus-visible:ring-2 focus-visible:ring-brand focus:bg-surface-soft focus:text-brand">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-midnight-indigo/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                 {child.label}
               </a>)}
@@ -58,12 +58,12 @@ const navLinks = [
 
     <!-- Right side: CTA + Mobile toggle -->
     <div class="flex items-center gap-2 sm:gap-3">
-      <a href={`/${locale}/contact`} class="hidden rounded-full bg-midnight-indigo px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-text-on-dark shadow-lg transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl active:scale-95 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 touch-target lg:inline-flex">{t.nav.getQuote}</a>
+      <a href={`/${locale}/contact`} class="hidden rounded-lg bg-brand px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-brand-active active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 touch-target lg:inline-flex">{t.nav.getQuote}</a>
       <!-- Phone icon for mobile (quick call) -->
-      <a href={`tel:${s.phoneLink}`} class="touch-target inline-flex items-center justify-center rounded-full border border-midnight-indigo/30 p-2.5 text-midnight-indigo transition-colors duration-200 hover:bg-midnight-indigo/5 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2 lg:hidden min-h-11 min-w-11" aria-label="Call us">
+      <a href={`tel:${s.phoneLink}`} class="touch-target inline-flex items-center justify-center rounded-full border border-midnight-indigo/30 p-2.5 text-midnight-indigo transition-colors duration-200 hover:bg-midnight-indigo/5 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:hidden min-h-11 min-w-11" aria-label="Call us">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </a>
-      <button id="mobile-menu-toggle" class="touch-target inline-flex items-center justify-center rounded-md p-2.5 text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-midnight-indigo lg:hidden min-h-11 min-w-11" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button id="mobile-menu-toggle" class="touch-target inline-flex items-center justify-center rounded-md p-2.5 text-ink transition-colors duration-200 hover:bg-surface-soft focus-visible:ring-2 focus-visible:ring-brand lg:hidden min-h-11 min-w-11" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
@@ -77,24 +77,24 @@ const navLinks = [
         <div>
           {link.children ? (
             <div class="mobile-nav-dropdown">
-              <button type="button" class="touch-target flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-navy transition-colors duration-200 hover:bg-off-white-dark focus-visible:ring-2 focus-visible:ring-midnight-indigo" aria-expanded="false" aria-haspopup="true">
+              <button type="button" class="touch-target flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:bg-surface-soft focus-visible:ring-2 focus-visible:ring-brand" aria-expanded="false" aria-haspopup="true">
                 <span class="hover:text-midnight-indigo transition-colors">{link.label}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-dropdown-arrow h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
               <div class="mobile-dropdown-content ml-3 pl-3 hidden">
-                {link.children.map((child) => <a href={child.href} class="touch-target flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-midnight-indigo focus-visible:ring-2 focus-visible:ring-midnight-indigo">
+                {link.children.map((child) => <a href={child.href} class="touch-target flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-midnight-indigo focus-visible:ring-2 focus-visible:ring-brand">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-midnight-indigo/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                   {child.label}
                 </a>)}
               </div>
             </div>
           ) : (
-            <a href={link.href} class:list={['touch-target block rounded-md px-3 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-midnight-indigo', currentPath === link.href ? 'bg-midnight-indigo/10 text-midnight-indigo' : 'text-navy hover:bg-off-white-dark']} aria-current={currentPath === link.href ? 'page' : undefined}>{link.label}</a>
+            <a href={link.href} class:list={['touch-target block rounded-md px-3 py-2.5 text-sm font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand', currentPath === link.href ? 'bg-brand/10 text-brand' : 'text-ink hover:bg-surface-soft']} aria-current={currentPath === link.href ? 'page' : undefined}>{link.label}</a>
           )}
         </div>
       ))}
       <div class="mt-4 border-t border-border pt-4">
-        <a href={`/${locale}/contact`} class="touch-target block rounded-full bg-midnight-indigo px-5 py-2.5 text-center text-sm font-bold uppercase tracking-wider text-text-on-dark shadow-lg transition-colors duration-200 hover:bg-midnight-indigo-dark hover:shadow-xl active:scale-95 focus-visible:ring-2 focus-visible:ring-midnight-indigo focus-visible:ring-offset-2">{t.nav.getQuote}</a>
+        <a href={`/${locale}/contact`} class="touch-target block rounded-lg bg-brand px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-brand-active active:scale-95 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">{t.nav.getQuote}</a>
       </div>
     </nav>
   </div>
